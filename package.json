@@ -1,0 +1,11 @@
+{
+  "name": "real_time_chat",
+  "version": "1.0.0",
+  "description": "projek real time chat yang saya buat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zidan-p",
+  "license": "ISC"
+}
