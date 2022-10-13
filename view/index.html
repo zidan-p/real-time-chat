@@ -25,49 +25,67 @@
     <title>Real time chat</title>
 </head>
 <body class="font-mono text-white">
-    <div class="min-h-screen flex bg-vscode-2">
+    <div class="h-screen flex bg-vscode-2">
         <!-- side bar untuk daftar room -->
-        <div class="basis-1/4 bg-vscode-4 rounded-r-3xl">
-            <h1 class="text-center py-5 text-3xl text-white font-medium">Daftar Room</h1>
-            <div class="px-3 mb-5 group"> <!-- searc bar -->
-                <form id="form-find" class="p-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 rounded-full">
-                    <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        <div class="basis-1/4 bg-vscode-4 rounded-r-3xl overflow-hidden flex flex-col">
+
+            <div class="wrapper">
+                <h1 class="text-center py-5 text-3xl text-white font-medium">Daftar Room</h1>
+                <div class="px-3 mb-5 group"> <!-- search bar -->
+                    <form id="form-find" class="p-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 rounded-full">
+                        <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none rounded-full focus-within:bg-white" placeholder="Search.."/>
+                    </form>
+                </div>
+            </div>
+            <!--daftar room dan setting-->
+            <div class="flex w-full h-full gap-2">
+                <div class="basis-1/6 bg-vscode-5 rounded-r-xl flex flex-col-reverse gap-2 p-4"> <!--setting-->
+                    <svg class="mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none rounded-full focus-within:bg-white" placeholder="Search.."/>
-                </form>
+                    <svg class="mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="grow"> <!--room-->
+                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
+                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
+                        <div class="flex flex-col py-2">
+                            <h4 class="font-semibold text">Room 1</h4>
+                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
+                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
+                        <div class="flex flex-col py-2">
+                            <h4 class="font-semibold text">Room 1</h4>
+                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
+                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
+                        <div class="flex flex-col py-2">
+                            <h4 class="font-semibold text">Room 1</h4>
+                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
+                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
+                        <div class="flex flex-col py-2">
+                            <h4 class="font-semibold text">Room 1</h4>
+                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300 basis-1/6 rounded-full"></div>
-                <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
-                </div>
-            </div>
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300 basis-1/6 rounded-full"></div>
-                <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
-                </div>
-            </div>
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300 basis-1/6 rounded-full"></div>
-                <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
-                </div>
-            </div>
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300 basis-1/6 rounded-full"></div>
-                <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
-                </div>
-            </div>
         </div>
+
         <!-- main content untuk chat -->
         <div class="grow "></div>
     </div>
