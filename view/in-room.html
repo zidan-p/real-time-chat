@@ -25,13 +25,26 @@
     <title>Real time chat</title>
 </head>
 <body class="font-mono text-white">
-    <div class="h-screen flex bg-vscode-2">
-        <!-- side bar untuk daftar room -->
-        <div class="basis-1/4 bg-vscode-4 rounded-r-3xl overflow-hidden flex flex-col">
 
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300  rounded-full bg-cover">
-                    
+    <div class="bg-vscode-2 min-h-screen max-h-screen flex">
+        
+        <!-- Side Bar untuk daftar room -->
+        <div class="bg-vscode-4 basis-1/4 rounded-r-3xl">
+            <h1 class="text-center py-10 text-3xl font-medium">Daftar Room</h1>
+            
+            <!-- Search Bar -->
+            <div class="group px-3 mb-5">
+                <form id="form-find" class="px-3 p-2 mb-5 bg-vscode-2 flex flex-nowrap gap-2 rounded-full group-focus-within:bg-white">
+                    <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input id="find" class="bg-vscode-2 w-full px-3 text-vscode-5 rounded-full focus-within:outline-none focus-within:bg-white" placeholder="Search">
+                </form>
+            </div>
+
+            <!-- Room List -->
+            <div class="flex gap-3 my-5 ml-10 rounded-l-full transition hover:bg-vscode-2">
+                <div class="bg-green-300 rounded-full">
                     <svg width="50px" height="50px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
                         <g id="color">
                         <path fill="#92d3f5" d="M29,58.2s-.9-3.6-.9-4.2V47.7c0-4.3-3.4-4.7-3.4-4.7l-3.4,2.9-.7,8.4.1,3.9Z"/>
@@ -61,16 +74,14 @@
                         </g>
                         </g>
                     </svg>
-  
                 </div>
                 <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
+                    <h1 class="font-semibold text-lg">Room Chat</h1>
+                    <h1 class="font-extralight text-xs">hallo, Apakah ada orang disini</h1>
                 </div>
             </div>
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300  rounded-full bg-cover">
-                    
+            <div class="flex gap-3 my-5 ml-10 rounded-l-full transition hover:bg-vscode-2">
+                <div class="bg-green-300 rounded-full">
                     <svg width="50px" height="50px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
                         <g id="color">
                         <path fill="#92d3f5" d="M29,58.2s-.9-3.6-.9-4.2V47.7c0-4.3-3.4-4.7-3.4-4.7l-3.4,2.9-.7,8.4.1,3.9Z"/>
@@ -100,16 +111,14 @@
                         </g>
                         </g>
                     </svg>
-  
                 </div>
                 <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
+                    <h1 class="font-semibold text-lg">Room Chat</h1>
+                    <h1 class="font-extralight text-xs">hallo, Apakah ada orang disini</h1>
                 </div>
             </div>
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300  rounded-full bg-cover">
-                    
+            <div class="flex gap-3 my-5 ml-10 rounded-l-full transition hover:bg-vscode-2">
+                <div class="bg-green-300 rounded-full">
                     <svg width="50px" height="50px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
                         <g id="color">
                         <path fill="#92d3f5" d="M29,58.2s-.9-3.6-.9-4.2V47.7c0-4.3-3.4-4.7-3.4-4.7l-3.4,2.9-.7,8.4.1,3.9Z"/>
@@ -139,16 +148,14 @@
                         </g>
                         </g>
                     </svg>
-  
                 </div>
                 <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
+                    <h1 class="font-semibold text-lg">Room Chat</h1>
+                    <h1 class="font-extralight text-xs">hallo, Apakah ada orang disini</h1>
                 </div>
             </div>
-            <div class="flex gap-3 my-2 ml-6 hover:bg-vscode-2 rounded-l-full transition">
-                <div class="bg-green-300  rounded-full bg-cover">
-                    
+            <div class="flex gap-3 my-5 ml-10 rounded-l-full transition hover:bg-vscode-2">
+                <div class="bg-green-300 rounded-full">
                     <svg width="50px" height="50px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
                         <g id="color">
                         <path fill="#92d3f5" d="M29,58.2s-.9-3.6-.9-4.2V47.7c0-4.3-3.4-4.7-3.4-4.7l-3.4,2.9-.7,8.4.1,3.9Z"/>
@@ -178,73 +185,149 @@
                         </g>
                         </g>
                     </svg>
-  
                 </div>
                 <div class="flex flex-col">
-                    <h4 class="font-semibold text-lg">Room 1</h4>
-                    <h4 class="font-extralight text-xs">hallo, apakah ada orang disinni...</h4>
+                    <h1 class="font-semibold text-lg">Room Chat</h1>
+                    <h1 class="font-extralight text-xs">hallo, Apakah ada orang disini</h1>
                 </div>
             </div>
             
-            <div class="wrapper">
-                <h1 class="text-center py-5 text-3xl text-white font-medium">Daftar Room</h1>
-                <div class="px-3 mb-5 group"> <!-- search bar -->
-                    <form id="form-find" class="p-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 rounded-full">
-                        <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none rounded-full focus-within:bg-white" placeholder="Search.."/>
-                    </form>
-                </div>
-            </div>
-            <!--daftar room dan setting-->
-            <div class="flex w-full h-full gap-2">
-                <div class="basis-1/6 bg-vscode-5 rounded-r-xl flex flex-col-reverse gap-2 p-4"> <!--setting-->
-                    <svg class="mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                    </svg>
-                    <svg class="mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </div>
-                <div class="grow"> <!--room-->
-                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
-                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
-                        <div class="flex flex-col py-2">
-                            <h4 class="font-semibold text">Room 1</h4>
-                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
-                        </div>
-                    </div>
-                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
-                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
-                        <div class="flex flex-col py-2">
-                            <h4 class="font-semibold text">Room 1</h4>
-                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
-                        </div>
-                    </div>
-                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
-                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
-                        <div class="flex flex-col py-2">
-                            <h4 class="font-semibold text">Room 1</h4>
-                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
-                        </div>
-                    </div>
-                    <div class="flex gap-3 py-2 hover:bg-vscode-2 rounded-l-full transition cursor-pointer">
-                        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
-                        <div class="flex flex-col py-2">
-                            <h4 class="font-semibold text">Room 1</h4>
-                            <h4 class="font-extralight text-xs text-gray-400">hallo, apakah ada orang disinni...</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- main content untuk chat -->
-        <div class="grow "></div>
+        <!-- Main Content untuk chat room -->
+        <div class="basis-3/4 bg-vscode-3">
+
+            <!-- Header Room Chat -->
+            <div class="bg-vscode-2 drop-shadow-2xl min-h-36">
+                <div class="flex justify-between p-5">
+                    <h1 class="font-semibold text-2xl pl-5 m-2">Room Chat</h1>
+                    <div class="bg-white rounded-full mr-10">            
+                        <svg width="50px" height="50px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
+                            <g id="color">
+                            <path fill="#92d3f5" d="M29,58.2s-.9-3.6-.9-4.2V47.7c0-4.3-3.4-4.7-3.4-4.7l-3.4,2.9-.7,8.4.1,3.9Z"/>
+                            <path fill="#92d3f5" d="M39.7,58.2s.9-3.6.9-4.2V47.7C40.6,43.4,44,43,44,43l3.4,2.9.7,8.4L48,58.2Z"/>
+                            </g>
+                            <g id="skin">
+                            <path fill="#fcea2b" d="M20.6,58.2,20,48.3c-2,1.6-3.5,3.8-3.5,6.1v2.9a1.9074,1.9074,0,0,1-.4,1"/>
+                            <path fill="#fcea2b" d="M23.3,29.3c-.1,7.7,4.1,13.4,11,13.4,7.1,0,11.1-5.8,11.1-13.4,0-4.8-7.2-12.5-7.2-12.5-3.6,1.5-8.6,4.9-13.7,7.2C22.6,26.5,23.4,26.2,23.3,29.3Z"/>
+                            <path fill="#fcea2b" d="M28.9,58.2l-.8-10.7s7.4,3.2,12.1-.2l-.3,10.9Z"/>
+                            <polygon fill="#fcea2b" points="48 58.2 48.1 48.3 51.9 51.6 52.3 58.2 48 58.2"/>
+                            </g>
+                            <g id="hair">
+                            <path fill="#f1b31c" d="M44.1,37.2c1.9-3.3.6-9.9.2-11.8S37.8,16,37.8,16c-2.3,4.1-9,5.1-12.8,7.9s-.2,13.9-.2,13.9c-4,0-4-6-4-13s4-14,14-14,14,7,14,14,0,13-4,13l-.7-.6"/>
+                            </g>
+                            <g id="line">
+                            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.6,57.2l-.1-8.3c0-1,.1-2.6.7-3.2a7.4939,7.4939,0,0,1,1.6-.5c.9-.3,1.4-2.8,2.1-2.9.6-.1,2.9,2.8,3.1,2.9a5.3665,5.3665,0,0,1,.1,2.2,24.7765,24.7765,0,0,0-.2,6.1c.1.9.8,3.7.8,3.7"/>
+                            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M48,57.2l.1-8.3c0-1-.1-2.6-.7-3.2a7.4939,7.4939,0,0,0-1.6-.5c-.9-.3-1.4-2.8-2.1-2.9-.6-.1-2.9,2.8-3.1,2.9a5.3665,5.3665,0,0,0-.1,2.2,24.7765,24.7765,0,0,1,.2,6.1c-.1.9-.8,3.7-.8,3.7"/>
+                            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M28.2,47.5A11.3052,11.3052,0,0,0,36,49.2h0a11.9485,11.9485,0,0,0,4-1.4"/>
+                            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.3,57.2V54.3a6.264,6.264,0,0,1,.6-2.7c.4-1.3,1.1-2.3,3.2-3.6"/>
+                            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M52.5,57.2V54.3a6.264,6.264,0,0,0-.6-2.7c-.4-1.3-1.1-2.3-3.2-3.6"/>
+                            <g>
+                                <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M24.5,37.5c-4,0-4-6-4-13s4-14,14-14,14,7,14,14,0,13-4,13"/>
+                                <path d="M40.4,28.5a2,2,0,1,1-2-2,2.0059,2.0059,0,0,1,2,2"/>
+                                <path d="M32.4,28.5a2,2,0,1,1-2-2,2.0059,2.0059,0,0,1,2,2"/>
+                                <path fill="none" stroke="#000" stroke-linejoin="round" stroke-width="2" d="M23.4,29.5c0,9,4.9,14,11,14,5.9,0,11.1-5,11.1-14a12.1332,12.1332,0,0,0-1-5c-3-3-7-8-7-8-4,3-7,6-13,7C24.5,23.5,23.4,24.5,23.4,29.5Z"/>
+                                <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M31.5,36.5a6.6712,6.6712,0,0,0,6,0"/>
+                            </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Containt -->
+            <div class="h-[76%] flex py-8">
+                <div class="basis-1/12 flex flex-col gap-y-5 text-center">
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                    <p>4</p>
+                    <p>5</p>
+                </div>
+                <div class="basis-5/12 flex text-start flex-col gap-y-5 ">
+                    <div class="flex">
+                        <p class="text-[#FF5A76] tracking-widest">[ #12345 ]</p>
+                        <p>[ Ini Pesan Diterima ]</p>    
+                    </div>
+                    <div class="flex">
+                        <p class="text-[#FF5A76] tracking-widest">[ #12345 ]</p>
+                        <p>[ Ini Pesan Diterima ]</p>    
+                    </div>
+                    <div class="flex">
+                        <p class="text-[#FF5A76] tracking-widest">[ #12345 ]</p>
+                        <p>[ Ini Pesan Diterima ]</p>    
+                    </div>
+                    <div class="flex">
+                        <p class="text-[#FF5A76] tracking-widest">[ #12345 ]</p>
+                        <p>[ Ini Pesan Diterima ]</p>    
+                    </div>
+                    <div class="flex">
+                        <p class="text-[#FF5A76] tracking-widest">[ #12345 ]</p>
+                        <p>[ Ini Pesan Diterima ]</p>    
+                    </div>     
+                </div>
+                <div class="basis-5/12 flex flex-end flex-col gap-y-5">
+                    <div class="flex justify-end">
+                        <p>[ Ini Pesan Dikirim ]</p>
+                        <p class="text-[#FFC355]">[ #54321 ]</p>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>[ Ini Pesan Dikirim ]</p>
+                        <p class="text-[#FFC355]">[ #54321 ]</p>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>[ Ini Pesan Dikirim ]</p>
+                        <p class="text-[#FFC355]">[ #54321 ]</p>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>[ Ini Pesan Dikirim ]</p>
+                        <p class="text-[#FFC355]">[ #54321 ]</p>
+                    </div>
+                    <div class="flex justify-end">
+                        <p>[ Ini Pesan Dikirim ]</p>
+                        <p class="text-[#FFC355]">[ #54321 ]</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <div class="absolute w-3/4 flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
+                <div class="bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
+                    <p>Ini ID</p>
+                </div>
+                <div class="w-10/12 text-black rounded-lg text-center">
+                    <form>
+                        <input id="find" class="w-full text-vscode-2 py-2 px-4 rounded-lg focus-within:outline-none focus-within:bg-white" placeholder="Ketik Disini YGY">
+                    </form>
+                </div>
+                <div class="flex w-1/12 justify-center cursor-pointer">
+                    <?xml version="1.0" encoding="iso-8859-1"?>
+                    <svg height="40px" width="40px" fill="#fff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 491.022 491.022" style="enable-background:new 0 0 491.022 491.022;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M490.916,13.991c-0.213-1.173-0.64-2.347-1.28-3.307c-0.107-0.213-0.213-0.533-0.32-0.747
+                                    c-0.107-0.213-0.32-0.32-0.533-0.533c-0.427-0.533-0.96-1.067-1.493-1.493c-0.427-0.32-0.853-0.64-1.28-0.96
+                                    c-0.213-0.107-0.32-0.32-0.533-0.427c-0.32-0.107-0.747-0.32-1.173-0.427c-0.533-0.213-1.067-0.427-1.6-0.533
+                                    c-0.64-0.107-1.28-0.213-1.92-0.213c-0.533,0-1.067,0-1.6,0c-0.747,0.107-1.493,0.32-2.133,0.533
+                                    c-0.32,0.107-0.747,0.107-1.067,0.213L6.436,209.085c-5.44,2.347-7.893,8.64-5.547,14.08c1.067,2.347,2.88,4.373,5.227,5.44
+                                    l175.36,82.453v163.947c0,5.867,4.8,10.667,10.667,10.667c3.733,0,7.147-1.92,9.067-5.12l74.133-120.533l114.56,60.373
+                                    c5.227,2.773,11.627,0.747,14.4-4.48c0.427-0.853,0.747-1.813,0.96-2.667l85.547-394.987c0-0.213,0-0.427,0-0.64
+                                    c0.107-0.64,0.107-1.173,0.213-1.707C491.022,15.271,491.022,14.631,490.916,13.991z M190.009,291.324L36.836,219.218
+                                    L433.209,48.124L190.009,291.324z M202.809,437.138V321.831l53.653,28.267L202.809,437.138z M387.449,394.898l-100.8-53.013
+                                    l-18.133-11.2l-0.747,1.28l-57.707-30.4L462.116,49.298L387.449,394.898z"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- <div class="bg-red-500 absolute w-3/4">
+                test
+            </div> -->
+
+        </div>
     </div>
+    
 </body>
 </html>
