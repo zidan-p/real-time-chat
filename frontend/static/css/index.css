@@ -1,0 +1,8 @@
+.tooltip {
+  /* ... */
+  display: none;
+}
+
+.tooltip[data-show] {
+  display: block;
+}
