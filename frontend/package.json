@@ -1,0 +1,20 @@
+{
+  "name": "real-time-chat-frontend",
+  "version": "1.0.0",
+  "description": "frontend webview for real-time-chat app",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "zidan-p",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.6"
+  }
+}

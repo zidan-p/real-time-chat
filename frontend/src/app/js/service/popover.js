@@ -1,10 +1,4 @@
-// import {createPopper} from "/node_modules/@popperjs/core/index";
-// const { createPopper } = require('@popperjs/core');
-// import { createPopper } from '@popperjs/core'
-// const { createPopper } = Popper;
-
-// const { createPopper } = require('/module/popper');
-import { createPopper }  from '/module/popper';
+import { createPopper } from '@popperjs/core'
 
 /*
 bertasakkan fungction utils ini,
@@ -14,9 +8,8 @@ untuk meberikan popover yg harus dilakukan adalah sebagai berikut.
 3. bungkus kedua lemen dengan div yang diberi class "tooltip-collection".
 4. selesai...
  */
-
-
 let tooltipCollection
+console.log('tooltip diaktifkan')
 
 
 // --------- function untuk eventnya ------------
@@ -53,7 +46,17 @@ function updateTooltipDom(){
         tooltipTarget = container.querySelector('.tooltip-target');
         tooltip = container.querySelector('.tooltip');
 
-        let poppperInstance = createPopper(tooltipTarget, tooltip);
+        let poppperInstance = createPopper(tooltipTarget, tooltip,{
+            placement: 'right',
+            modifiers: [
+                {
+                    name: 'offset',
+                    options: {
+                        offset: [0, 8],
+                    },
+                },
+            ],
+        });
 
         //tampilkan saat di hover
         addEvent(tooltipTarget, tooltip, poppperInstance);
@@ -61,4 +64,4 @@ function updateTooltipDom(){
 }
 
 
-export default updateTooltipDom;
+export {updateTooltipDom};
