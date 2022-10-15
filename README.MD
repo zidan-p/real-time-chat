@@ -5,4 +5,4 @@ berikut merupakan preview singkat dari aplikasi ini.
 
 |real-time-chat|
 |--|
-| dummy table  |
+| ![project preview](https://raw.githubusercontent.com/zidan-p/real-time-chat/master/readme_asset/preview_1.png)
