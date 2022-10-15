@@ -1,14 +1,14 @@
-const { watch } = require('fs');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode : "development",
-    entry : "./src/index.js",
-    output : {
-        path : path.resolve(__dirname, "dist"),
-        filename : "bundle.js"
-    },
-    watch : true, //supaya webpack selau melakukan monitor setiap perubahan file
+    entry : path.resolve(__dirname, "../", "src", "index.js"),
+    plugins: [
+        // plugin supaya file html juga iku digenerate
+        new HtmlWebpackPlugin({
+            template : "./src/template.html"
+        }),
+    ], 
     devtool : false, //merujuk pada penggunakan eval untuk hasil bundle
     module: {
         rules: [
