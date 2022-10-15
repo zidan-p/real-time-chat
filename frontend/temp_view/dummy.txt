@@ -1,0 +1,2 @@
+ini adalah file kosong untuk mengisi direktori ini.
+hal ini supaya directory ini masih dapat di tracking oleh git
