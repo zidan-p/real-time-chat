@@ -6,7 +6,7 @@ module.exports = {
     plugins: [
         // plugin supaya file html juga iku digenerate
         new HtmlWebpackPlugin({
-            template : "./src/template.html"
+            template : path.resolve(__dirname, "../", "src", "template.html"),// "./src/template.html"
         }),
     ], 
     devtool : false, //merujuk pada penggunakan eval untuk hasil bundle

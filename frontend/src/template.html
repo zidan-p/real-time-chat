@@ -44,12 +44,12 @@
                 </div>
             </div>
             <!--daftar room dan setting-->
-            <div class="flex w-full h-full gap-2">
+            <div id="room-setting" class="flex w-full h-full gap-2">
                 <div class="basis-1/6 bg-vscode-5 rounded-r-xl flex flex-col p-4 justify-between"> <!--setting-->
                     <div class="flex flex-col"> 
                         <!--tambah room-->
-                        <div class="tooltip-collection">
-                            <svg class="tooltip-target mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div id="add-room" class="tooltip-collection">
+                            <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="12" y1="8" x2="12" y2="16"></line>
                                 <line x1="8" y1="12" x2="16" y2="12"></line>
@@ -62,8 +62,8 @@
                     </div>
                     <div class="flex flex-col gap-2">
                         <!--setting-->
-                        <div class="tooltip-collection">
-                            <svg class="tooltip-target mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <div id="setting" class="tooltip-collection">
+                            <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>
@@ -73,8 +73,8 @@
                             </div>
                         </div>
                         <!--account-->
-                        <div class="tooltip-collection">
-                            <svg class="tooltip-target mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <div id="account" class="tooltip-collection">
+                            <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grow"> <!--room-->
+                <div id="room-list" class="grow"> <!--room-->
                     <div class="flex gap-3 py-2 hover:bg-vscode-3 rounded-l-full transition cursor-pointer">
                         <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
                         <div class="flex flex-col py-2">
@@ -163,7 +163,7 @@
             <!-- OVERLAY Modal -->
             <div class="fixed w-full h-full bg-black opacity-40 z-[49] hidden overlay"></div>
 
-            <div class="flex flex-col gap-2 py-8 px-5">
+            <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
 
                 <div class="w-full flex">
                     <div class="basis-10">
@@ -197,8 +197,9 @@
             </div>
 
             <!-- Input -->
+            <div id="input-msg-container"></div>
             <div class="absolute w-full inset-x-0 bottom-0 flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
-                <div class="bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
+                <div class="user-id bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
                     <p>Ini ID</p>
                 </div>
                 <div class="w-10/12 text-black rounded-lg text-center">
@@ -206,7 +207,7 @@
                         <input id="find" class="w-full py-2 px-4 rounded-lg focus-within:outline-none focus-within:bg-white" placeholder="Ketik Disini YGY">
                     </form>
                 </div>
-                <div class="flex w-1/12 justify-center cursor-pointer">
+                <button id="send-msg-btn" class="flex w-1/12 justify-center cursor-pointer">
                     <?xml version="1.0" encoding="iso-8859-1"?>
                     <svg height="40px" width="40px" fill="#fff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 491.022 491.022" style="enable-background:new 0 0 491.022 491.022;" xml:space="preserve">
@@ -225,10 +226,9 @@
                             </g>
                         </g>
                     </svg>
-                </div>
+                </button>
             </div>
         </div>
     </div>
-    <script src="./dist/bundle.js"></script>
 </body>
 </html>
