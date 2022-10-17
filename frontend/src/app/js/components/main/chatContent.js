@@ -14,16 +14,11 @@ class ChatContent{
     // ---- dom value ---
     container
 
-    // --- object value ---
-    inputMessage
 
     constructor({msg}){
         this.container = document.querySelector('#msg-container')
+        this.containerElement = this.container.cloneNode(true);
         this.idUser = 12321;
-        this.inputMessage = new InputMessage({
-            currentMsg : "test",
-            userId: this.idUser
-        })
     }
 
     appendMsg({msg = "",idSender = NaN,fromMe = false}){
@@ -35,23 +30,22 @@ class ChatContent{
                 fromMe :fromMe
             })
         )
-        console.log('seharusny sudah ter append')
+        console.log("text appended")
         this.lastRow++;
     }
 
-    setEvent(){
-        this.inputMessage.setDom();
-        this.inputMessage.fillDomElement()
-
-        this.inputMessage.onSubmitForm(()=>{
-            console.log("memanggil callback");
-            this.appendMsg({
-                msg : this.inputMessage.input.value,
-                idSender : this.idUser,
-                fromMe : true
-            })
-        })
+    //menghapus instance node elemen
+    //tapi hasil update tetap disimpan
+    swapOutMsg(){
+        this.containerElement = this.container.cloneNode(true);
+        this.container.innerHTML = "";
     }
+
+    //menampilkan hasil update container
+    swapInMsg(){
+        this.container.outerHTML = this.containerElement;
+    }
+
 }
 
 export {ChatContent};

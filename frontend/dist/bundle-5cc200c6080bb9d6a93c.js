@@ -3773,16 +3773,11 @@ class ChatContent{
     // ---- dom value ---
     container
 
-    // --- object value ---
-    inputMessage
 
-    constructor(){
+    constructor({msg}){
         this.container = document.querySelector('#msg-container')
+        this.containerElement = this.container.cloneNode(true);
         this.idUser = 12321;
-        this.inputMessage = new _inputMessage__WEBPACK_IMPORTED_MODULE_1__.InputMessage({
-            currentMsg : "test",
-            userId: this.idUser
-        })
     }
 
     appendMsg({msg = "",idSender = NaN,fromMe = false}){
@@ -3794,23 +3789,22 @@ class ChatContent{
                 fromMe :fromMe
             })
         )
-        console.log('seharusny sudah ter append')
+        console.log("text appended")
         this.lastRow++;
     }
 
-    setEvent(){
-        this.inputMessage.setDom();
-        this.inputMessage.fillDomElement()
-
-        this.inputMessage.onSubmitForm(()=>{
-            console.log("memanggil callback");
-            this.appendMsg({
-                msg : this.inputMessage.input.value,
-                idSender : this.idUser,
-                fromMe : true
-            })
-        })
+    //menghapus instance node elemen
+    //tapi hasil update tetap disimpan
+    swapOutMsg(){
+        this.containerElement = this.container.cloneNode(true);
+        this.container.innerHTML = "";
     }
+
+    //menampilkan hasil update container
+    swapInMsg(){
+        this.container.outerHTML = this.containerElement;
+    }
+
 }
 
 
@@ -3827,24 +3821,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Header": () => (/* binding */ Header)
 /* harmony export */ });
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './../DOM_component/dom_component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
 
 
 class Header{
     roomName
     roomIcon
 
-    headerElement // elemen header dari html
+    containerElement // elemen header dari html
+
+    // --- dom elemen ---
+    container
 
     constructor({roomName = "", roomIcon = ""}){
         this.roomName = roomName;
         this.roomIcon = roomIcon;
 
+        this.container = document.querySelector('#header')
     }
 
-    //melakukan pergantian header
-    slideNew(){
+    swapOut(){
+        this.containerElement = this.container.cloneNode(true);
+        this.container.innerHTML = ""
+    }
 
+    createElement(){
+        return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.header)({
+            roomName : this.roomName,
+            roomIcon : this.roomIcon
+        })
     }
 
     setHeader(){
@@ -3866,7 +3871,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "InputMessage": () => (/* binding */ InputMessage)
 /* harmony export */ });
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './../DOM_component/dom_component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
 
 
 
@@ -3916,7 +3921,7 @@ class InputMessage{
     }
 
     createElement(){
-        return Object(function webpackMissingModule() { var e = new Error("Cannot find module './../DOM_component/dom_component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(this.currentMsg);
+        return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.inputMessage)(this.currentMsg);
     }
 
 
@@ -3951,9 +3956,12 @@ class RoomMain{
     inputMessage
     chatContent
 
-    // -- value --
+    // -- data --
+    idUser // user ini
 
-    constructor({roomName, roomIcon}){
+    constructor({roomName, roomIcon, msg}){
+
+        this.idUser = 12312; //ini cuma dummy
 
         this.header = new _header__WEBPACK_IMPORTED_MODULE_0__.Header({
             roomName: roomName,
@@ -3963,6 +3971,10 @@ class RoomMain{
         this.inputMessage = new _inputMessage__WEBPACK_IMPORTED_MODULE_1__.InputMessage({
             currentMsg : "dummy", //kosong kan terlebih dahulu
             userId : 123, //nah, ini mungkin bisa di lihat nanti
+        })
+
+        this.chatContent = new _chatContent__WEBPACK_IMPORTED_MODULE_2__.ChatContent({
+            msg : msg
         })
     }
 
@@ -3999,7 +4011,7 @@ class Room {
     roomMain
 
     // -- data properties --
-    participan = []
+    participant = []
     msg = [] //saya kurang tahu apakah ini disarankan?
     name
     id
@@ -4008,17 +4020,23 @@ class Room {
     sideRoomContainer
     mainRoomContainer
 
-    constructor({participan, msg, name, id}){
+    constructor({participant, msg, name, id}){
         this.msg = msg;
         this.name = name;
         this.id = id;
-        this.participan = participan;
+        this.participant = participant;
 
         this.roomAside = new _sidebar_roomAside__WEBPACK_IMPORTED_MODULE_0__.RoomAside({
             roomName : this.name,
             newMsg: "",
             roomId : this.id
         });
+
+        this.roomMain = new _main_roomMain__WEBPACK_IMPORTED_MODULE_1__.RoomMain({
+            roomName : this.name,
+            roomIcon : "dummy icon",
+            msg: msg
+        })
     }
 
     //saya kurang tahu bagaimana cara yang benar dalam melakukan

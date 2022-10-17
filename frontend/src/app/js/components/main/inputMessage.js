@@ -1,4 +1,4 @@
-import {inputMessage} from "./../DOM_component/dom_component"
+import {inputMessage} from "./../../DOM_component/dom_component"
 
 
 class InputMessage{

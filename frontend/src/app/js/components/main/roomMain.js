@@ -9,9 +9,12 @@ class RoomMain{
     inputMessage
     chatContent
 
-    // -- value --
+    // -- data --
+    idUser // user ini
 
-    constructor({roomName, roomIcon}){
+    constructor({roomName, roomIcon, msg}){
+
+        this.idUser = 12312; //ini cuma dummy
 
         this.header = new Header({
             roomName: roomName,
@@ -24,7 +27,7 @@ class RoomMain{
         })
 
         this.chatContent = new ChatContent({
-            
+            msg : msg
         })
     }
 

@@ -30,6 +30,12 @@ class Room {
             newMsg: "",
             roomId : this.id
         });
+
+        this.roomMain = new RoomMain({
+            roomName : this.name,
+            roomIcon : "dummy icon",
+            msg: msg
+        })
     }
 
     //saya kurang tahu bagaimana cara yang benar dalam melakukan
