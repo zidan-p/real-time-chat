@@ -1,4 +1,4 @@
-import {msgRow} from './../DOM_component/dom_component'
+import {msgRow} from '../../DOM_component/dom_component'
 import {InputMessage} from './inputMessage'
 
 // container atau tempat untuk menampilkan pesan
@@ -8,6 +8,8 @@ class ChatContent{
     lastRow = 0
     idUser
 
+    // ---- elemen value ---
+    containerElement
 
     // ---- dom value ---
     container
@@ -15,7 +17,7 @@ class ChatContent{
     // --- object value ---
     inputMessage
 
-    constructor(){
+    constructor({msg}){
         this.container = document.querySelector('#msg-container')
         this.idUser = 12321;
         this.inputMessage = new InputMessage({

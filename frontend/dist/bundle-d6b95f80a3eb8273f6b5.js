@@ -3145,7 +3145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* ---- untuk TOOLTIP ---- */\n.tooltip {\n  /* ... */\n  /* display: none; */\n  opacity : 0;\n}\n\n.tooltip[data-show] {\n  opacity : 100%;\n  display: block;\n\n}\n\n.arrow,\n.arrow::before {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  background: inherit;\n}\n\n.arrow {\n  visibility: hidden;\n}\n\n.arrow::before {\n  visibility: visible;\n  content: '';\n  transform: rotate(45deg);\n}\n\n.tooltip[data-popper-placement^='top'] > .arrow {\n  bottom: -4px;\n}\n\n.tooltip[data-popper-placement^='bottom'] > .arrow {\n  top: -4px;\n}\n\n.tooltip[data-popper-placement^='left'] > .arrow {\n  right: -4px;\n}\n\n.tooltip[data-popper-placement^='right'] > .arrow {\n  left: -4px;\n}\n\n\n\n/* --- untuk scroller --- */\n*::-webkit-scrollbar-track{\n  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\n  background-color: transparent;\n  border-radius: 10px;\n  border: 3px solid white;\n}\n*::-webkit-scrollbar{\n  width: 6px;\n  height: 5px;\n}\n*::-webkit-scrollbar:hover{\n  width: 12px;\n}\n*::-webkit-scrollbar-thumb{\n  /*background-color: #686868;*/\n  background-color: #34352F;\n  border-radius: 10px;\n  transition: all 1s;\n}\n*::-webkit-scrollbar-thumb:hover{\n  background-color: #414339;\n  border-radius: 0PX;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* ---- untuk TOOLTIP ---- */\n.tooltip {\n  /* ... */\n  /* display: none; */\n  opacity : 0;\n}\n\n.tooltip[data-show] {\n  opacity : 100%;\n  display: block;\n\n}\n\n.arrow,\n.arrow::before {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  background: inherit;\n}\n\n.arrow {\n  visibility: hidden;\n}\n\n.arrow::before {\n  visibility: visible;\n  content: '';\n  transform: rotate(45deg);\n}\n\n.tooltip[data-popper-placement^='top'] > .arrow {\n  bottom: -4px;\n}\n\n.tooltip[data-popper-placement^='bottom'] > .arrow {\n  top: -4px;\n}\n\n.tooltip[data-popper-placement^='left'] > .arrow {\n  right: -4px;\n}\n\n.tooltip[data-popper-placement^='right'] > .arrow {\n  left: -4px;\n}\n\n\n\n/* --- untuk scroller --- */\n*::-webkit-scrollbar-track{\n  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\n  background-color: transparent;\n  border-radius: 10px;\n  border: 3px solid white;\n}\n*::-webkit-scrollbar{\n  width: 6px;\n  height: 5px;\n}\n*::-webkit-scrollbar:hover{\n  width: 12px;\n}\n*::-webkit-scrollbar-thumb{\n  background-color: #34352F;\n  border-radius: 10px;\n  transition: all 1s;\n}\n*::-webkit-scrollbar-thumb:hover{\n  background-color: #414339;\n  border-radius: 0PX;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3671,17 +3671,17 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
 
 
 //daftar room
-let roomList = ({isActive = false, roomName = "", newMsg = ""}) => {
+let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
+    <div id="room-${roomId}-side" class="hover:bg-vscode-2 flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
         <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
         <div class="flex flex-col py-2">
             <h4 class="font-semibold text">${roomName}</h4>
             <h4 class="font-extralight text-xs text-gray-400">${newMsg}...</h4>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 
@@ -3697,7 +3697,7 @@ let header = ({roomName = "", roomIcon = ""}) => {
             </button>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 
@@ -3736,7 +3736,7 @@ let inputMessage = ({inpTxt = ""}) => {
             </svg>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 
@@ -3745,18 +3745,18 @@ let inputMessage = ({inpTxt = ""}) => {
 
 /***/ }),
 
-/***/ "./src/app/js/components/chatContent.js":
-/*!**********************************************!*\
-  !*** ./src/app/js/components/chatContent.js ***!
-  \**********************************************/
+/***/ "./src/app/js/components/main/chatContent.js":
+/*!***************************************************!*\
+  !*** ./src/app/js/components/main/chatContent.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ChatContent": () => (/* binding */ ChatContent)
 /* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-/* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputMessage */ "./src/app/js/components/inputMessage.js");
+/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+/* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputMessage */ "./src/app/js/components/main/inputMessage.js");
 
 
 
@@ -3767,6 +3767,8 @@ class ChatContent{
     lastRow = 0
     idUser
 
+    // ---- elemen value ---
+    containerElement
 
     // ---- dom value ---
     container
@@ -3815,17 +3817,56 @@ class ChatContent{
 
 /***/ }),
 
-/***/ "./src/app/js/components/inputMessage.js":
-/*!***********************************************!*\
-  !*** ./src/app/js/components/inputMessage.js ***!
-  \***********************************************/
+/***/ "./src/app/js/components/main/header.js":
+/*!**********************************************!*\
+  !*** ./src/app/js/components/main/header.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Header": () => (/* binding */ Header)
+/* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './../DOM_component/dom_component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
+
+class Header{
+    roomName
+    roomIcon
+
+    headerElement // elemen header dari html
+
+    constructor({roomName = "", roomIcon = ""}){
+        this.roomName = roomName;
+        this.roomIcon = roomIcon;
+
+    }
+
+    //melakukan pergantian header
+    slideNew(){
+
+    }
+
+    setHeader(){
+
+    }
+}
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/components/main/inputMessage.js":
+/*!****************************************************!*\
+  !*** ./src/app/js/components/main/inputMessage.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "InputMessage": () => (/* binding */ InputMessage)
 /* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './../DOM_component/dom_component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 
 
@@ -3862,9 +3903,7 @@ class InputMessage{
     }
 
     onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        console.log("seharusnya onsubmit sudah di attach")
         this.form.addEventListener('submit',(e)=>{
-            console.log("seharusnya form sudah terkirim")
             e.preventDefault();
             callback();
             this.input.value = "";
@@ -3876,11 +3915,223 @@ class InputMessage{
         })
     }
 
-    getElement(){
-        return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.inputMessage)(this.currentMsg);
+    createElement(){
+        return Object(function webpackMissingModule() { var e = new Error("Cannot find module './../DOM_component/dom_component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(this.currentMsg);
     }
 
 
+}
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/components/main/roomMain.js":
+/*!************************************************!*\
+  !*** ./src/app/js/components/main/roomMain.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RoomMain": () => (/* binding */ RoomMain)
+/* harmony export */ });
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ "./src/app/js/components/main/header.js");
+/* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputMessage */ "./src/app/js/components/main/inputMessage.js");
+/* harmony import */ var _chatContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chatContent */ "./src/app/js/components/main/chatContent.js");
+
+
+
+
+
+class RoomMain{
+    // -- object --
+    header
+    inputMessage
+    chatContent
+
+    // -- value --
+
+    constructor({roomName, roomIcon}){
+
+        this.header = new _header__WEBPACK_IMPORTED_MODULE_0__.Header({
+            roomName: roomName,
+            roomIcon: roomIcon
+        });
+
+        this.inputMessage = new _inputMessage__WEBPACK_IMPORTED_MODULE_1__.InputMessage({
+            currentMsg : "dummy", //kosong kan terlebih dahulu
+            userId : 123, //nah, ini mungkin bisa di lihat nanti
+        })
+    }
+
+
+
+}
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/components/room.js":
+/*!***************************************!*\
+  !*** ./src/app/js/components/room.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Room": () => (/* binding */ Room)
+/* harmony export */ });
+/* harmony import */ var _sidebar_roomAside__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sidebar/roomAside */ "./src/app/js/components/sidebar/roomAside.js");
+/* harmony import */ var _main_roomMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main/roomMain */ "./src/app/js/components/main/roomMain.js");
+//karen saya masih bingung maka saya buat room tersendiri yang nantinya 
+//room ini akan digunkana untuk main dan sidebar
+
+
+
+
+class Room {
+    // --- object ---
+    roomAside
+    roomMain
+
+    // -- data properties --
+    participan = []
+    msg = [] //saya kurang tahu apakah ini disarankan?
+    name
+    id
+
+    // -- dom object --
+    sideRoomContainer
+    mainRoomContainer
+
+    constructor({participan, msg, name, id}){
+        this.msg = msg;
+        this.name = name;
+        this.id = id;
+        this.participan = participan;
+
+        this.roomAside = new _sidebar_roomAside__WEBPACK_IMPORTED_MODULE_0__.RoomAside({
+            roomName : this.name,
+            newMsg: "",
+            roomId : this.id
+        });
+    }
+
+    //saya kurang tahu bagaimana cara yang benar dalam melakukan
+    //operasi pada object, jadi saya pakai cara ini
+    appendRoomSide(sidebar){
+        sidebar.addRoom(roomAside);
+    }
+}
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/components/sidebar/roomAside.js":
+/*!****************************************************!*\
+  !*** ./src/app/js/components/sidebar/roomAside.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RoomAside": () => (/* binding */ RoomAside)
+/* harmony export */ });
+/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+
+
+//room bagian samping
+class RoomAside{
+    roomName
+    newMsg
+    roomId
+
+    // --- dom element ---
+    asideRoomContainer
+    nameContainer
+    newMsgContainer
+
+    constructor({roomName = "", newMsg = "", roomId}){
+        this.roomName = roomName
+        this.roomId = roomId
+        this.newMsg = newMsg
+    }
+
+    setDom(){
+        this.asideRoomContainer = document.querySelector(`#room-${this.roomId}-side`);
+        this.nameContainer = this.asideRoomContainer.querySelector('.room-name-aside');
+        this.newMsgContainer = this.asideRoomContainer.querySelector('.new-msg-container');
+    }
+    
+    createElement(){
+        return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.roomList)({
+            isActive: false,
+            roomName: this.roomName,
+            newMsg : this.newMsg,
+            roomId : this.roomId
+        })
+    }
+}
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/components/sidebar/sidebar.js":
+/*!**************************************************!*\
+  !*** ./src/app/js/components/sidebar/sidebar.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SideBar": () => (/* binding */ SideBar)
+/* harmony export */ });
+
+
+
+class SideBar{
+    roomSideList = [] //berisi object roomAside
+
+    // -- dom element ---
+    container
+    roomListContainer
+    settingContainer
+
+    constructor(roomSideList){
+        this.roomSideList = roomSideList;
+        this.setDOM()
+        this.fillRoom()
+    }
+
+    setDOM(){
+        this.container = document.querySelector('ASIDE')
+        this.roomListContainer = this.container.querySelector('#room-list')
+        this.settingContainer = this.container.querySelector('#setting-list');
+    }
+
+    addRoom(roomSide){
+        this.roomSideList.push(roomSide)
+        this.appendRoom(roomSide)
+    }
+
+    appendRoom(roomSide){
+        this.roomListContainer.append(
+            roomSide.createElement()
+        )
+        roomSide.setDom()
+    }
+
+    fillRoom(){
+        this.roomSideList.forEach(room => {
+            this.appendRoom(room);
+        })
+    }
 }
 
 
@@ -3898,22 +4149,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "testRun": () => (/* binding */ testRun)
 /* harmony export */ });
-/* harmony import */ var _components_chatContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/chatContent */ "./src/app/js/components/chatContent.js");
-/* harmony import */ var _components_inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/inputMessage */ "./src/app/js/components/inputMessage.js");
+/* harmony import */ var _components_room__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/room */ "./src/app/js/components/room.js");
+/* harmony import */ var _components_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/sidebar/sidebar */ "./src/app/js/components/sidebar/sidebar.js");
 /*
-ini hanya untuk uji coba bagaimana untuk melakukan
-pengiriman pesan pada content
-
-
+sekarang ini berfung mengatur controller alur program
 */
 
 
 
 
+// baru pertama kali user masuk
+// ada 1 room
+// terbuka percakapan antara user dengan user lain
+
+//dummy data yang akan diproses
+//ini hany astruktur sementara, nantinya ini akan diubah
+let rooms = [
+    {
+        id : 1,
+        name : "test room",
+        participant : [],
+        msg : [],
+    },
+    {
+        id : 3,
+        name : "dummy room",
+        participant : [],
+        msg : [],
+    },
+    {
+        id : 2,
+        name : "room lagi",
+        participant : [],
+        msg : [],
+    },
+]
+
+
+
 function testRun(){
-    //definisikan container text
-    let chatContent = new _components_chatContent__WEBPACK_IMPORTED_MODULE_0__.ChatContent();
-    chatContent.setEvent();
+    let roomList = rooms.map(room => {
+        return new _components_room__WEBPACK_IMPORTED_MODULE_0__.Room(room)
+    });
+    
+    let side = new _components_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_1__.SideBar(
+        roomList.map(room =>room.roomAside)
+    )
+
+    // //definisikan container text
+    // let chatContent = new ChatContent();
+    // chatContent.setEvent();
 }
 
 

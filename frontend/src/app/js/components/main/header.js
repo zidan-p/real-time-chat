@@ -21,3 +21,5 @@ class Header{
 
     }
 }
+
+export {Header}

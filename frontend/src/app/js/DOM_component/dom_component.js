@@ -19,17 +19,17 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
 
 
 //daftar room
-let roomList = ({isActive = false, roomName = "", newMsg = ""}) => {
+let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
+    <div id="room-${roomId}-side" class="hover:bg-vscode-2 flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
         <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
         <div class="flex flex-col py-2">
             <h4 class="font-semibold text">${roomName}</h4>
             <h4 class="font-extralight text-xs text-gray-400">${newMsg}...</h4>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 
@@ -45,7 +45,7 @@ let header = ({roomName = "", roomIcon = ""}) => {
             </button>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 
@@ -84,7 +84,7 @@ let inputMessage = ({inpTxt = ""}) => {
             </svg>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 

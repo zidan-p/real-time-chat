@@ -34,9 +34,7 @@ class InputMessage{
     }
 
     onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        console.log("seharusnya onsubmit sudah di attach")
         this.form.addEventListener('submit',(e)=>{
-            console.log("seharusnya form sudah terkirim")
             e.preventDefault();
             callback();
             this.input.value = "";
@@ -48,7 +46,7 @@ class InputMessage{
         })
     }
 
-    getElement(){
+    createElement(){
         return inputMessage(this.currentMsg);
     }
 
