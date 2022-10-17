@@ -5,5 +5,15 @@ pengiriman pesan pada content
 
 */
 
+import { ChatContent } from "../components/chatContent";
+import { InputMessage } from "../components/inputMessage";
 
-//definisikan container 
+function testRun(){
+    //definisikan container text
+    let chatContent = new ChatContent();
+    chatContent.setEvent();
+}
+
+
+export {testRun}
+

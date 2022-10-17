@@ -9,11 +9,11 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
             <p class="text-center text-gray-400">${numberRow}</p>
         </div>
         <div class="basis-1/4 ${fromMe ? 'flex-row-reverse' : ''}  grow flex gap-3 px-4">
-            <p class="${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[ #${idSender} ]</p>
-            <p>"${msg}"</p>
+            <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[ #${idSender} ]</p>
+            <p class="text-justify" >"${msg}"</p>
         </div>
     </div>
-    `
+    `.trim()
     return div.firstChild;
 }
 

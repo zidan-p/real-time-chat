@@ -1,36 +1,50 @@
 import {inputMessage} from "./../DOM_component/dom_component"
 
 
-class inputMessage{
+class InputMessage{
     currentMsg
     idDomElement
+    userId
 
     //---- dom element -----
+    container
     input
     sendBtn
     idContainer // id user
-    container
     form
 
-    constructor({idDomElement = "",currentMsg = ""}){
+    constructor({currentMsg = "", userId = ""}){
         this.currentMsg = currentMsg;
-        this.idDomElement = idDomElement;
+        this.userId = userId;
+
     }
 
     setDom(){
-        this.container = document.querySelector('#'+this.idDomElement)
+        this.container = document.querySelector('#input-msg-container')
+        console.log(this.container);
         this.input = this.container.querySelector('input');
         this.form = this.container.querySelector('form'); //form untuk submit
         this.idContainer = this.container.querySelector('.user-id');
         this.sendBtn = this.container.querySelector('button');
     }
 
+    fillDomElement(){
+        this.idContainer.innerHTML = "#" + this.userId;
+        this.input.value = this.currentMsg
+    }
+
     onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        this.input.addEventListener('submit',()=>{
+        console.log("seharusnya onsubmit sudah di attach")
+        this.form.addEventListener('submit',(e)=>{
+            console.log("seharusnya form sudah terkirim")
+            e.preventDefault();
             callback();
+            this.input.value = "";
         })
-        this.sendBtn.addEventListener('click', ()=> {
+        this.sendBtn.addEventListener('click', (e)=> {
+            e.preventDefault();
             callback();
+            this.input.value = "";
         })
     }
 
@@ -40,3 +54,6 @@ class inputMessage{
 
 
 }
+
+
+export {InputMessage}
