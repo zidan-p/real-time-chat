@@ -48,12 +48,13 @@ class RoomAside{
         })
     }
 
-    //karena ini hanya digunakan untuk mengakses dan mendapat , dan tidak sebagai container, maka
-    //hanya akan saya beri delete dan update
+    // -- state controll --
     deleteThisDomAndElement(){
         this.deleteDom();
         this.deleteElement();
     }
+    setActive(){this.asideRoomContainer.classList.add("bg-vscode-3")}
+    setInactive(){this.asideRoomContainer.classList.remove("bg-vscode-3")}
 
 }
 

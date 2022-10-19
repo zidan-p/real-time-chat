@@ -1,7 +1,7 @@
 import {inputMessage} from "./../../DOM_component/dom_component"
+import {StateControl} from "./stateControl";
 
-
-class InputMessage{
+class InputMessage extends StateControl{
     currentMsg
     idDomElement
     userId
@@ -14,6 +14,7 @@ class InputMessage{
     form
 
     // -- element vale --
+    containerElement
 
     constructor({currentMsg = "", userId = ""}){
         this.currentMsg = currentMsg;
@@ -37,6 +38,7 @@ class InputMessage{
         this.sendBtn = null
     }
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
+    restoreDom(){this.container.append(this.containerElement.firstChild)}
 
     // -- element manipulation --
     createElement(){return inputMessage(this.currentMsg);}
@@ -49,17 +51,6 @@ class InputMessage{
     fillCurrentElementDom(){
         this.idContainer.innerHTML = "#" + this.userId;
         this.input.value = this.currentMsg
-    }
-
-    show(){
-        this.setDomContainer();
-        this.setDom();
-        this.fillCurrentElementDom();
-        this.fillElementDomContainer();
-    }
-    hide(){
-        this.setCurrentElement();
-        this.unsetDom();
     }
 
 

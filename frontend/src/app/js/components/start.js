@@ -72,7 +72,7 @@ class StateRoom{
     //saya tahu ini kurang efisien, tapi saya tidak tahu harus bagaimana lagi
     hideEveryRoom(){
         this.roomList.forEach(room => {
-            room.hideSetInactive();
+            room.SetInactive();
         })
     }
 

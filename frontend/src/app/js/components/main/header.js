@@ -32,7 +32,7 @@ class Header{
         this.iconContainer = null
     }
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    
+    restoreDom(){this.container.append(this.containerElement.firstChild)}
 
     // -- element manipulation --
     createElement(){
@@ -51,12 +51,25 @@ class Header{
         this.nameContainer = this.roomName
         this.iconContainer = this.icon
     }
-    show(){
+    store(){
         this.setDomContainer();
         this.resetElement();
         this.fillElementDomContainer();
 
         this.fillCurrentElementDom();
+    }
+    delete(){
+        this.unsetDom();
+        this.deleteElement();
+        this.unsetDomContainer();
+    }
+    show(){
+        this.setDom();
+        this.restoreDom();
+    }
+    hide(){
+        this.setCurrentElement();
+        this.unsetDom();
     }
 
 }

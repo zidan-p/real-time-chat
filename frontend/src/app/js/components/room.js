@@ -42,6 +42,11 @@ class Room {
     //-- set inactive --
     setInactive(){
         this.roomAside.setInactive();
+        this.roomMain.hide();
+    }
+    setActive(){
+        this.roomAside.setActive();
+        this.roomMain.show();
     }
 
 

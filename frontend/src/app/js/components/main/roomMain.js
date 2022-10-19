@@ -61,12 +61,13 @@ class RoomMain{
         this.headerContainer = this.container.querySelector('#header');
         this.inputContainer = this.container.querySelector('#input-msg-container');
     }
-    setDom(){
+    unsetDom(){
         this.chatContentContainer = null;
         this.headerContainer = null;
         this.inputContainer = null;
     }
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
+    restoreDom(){this.container.append(this.containerElement.firstChild)}
 
     // -- element manipulation --
     createElement(){return mainBodyRoom();}
@@ -76,16 +77,39 @@ class RoomMain{
 
 
     // -- state manipulation --
+    store(){
+        this.setDomContainer();
+        this.resetElement();
+        this.fillElementDomContainer();
+        this.setDom();
+
+        this.header.store();
+        this.chatContent.store();
+        this.inputMessage.store();
+    }
+    remove(){
+        this.header.remove();
+        this.chatContent.remove();
+        this.inputMessage.remove();
+        this.unsetDom();
+        this.unsetDomContainer()
+        this.deleteElement();
+        // this.deleteDom(); // ini optional, terantung penggunaan
+        //dilanjutkan pada bagian admin, apakah elemen didalam juga ikut dihapus..
+    }
+    hide(){
+        this.setCurrentElement();
+        this.unsetDom();
+        this.header.hide();
+        this.chatContent.hide();
+        this.inputMessage.hide();
+    }
     show(){
+        this.setDom();
+        this.restoreDom();
         this.header.show();
         this.chatContent.show();
         this.inputMessage.show();
-    }
-    hide(){
-        
-    }
-    remove(){
-
     }
 
 

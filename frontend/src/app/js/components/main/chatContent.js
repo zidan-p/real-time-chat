@@ -22,6 +22,7 @@ class ChatContent{
     unsetDomContainer(){this.container = null}
     fillElementDomContainer(){this.container.append(this.containerElement);}
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
+    restoreDom(){this.container.append(this.containerElement.firstChild)}
     
 
     // -- element manipulation --
@@ -41,13 +42,19 @@ class ChatContent{
         console.log("text appended")
         this.lastRow++;
     }
-    show(){
+    store(){
         this.setDomContainer();
         this.resetElement();
         this.fillElementDomContainer();
     }
-
-    
+    hide(){
+        this.setCurrentElement();//simpan state
+        this.deleteDom();
+    }
+    show(){
+        this.setDom();
+        this.restoreDom();
+    }
 
 }
 
