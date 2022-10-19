@@ -1,3 +1,4 @@
+import { sideBody } from "../../DOM_component/dom_component"
 
 
 
@@ -9,35 +10,61 @@ class SideBar{
     roomListContainer
     settingContainer
 
+    // -- element value ---
+    containerElement
+
     constructor(roomSideList){
         this.roomSideList = roomSideList;
-        this.setDOM()
-        this.fillRoom()
     }
 
-    setDOM(){
-        this.container = document.querySelector('ASIDE')
+    // -- dom manipulation --
+    setDomContainer(){this.container = document.querySelector('ASIDE')}
+    unsetDomContainer(){this.container = null}
+    fillElementDomContainer(){this.container.append(this.containerElement);}
+    setDom(){
         this.roomListContainer = this.container.querySelector('#room-list')
         this.settingContainer = this.container.querySelector('#setting-list');
     }
+    usetDom(){
+        this.roomListContainer = null
+        this.settingContainer = null
+    }
+    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
 
+    // -- element manipulation --
+    createElement(){return sideBody();}
+    resetElement(){this.containerElement = this.createElement()}
+    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
+    deleteElement(){this.containerElement = null}
+
+    showThis(){
+        this.setDom();
+        this.resetElement();
+        this.fillElementDom();
+        this.fillRoom();
+    }
+
+    // -- room manopulation --
     addRoom(roomSide){
         this.roomSideList.push(roomSide)
         this.appendRoom(roomSide)
     }
-
     appendRoom(roomSide){
-        this.roomListContainer.append(
-            roomSide.createElement()
-        )
+        this.roomListContainer.append(roomSide.createElement())
         roomSide.setDom()
     }
-
     fillRoom(){
-        this.roomSideList.forEach(room => {
-            this.appendRoom(room);
+        this.roomSideList.forEach(room => {this.appendRoom(room);})
+    }
+    deleteRoom(room){
+        room.deleteThisDomAndElement();
+        this.roomSideList.forEach((arr,i)=>{
+            if(arr.roomId == room.roomId){
+                this.roomSideList.splice(i,1); //hapus elemenya :: note!! ini akan error bila ada id yng sama ::
+            }
         })
     }
+
 }
 
 

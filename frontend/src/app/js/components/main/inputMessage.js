@@ -28,6 +28,15 @@ class InputMessage{
         this.sendBtn = this.container.querySelector('button');
     }
 
+    unsetDom(){
+        this.container = null
+        console.log(this.container);
+        this.input = null
+        this.form = null
+        this.idContainer = null
+        this.sendBtn = null
+    }
+
     fillDomElement(){
         this.idContainer.innerHTML = "#" + this.userId;
         this.input.value = this.currentMsg
@@ -36,12 +45,16 @@ class InputMessage{
     onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
         this.form.addEventListener('submit',(e)=>{
             e.preventDefault();
-            callback();
+            callback({
+                message: this.input.value
+            });
             this.input.value = "";
         })
         this.sendBtn.addEventListener('click', (e)=> {
             e.preventDefault();
-            callback();
+            callback({
+                message: this.input.value
+            });
             this.input.value = "";
         })
     }

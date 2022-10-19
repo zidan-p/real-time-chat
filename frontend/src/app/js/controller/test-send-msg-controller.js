@@ -4,6 +4,7 @@ sekarang ini berfung mengatur controller alur program
 
 import { Room } from "./../components/room";
 import {SideBar} from "./../components/sidebar/sidebar"
+import {StateRoom} from "./../components/start"
 
 // baru pertama kali user masuk
 // ada 1 room
@@ -17,31 +18,40 @@ let rooms = [
         name : "test room",
         participant : [],
         msg : [],
+        isActive : true,
     },
     {
         id : 3,
         name : "dummy room",
         participant : [],
         msg : [],
+        isActive : false,
     },
     {
         id : 2,
         name : "room lagi",
         participant : [],
         msg : [],
+        isActive : false,
     },
 ]
 
 
 
 function testRun(){
-    let roomList = rooms.map(room => {
-        return new Room(room)
-    });
+    // let roomList = rooms.map(room => {
+    //     return new Room(room)
+    // });
     
-    let side = new SideBar(
-        roomList.map(room =>room.roomAside)
+    // let side = new SideBar(
+    //     roomList.map(room =>room.roomAside)
+    // )
+
+    let start = new StateRoom(
+        rooms.map(room => new Room(room))
     )
+
+    start.run(); //jalankan program
 
     // //definisikan container text
     // let chatContent = new ChatContent();
