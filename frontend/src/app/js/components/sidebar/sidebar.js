@@ -25,7 +25,7 @@ class SideBar{
         this.roomListContainer = this.container.querySelector('#room-list')
         this.settingContainer = this.container.querySelector('#setting-list');
     }
-    usetDom(){
+    unsetDom(){
         this.roomListContainer = null
         this.settingContainer = null
     }
@@ -38,9 +38,10 @@ class SideBar{
     deleteElement(){this.containerElement = null}
 
     showThis(){
-        this.setDom();
+        this.setDomContainer();
         this.resetElement();
-        this.fillElementDom();
+        this.fillElementDomContainer();
+        this.setDom();
         this.fillRoom();
     }
 
@@ -50,11 +51,13 @@ class SideBar{
         this.appendRoom(roomSide)
     }
     appendRoom(roomSide){
+        console.log(roomSide)
         this.roomListContainer.append(roomSide.createElement())
+        roomSide.setDomContainer();
         roomSide.setDom()
     }
     fillRoom(){
-        this.roomSideList.forEach(room => {this.appendRoom(room);})
+        this.roomSideList.forEach(room => {this.appendRoom(room)})
     }
     deleteRoom(room){
         room.deleteThisDomAndElement();

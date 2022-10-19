@@ -61,7 +61,7 @@ class RoomMain{
         this.headerContainer = this.container.querySelector('#header');
         this.inputContainer = this.container.querySelector('#input-msg-container');
     }
-    usetDom(){
+    setDom(){
         this.chatContentContainer = null;
         this.headerContainer = null;
         this.inputContainer = null;
@@ -74,6 +74,19 @@ class RoomMain{
     setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
 
+
+    // -- state manipulation --
+    show(){
+        this.header.show();
+        this.chatContent.show();
+        this.inputMessage.show();
+    }
+    hide(){
+        
+    }
+    remove(){
+
+    }
 
 
 }

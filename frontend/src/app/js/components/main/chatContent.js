@@ -1,5 +1,4 @@
 import {msgRow} from '../../DOM_component/dom_component'
-import {InputMessage} from './inputMessage'
 
 // container atau tempat untuk menampilkan pesan
 //disini dibuat setiap room
@@ -16,35 +15,39 @@ class ChatContent{
 
 
     constructor({msg}){
-        this.container = document.querySelector('#msg-container')
-        this.containerElement = this.container.cloneNode(true);
         this.idUser = 12321;
     }
 
-    appendMsg({msg = "",idSender = NaN,fromMe = false}){
-        this.container.append(
-            msgRow({
-                numberRow : this.lastRow,
-                msg : msg,
-                idSender : idSender,
-                fromMe :fromMe
-            })
-        )
+    setDomContainer(){this.container = document.querySelector('#msg-container')}
+    unsetDomContainer(){this.container = null}
+    fillElementDomContainer(){this.container.append(this.containerElement);}
+    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
+    
+
+    // -- element manipulation --
+    resetElement(){this.containerElement = document.createElement('div')}
+    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
+    deleteElement(){this.containerElement = null}
+
+
+    // -- state controll --
+    appendMsg({msg = "",idSender = NaN, fromMe = false}){
+        this.container.append({
+            numberRow : this.lastRow,
+            msg : msg,
+            idSender : idSender,
+            fromMe :fromMe
+        })
         console.log("text appended")
         this.lastRow++;
     }
-
-    //menghapus instance node elemen
-    //tapi hasil update tetap disimpan
-    swapOutMsg(){
-        this.containerElement = this.container.cloneNode(true);
-        this.container.innerHTML = "";
+    show(){
+        this.setDomContainer();
+        this.resetElement();
+        this.fillElementDomContainer();
     }
 
-    //menampilkan hasil update container
-    swapInMsg(){
-        this.container.outerHTML = this.containerElement;
-    }
+    
 
 }
 

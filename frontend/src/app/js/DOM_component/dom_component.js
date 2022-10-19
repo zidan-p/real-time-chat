@@ -25,8 +25,8 @@ let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
     <div id="room-${roomId}-side" class="hover:bg-vscode-2 flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
         <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
         <div class="flex flex-col py-2">
-            <h4 class="font-semibold text">${roomName}</h4>
-            <h4 class="font-extralight text-xs text-gray-400">${newMsg}...</h4>
+            <h4 class="room-name-aside font-semibold text">${roomName}</h4>
+            <h4 class="new-msg-container font-extralight text-xs text-gray-400">${newMsg}...</h4>
         </div>
     </div>
     `.trim()
@@ -93,7 +93,7 @@ let appBody = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div id="body-program" class="h-screen flex bg-vscode-2">
-        <aside class="basis-1/3 bg-vscode-4 rounded-r-2xl overflow-hidden flex flex-col">
+        <aside class="basis-1/3 ">
         </aside>
         <main class="w-full h-screen flex flex-col relative bg-vscode-3">
         </main>
@@ -106,6 +106,7 @@ let appBody = () => {
 let sideBody = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
+    <div class="bg-vscode-4 h-full rounded-r-2xl overflow-hidden flex flex-col">
     <div class="wrapper">
         <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
         <div class="px-3 mb-5 group"> <!-- search bar -->
@@ -128,7 +129,7 @@ let sideBody = () => {
                         <line x1="12" y1="8" x2="12" y2="16"></line>
                         <line x1="8" y1="12" x2="16" y2="12"></line>
                     </svg>
-                    <div class="tooltip transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
                         Add Room
                         <div class="arrow" data-popper-arrow></div>
                     </div>
@@ -141,7 +142,7 @@ let sideBody = () => {
                         <circle cx="12" cy="12" r="3"></circle>
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    <div class="tooltip transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
                         Setting
                         <div class="arrow" data-popper-arrow></div>
                     </div>
@@ -152,7 +153,7 @@ let sideBody = () => {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <div class="tooltip transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
                         Account
                         <div class="arrow" data-popper-arrow></div>
                     </div>
@@ -162,6 +163,7 @@ let sideBody = () => {
         <div id="room-list" class="grow"> <!--room-->
             <!-- ini tempat roomnya nanti -->
         </div>
+    </div>
     </div>
     `.trim();
     return div.firstChild;

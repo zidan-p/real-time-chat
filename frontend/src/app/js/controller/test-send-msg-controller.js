@@ -51,6 +51,8 @@ function testRun(){
         rooms.map(room => new Room(room))
     )
 
+    document.querySelector('body').innerHTML = ""
+
     start.run(); //jalankan program
 
     // //definisikan container text

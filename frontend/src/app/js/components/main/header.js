@@ -4,39 +4,61 @@ class Header{
     roomName
     roomIcon
 
-    containerElement // elemen header dari html
-
-    // --- dom elemen ---
+    
+    // --- dom value ---
     container
     nameContainer
     iconContainer
+    
+    // -- elemen value --
+    containerElement 
 
     constructor({roomName = "", roomIcon = ""}){
         this.roomName = roomName;
         this.roomIcon = roomIcon;
 
     }
-    
+
+    // -- dom manipulation --
+    setDomContainer(){this.container = document.querySelector('#header')}
+    unsetDomContainer(){this.container = null}
+    fillElementDomContainer(){this.container.append(this.containerElement);}
     setDom(){
-        this.container = document.querySelector('#header')
         this.nameContainer = this.container.querySelector('#header-room-name')
+        this.iconContainer = ""
     }
-
-    swapOut(){
-        this.containerElement = this.container.cloneNode(true);
-        this.container.innerHTML = ""
+    unsetDom(){
+        this.nameContainer = null;
+        this.iconContainer = null
     }
+    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
+    
 
+    // -- element manipulation --
     createElement(){
         return header({
             roomName : this.roomName,
             roomIcon : this.roomIcon
         })
     }
+    resetElement(){this.containerElement = this.createElement().bind(this)}
+    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
+    deleteElement(){this.containerElement = null}
 
-    setHeader(){
 
+    // -- state controll --
+    fillCurrentElementDom(){
+        this.nameContainer = this.roomName
+        this.iconContainer = this.icon
     }
+    show(){
+        this.setDomContainer();
+        this.resetElement();
+        this.fillElementDomContainer();
+
+        this.fillCurrentElementDom();
+    }
+
 }
 
 export {Header}

@@ -14,6 +14,7 @@ class Room {
     msg = [] //saya kurang tahu apakah ini disarankan?
     name
     id
+    isActive
 
     // -- dom object --
     sideRoomContainer
@@ -38,11 +39,12 @@ class Room {
         })
     }
 
-    //saya kurang tahu bagaimana cara yang benar dalam melakukan
-    //operasi pada object, jadi saya pakai cara ini
-    appendRoomSide(sidebar){
-        sidebar.addRoom(roomAside);
+    //-- set inactive --
+    setInactive(){
+        this.roomAside.setInactive();
     }
+
+
 }
 
 export {Room}
