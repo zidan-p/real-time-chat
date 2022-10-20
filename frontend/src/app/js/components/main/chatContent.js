@@ -1,8 +1,9 @@
 import {msgRow} from '../../DOM_component/dom_component'
+import {StateControl} from "../stateControl";
 
 // container atau tempat untuk menampilkan pesan
 //disini dibuat setiap room
-class ChatContent{
+class ChatContent extends StateControl{
     // --- data value ---
     lastRow = 0
     idUser
@@ -22,7 +23,7 @@ class ChatContent{
     unsetDomContainer(){this.container = null}
     fillElementDomContainer(){this.container.append(this.containerElement);}
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    restoreDom(){this.container.append(this.containerElement.firstChild)}
+    restoreDom(){this.container.innerHTML = this.containerElement.firstChild.innerHTML}
     
 
     // -- element manipulation --
@@ -33,27 +34,17 @@ class ChatContent{
 
     // -- state controll --
     appendMsg({msg = "",idSender = NaN, fromMe = false}){
-        this.container.append({
+        this.container.append( msgRow({
             numberRow : this.lastRow,
             msg : msg,
             idSender : idSender,
             fromMe :fromMe
-        })
+        }))
+        //supaya realtime
+        this.containerElement = this.container;
+
         console.log("text appended")
         this.lastRow++;
-    }
-    store(){
-        this.setDomContainer();
-        this.resetElement();
-        this.fillElementDomContainer();
-    }
-    hide(){
-        this.setCurrentElement();//simpan state
-        this.deleteDom();
-    }
-    show(){
-        this.setDom();
-        this.restoreDom();
     }
 
 }

@@ -1,6 +1,8 @@
 import {header} from "./../../DOM_component/dom_component";
+import {StateControl} from "../stateControl";
 
-class Header{
+
+class Header extends StateControl{
     roomName
     roomIcon
 
@@ -32,7 +34,7 @@ class Header{
         this.iconContainer = null
     }
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    restoreDom(){this.container.append(this.containerElement.firstChild)}
+    restoreDom(){this.container.innerHTML = this.containerElement.firstChild.innerHTML}
 
     // -- element manipulation --
     createElement(){
@@ -51,25 +53,9 @@ class Header{
         this.nameContainer = this.roomName
         this.iconContainer = this.icon
     }
-    store(){
-        this.setDomContainer();
-        this.resetElement();
-        this.fillElementDomContainer();
 
+    slide(){
         this.fillCurrentElementDom();
-    }
-    delete(){
-        this.unsetDom();
-        this.deleteElement();
-        this.unsetDomContainer();
-    }
-    show(){
-        this.setDom();
-        this.restoreDom();
-    }
-    hide(){
-        this.setCurrentElement();
-        this.unsetDom();
     }
 
 }

@@ -1,5 +1,5 @@
 import {inputMessage} from "./../../DOM_component/dom_component"
-import {StateControl} from "./stateControl";
+import {StateControl} from "../stateControl";
 
 class InputMessage extends StateControl{
     currentMsg
@@ -38,7 +38,7 @@ class InputMessage extends StateControl{
         this.sendBtn = null
     }
     deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    restoreDom(){this.container.append(this.containerElement.firstChild)}
+    restoreDom(){this.container.innerHTML = this.containerElement.firstChild.innerHTML}
 
     // -- element manipulation --
     createElement(){return inputMessage(this.currentMsg);}
@@ -53,6 +53,9 @@ class InputMessage extends StateControl{
         this.input.value = this.currentMsg
     }
 
+    slide(){
+        this.fillCurrentElementDom();
+    }
 
     onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
         this.form.addEventListener('submit',(e)=>{

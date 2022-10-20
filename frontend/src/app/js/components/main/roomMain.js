@@ -2,8 +2,9 @@ import {Header} from "./header";
 import {InputMessage} from "./inputMessage";
 import {ChatContent} from "./chatContent";
 import {mainBodyRoom} from "./../../DOM_component/dom_component"
+import {StateControl} from "../stateControl";
 
-class RoomMain{
+class RoomMain extends StateControl{
     // -- object --
     header
     inputMessage
@@ -11,6 +12,7 @@ class RoomMain{
 
     // -- data --
     idUser // user ini
+    isActive // apakah room ini active?
 
     // -- dom value --
     container
@@ -20,6 +22,9 @@ class RoomMain{
 
     // -- element value --
     containerElement
+    headerContainerElement
+    inputContainerElement
+    chatContentContainerElement
 
     constructor({roomName, roomIcon, msg}){
 
@@ -38,6 +43,8 @@ class RoomMain{
         this.chatContent = new ChatContent({
             msg : msg
         })
+
+
     }
 
 
@@ -54,8 +61,6 @@ class RoomMain{
 
     // -- dom manipulation --
     setDomContainer(){this.container = document.querySelector('MAIN')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
     setDom(){
         this.chatContentContainer = this.container.querySelector('#msg-container');
         this.headerContainer = this.container.querySelector('#header');
@@ -66,15 +71,19 @@ class RoomMain{
         this.headerContainer = null;
         this.inputContainer = null;
     }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    restoreDom(){this.container.append(this.containerElement.firstChild)}
 
     // -- element manipulation --
     createElement(){return mainBodyRoom();}
-    resetElement(){this.containerElement = mainBodyRoom()}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
-    deleteElement(){this.containerElement = null}
-
+    setPseudoElement(){
+        this.chatContentContainer = this.containerElement.querySelector('#msg-container');
+        this.headerContainer = this.containerElement.querySelector('#header');
+        this.inputContainer = this.containerElement.querySelector('#input-msg-container');
+    }
+    unsetPseudoElement(){
+        this.chatContentContainer = null
+        this.headerContainer = null
+        this.inputContainer = null
+    }
 
     // -- state manipulation --
     store(){
@@ -100,16 +109,26 @@ class RoomMain{
     hide(){
         this.setCurrentElement();
         this.unsetDom();
+        this.deleteDom();
         this.header.hide();
         this.chatContent.hide();
         this.inputMessage.hide();
     }
     show(){
+        this.setDomContainer();
         this.setDom();
         this.restoreDom();
         this.header.show();
         this.chatContent.show();
         this.inputMessage.show();
+    }
+
+    setInactive(){
+        this.isActive = false;
+
+    }
+    setActive(){
+
     }
 
 

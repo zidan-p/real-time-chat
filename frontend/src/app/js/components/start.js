@@ -11,6 +11,7 @@ class StateRoom{
 
     // -- data value --
     currentActive
+    isFirstOpen
 
     // -- dom elemen --
     container
@@ -27,10 +28,10 @@ class StateRoom{
             this.roomList.map(room => room.roomAside)
         )
 
-        this.roomList.forEach(room => {
-            console.log(room)
-            console.log(room.roomAside)
-        })
+        // this.roomList.forEach(room => {
+        //     console.log(room)
+        //     console.log(room.roomAside)
+        // })
         
         //set room yang active
         let found = this.roomList.find((room,i)=> {
@@ -68,8 +69,6 @@ class StateRoom{
         this.hideEveryRoom();
         this.currentActive.setActive();
     }
-
-    //saya tahu ini kurang efisien, tapi saya tidak tahu harus bagaimana lagi
     hideEveryRoom(){
         this.roomList.forEach(room => {
             room.SetInactive();
