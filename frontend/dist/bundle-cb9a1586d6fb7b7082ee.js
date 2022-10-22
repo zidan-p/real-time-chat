@@ -3709,7 +3709,7 @@ let header = ({roomName = "", roomIcon = ""}) => {
 let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="absolute w-full inset-x-0 bottom-0 flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
+    <div class="w-full flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
         <div class="user-id bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
             <p>Ini ID</p>
         </div>
@@ -3750,7 +3750,7 @@ let appBody = () => {
     <div id="body-program" class="h-screen flex bg-vscode-2">
         <aside class="basis-1/3 ">
         </aside>
-        <main class="w-full h-screen flex flex-col relative bg-vscode-3">
+        <main class="w-full">
         </main>
     </div>
     `.trim()
@@ -3827,7 +3827,7 @@ let sideBody = () => {
 let mainBodyRoom = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div>
+    <div class="h-screen flex flex-col relative bg-vscode-3">
         <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
         </div>
 
