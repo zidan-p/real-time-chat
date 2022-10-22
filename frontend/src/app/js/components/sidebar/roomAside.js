@@ -7,12 +7,12 @@ class RoomAside{
     roomId
 
     // --- dom ---
-    asideRoomContainer
-    nameContainer
-    newMsgContainer
-
+    container
+    
     // -- element value --
-    asideRoomContainerElement
+    containerElement
+    nameContainerElement
+    newMsgContainerElement
 
     constructor({roomName = "", newMsg = "", roomId}){
         this.roomName = roomName
@@ -20,25 +20,7 @@ class RoomAside{
         this.newMsg = newMsg
     }
 
-    // -- dom manipulation --
-    setDomContainer(){this.asideRoomContainer = document.querySelector(`#room-${this.roomId}-side`);}
-    unsetDomContainer(){this.asideRoomContainer = null}
-    fillElementDomContainer(){this.asideRoomContainer.append(this.asideRoomContainerElement);}
-    setDom(){
-        this.nameContainer = this.asideRoomContainer.querySelector('.room-name-aside');
-        this.newMsgContainer = this.asideRoomContainer.querySelector('.new-msg-container');
-    }
-    usetDom(){
-        this.nameContainer = null
-        this.newMsgContainer = null
-    }
-    deleteDom(){this.asideRoomContainer.innerHTML = ``} //semua dom baik container maupun isi
-
     // -- element manipulation --
-    createElement(){return this.createElement().bind(this)} //perlu di bind supaya dapat mengakses elemen object
-    resetElement(){this.asideRoomContainerElement = this.createElement()}
-    setCurrentElement(){this.asideRoomContainerElement = this.asideRoomContainer.cloneNode(true)}
-    deleteElement(){this.containerElement = null}
     createElement(){
         return roomList({
             isActive: false,
@@ -46,15 +28,40 @@ class RoomAside{
             newMsg : this.newMsg,
             roomId : this.roomId
         })
+    } //perlu di bind supaya dapat mengakses elemen object
+    resetElement(){this.containerElement = this.createElement()}
+    deleteElement(){this.containerElement = null}
+    setPseudoElement(){
+        this.nameContainerElement = this.containerElement.querySelector('.room-name-aside');
+        this.newMsgContainerElement = this.containerElement.querySelector('.new-msg-container');
+    }
+    unsetPseudoElement(){
+        this.nameContainerElement = null;
+        this.newMsgContainerElement = null
+    }
+    setActive(){
+        console.log("ini di set aktif");
+        this.containerElement.classList.add("bg-vscode-3")
+    }
+    setInactive(){this.containerElement.classList.remove("bg-vscode-3")}
+
+    prepareElement(){
+        this.resetElement();
+        this.setPseudoElement();
     }
 
-    // -- state controll --
-    deleteThisDomAndElement(){
-        this.deleteDom();
-        this.deleteElement();
+    fillCurrentElementDom(){
+        this.nameContainerElement = this.roomName;
+        this.newMsgContainerElement = this.newMsg;
     }
-    setActive(){this.asideRoomContainer.classList.add("bg-vscode-3")}
-    setInactive(){this.asideRoomContainer.classList.remove("bg-vscode-3")}
+
+
+    // --- event ---
+    onClick(callback){
+        this.containerElement.addEventListener('click', ()=>{
+            callback(this.roomId);
+        })
+    }
 
 }
 

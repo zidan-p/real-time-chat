@@ -1,76 +1,79 @@
 import {inputMessage} from "./../../DOM_component/dom_component"
 import {StateControl} from "../stateControl";
 
-class InputMessage extends StateControl{
+class InputMessage{
     currentMsg
     idDomElement
     userId
 
     //---- dom value -----
     container
-    input
-    sendBtn
-    idContainer // id user
-    form
 
     // -- element vale --
     containerElement
+    inputElement
+    sendBtnElement
+    idContainerElement // id user
+    formElement
+
 
     constructor({currentMsg = "", userId = ""}){
         this.currentMsg = currentMsg;
         this.userId = userId;
 
     }
-    // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('#input-msg-container')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    setDom(){
-        this.input = this.container.querySelector('input');
-        this.form = this.container.querySelector('form'); //form untuk submit
-        this.idContainer = this.container.querySelector('.user-id');
-        this.sendBtn = this.container.querySelector('button');
-    }
-    unsetDom(){
-        this.input = null
-        this.form = null
-        this.idContainer = null
-        this.sendBtn = null
-    }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    restoreDom(){this.container.innerHTML = this.containerElement.firstChild.innerHTML}
 
     // -- element manipulation --
     createElement(){return inputMessage(this.currentMsg);}
     resetElement(){this.containerElement = inputMessage(this.currentMsg)}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
-
-
-    // -- state control --
-    fillCurrentElementDom(){
-        this.idContainer.innerHTML = "#" + this.userId;
-        this.input.value = this.currentMsg
+    setPseudoElement(){
+        this.inputElement = this.containerElement.querySelector('input');
+        this.formElement = this.containerElement.querySelector('form'); //form untuk submit
+        this.idContainerElement = this.containerElement.querySelector('.user-id');
+        this.sendBtnElement = this.containerElement.querySelector('button');
+    }
+    unsetPseudoElement(){
+        this.inputElement = null
+        this.formElement = null
+        this.idContainerElement = null
+        this.sendBtnElement = null
     }
 
-    slide(){
+    prepareElement(){
+        this.resetElement();
+        console.log(this.containerElement)
+        this.setPseudoElement();
+        
         this.fillCurrentElementDom();
     }
 
-    onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        this.form.addEventListener('submit',(e)=>{
+    // -- state control --
+    fillCurrentElementDom(){
+        this.idContainerElement.innerHTML = "#" + this.userId;
+        this.inputElement.value = this.currentMsg
+    }
+
+    onSendMessage(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
+        console.log('form',this.formElement);
+        console.log('sendBtn',this.sendBtnElement);
+        this.formElement.addEventListener('submit',(e)=>{
             e.preventDefault();
             callback({
-                message: this.input.value
+                msg: this.inputElement.value,
+                idSender : this.userId,
+                fromMe : true,
             });
-            this.input.value = "";
+            this.inputElement.value = "";
         })
-        this.sendBtn.addEventListener('click', (e)=> {
+        this.sendBtnElement.addEventListener('click', (e)=> {
             e.preventDefault();
             callback({
-                message: this.input.value
+                msg: this.inputElement.value,
+                idSender : this.userId,
+                fromMe : true,
             });
-            this.input.value = "";
+            this.inputElement.value = "";
         })
     }
 

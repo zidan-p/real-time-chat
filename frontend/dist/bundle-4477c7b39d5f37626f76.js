@@ -3710,7 +3710,7 @@ let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div class="absolute w-full inset-x-0 bottom-0 flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
-        <div class="bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
+        <div class="user-id bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
             <p>Ini ID</p>
         </div>
         <div class="w-10/12 text-black rounded-lg text-center">
@@ -3718,7 +3718,7 @@ let inputMessage = ({inpTxt = ""}) => {
                 <input id="find" class="w-full py-2 px-4 rounded-lg focus-within:outline-none focus-within:bg-white" placeholder="Ketik Disini YGY">
             </form>
         </div>
-        <div class="flex w-1/12 justify-center cursor-pointer">
+        <button class="flex w-1/12 justify-center cursor-pointer">
             <?xml version="1.0" encoding="iso-8859-1"?>
             <svg height="40px" width="40px" fill="#fff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 491.022 491.022" style="enable-background:new 0 0 491.022 491.022;" xml:space="preserve">
@@ -3737,7 +3737,7 @@ let inputMessage = ({inpTxt = ""}) => {
                     </g>
                 </g>
             </svg>
-        </div>
+        </button>
     </div>
     `.trim()
     return div.firstChild;
@@ -3827,18 +3827,20 @@ let sideBody = () => {
 let mainBodyRoom = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
-    </div>
-
-    <!--chat container-->
-    <div class="grow overflow-y-auto">
-        <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
+    <div>
+        <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
         </div>
-    </div>
 
-    
-    <!-- Input -->
-    <div id="input-msg-container" class="">
+        <!--chat container-->
+        <div class="grow overflow-y-auto">
+            <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
+            </div>
+        </div>
+
+        
+        <!-- Input -->
+        <div id="input-msg-container" class="">
+        </div>
     </div>
     `.trim();
     return div.firstChild;
@@ -3860,6 +3862,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ChatContent": () => (/* binding */ ChatContent)
 /* harmony export */ });
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+/* harmony import */ var _stateControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stateControl */ "./src/app/js/components/stateControl.js");
+
 
 
 // container atau tempat untuk menampilkan pesan
@@ -3868,48 +3872,48 @@ class ChatContent{
     // --- data value ---
     lastRow = 0
     idUser
+    msg = []
 
     // ---- elemen value ---
     containerElement
 
-    // ---- dom value ---
-    container
 
-
-    constructor({msg}){
+    constructor({msg, idUser}){
         this.idUser = 12321;
+        this.msg = msg;
     }
-
-    setDomContainer(){this.container = document.querySelector('#msg-container')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    
 
     // -- element manipulation --
     resetElement(){this.containerElement = document.createElement('div')}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
 
+    prepareElement(){
+        this.resetElement();
+        this.fillCurrentElementDom();
+    }
+
+    fillCurrentElementDom(){
+        this.msg.forEach(msg => {
+            this.appendMsg({
+                msg : msg.data,
+                idSender : msg.idSender,
+                fromMe : false
+            })
+        })
+    }
 
     // -- state controll --
     appendMsg({msg = "",idSender = NaN, fromMe = false}){
-        this.container.append({
+        this.containerElement.append( (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.msgRow)({
             numberRow : this.lastRow,
             msg : msg,
             idSender : idSender,
             fromMe :fromMe
-        })
+        }))
+
         console.log("text appended")
         this.lastRow++;
     }
-    show(){
-        this.setDomContainer();
-        this.resetElement();
-        this.fillElementDomContainer();
-    }
-
-    
 
 }
 
@@ -3928,6 +3932,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Header": () => (/* binding */ Header)
 /* harmony export */ });
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+/* harmony import */ var _stateControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stateControl */ "./src/app/js/components/stateControl.js");
+
+
 
 
 class Header{
@@ -3937,32 +3944,17 @@ class Header{
     
     // --- dom value ---
     container
-    nameContainer
-    iconContainer
     
     // -- elemen value --
-    containerElement 
+    containerElement
+    nameContainerElement
+    iconContainerElement
 
     constructor({roomName = "", roomIcon = ""}){
         this.roomName = roomName;
         this.roomIcon = roomIcon;
 
     }
-
-    // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('#header')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    setDom(){
-        this.nameContainer = this.container.querySelector('#header-room-name')
-        this.iconContainer = ""
-    }
-    unsetDom(){
-        this.nameContainer = null;
-        this.iconContainer = null
-    }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
-    
 
     // -- element manipulation --
     createElement(){
@@ -3971,21 +3963,31 @@ class Header{
             roomIcon : this.roomIcon
         })
     }
-    resetElement(){this.containerElement = this.createElement().bind(this)}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
+    resetElement(){this.containerElement = this.createElement()}
     deleteElement(){this.containerElement = null}
+    setPseudoElement(){
+        this.nameContainerElement = this.containerElement.querySelector('#header-room-name');
+        this.iconContainerElement = "";
+    }
+    unsetPseudoElement(){
+        this.nameContainerElement = null
+        this.iconContainerElement = null
+    }
+
+    prepareElement(){
+        this.resetElement();
+        this.setPseudoElement();
+        this.fillCurrentElementDom();
+    }
 
 
     // -- state controll --
     fillCurrentElementDom(){
-        this.nameContainer = this.roomName
-        this.iconContainer = this.icon
+        this.nameContainerElement = this.roomName
+        this.iconContainerElement = this.icon
     }
-    show(){
-        this.setDomContainer();
-        this.resetElement();
-        this.fillElementDomContainer();
 
+    slide(){
         this.fillCurrentElementDom();
     }
 
@@ -4006,6 +4008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "InputMessage": () => (/* binding */ InputMessage)
 /* harmony export */ });
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+/* harmony import */ var _stateControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stateControl */ "./src/app/js/components/stateControl.js");
 
 
 
@@ -4016,75 +4019,72 @@ class InputMessage{
 
     //---- dom value -----
     container
-    input
-    sendBtn
-    idContainer // id user
-    form
 
     // -- element vale --
+    containerElement
+    inputElement
+    sendBtnElement
+    idContainerElement // id user
+    formElement
+
 
     constructor({currentMsg = "", userId = ""}){
         this.currentMsg = currentMsg;
         this.userId = userId;
 
     }
-    // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('#input-msg-container')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    setDom(){
-        this.input = this.container.querySelector('input');
-        this.form = this.container.querySelector('form'); //form untuk submit
-        this.idContainer = this.container.querySelector('.user-id');
-        this.sendBtn = this.container.querySelector('button');
-    }
-    unsetDom(){
-        this.input = null
-        this.form = null
-        this.idContainer = null
-        this.sendBtn = null
-    }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
 
     // -- element manipulation --
     createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.inputMessage)(this.currentMsg);}
     resetElement(){this.containerElement = (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.inputMessage)(this.currentMsg)}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
+    setPseudoElement(){
+        this.inputElement = this.containerElement.querySelector('input');
+        this.formElement = this.containerElement.querySelector('form'); //form untuk submit
+        this.idContainerElement = this.containerElement.querySelector('.user-id');
+        this.sendBtnElement = this.containerElement.querySelector('button');
+    }
+    unsetPseudoElement(){
+        this.inputElement = null
+        this.formElement = null
+        this.idContainerElement = null
+        this.sendBtnElement = null
+    }
 
+    prepareElement(){
+        this.resetElement();
+        console.log(this.containerElement)
+        this.setPseudoElement();
+        
+        this.fillCurrentElementDom();
+    }
 
     // -- state control --
     fillCurrentElementDom(){
-        this.idContainer.innerHTML = "#" + this.userId;
-        this.input.value = this.currentMsg
+        this.idContainerElement.innerHTML = "#" + this.userId;
+        this.inputElement.value = this.currentMsg
     }
 
-    show(){
-        this.setDomContainer();
-        this.setDom();
-        this.fillCurrentElementDom();
-        this.fillElementDomContainer();
-    }
-    hide(){
-        this.setCurrentElement();
-        this.unsetDom();
-    }
-
-
-    onSubmitForm(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        this.form.addEventListener('submit',(e)=>{
+    onSendMessage(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
+        console.log('form',this.formElement);
+        console.log('sendBtn',this.sendBtnElement);
+        this.formElement.addEventListener('submit',(e)=>{
             e.preventDefault();
             callback({
-                message: this.input.value
+                msg: this.inputElement.value,
+                idSender : this.userId,
+                fromMe : true,
             });
-            this.input.value = "";
+            this.inputElement.value = "";
         })
-        this.sendBtn.addEventListener('click', (e)=> {
+        this.sendBtnElement.addEventListener('click', (e)=> {
             e.preventDefault();
             callback({
-                message: this.input.value
+                msg: this.inputElement.value,
+                idSender : this.userId,
+                fromMe : true,
             });
-            this.input.value = "";
+            this.inputElement.value = "";
         })
     }
 
@@ -4110,6 +4110,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputMessage */ "./src/app/js/components/main/inputMessage.js");
 /* harmony import */ var _chatContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chatContent */ "./src/app/js/components/main/chatContent.js");
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+/* harmony import */ var _stateControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stateControl */ "./src/app/js/components/stateControl.js");
+
 
 
 
@@ -4123,19 +4125,21 @@ class RoomMain{
 
     // -- data --
     idUser // user ini
+    isActive // apakah room ini active?
 
     // -- dom value --
     container
-    headerContainer
-    inputContainer
-    chatContentContainer
 
     // -- element value --
     containerElement
+    headerContainerElement
+    inputContainerElement
+    chatContentContainerElement
 
     constructor({roomName, roomIcon, msg}){
 
         this.idUser = 12312; //ini cuma dummy
+        this.isActive = false;
 
         this.header = new _header__WEBPACK_IMPORTED_MODULE_0__.Header({
             roomName: roomName,
@@ -4147,57 +4151,69 @@ class RoomMain{
             userId : 123, //nah, ini mungkin bisa di lihat nanti
         })
 
-        this.chatContent = new _chatContent__WEBPACK_IMPORTED_MODULE_2__.ChatContent({
-            msg : msg
-        })
-    }
+        this.chatContent = new _chatContent__WEBPACK_IMPORTED_MODULE_2__.ChatContent({msg : msg})
 
 
-    //untuk handle event submit
-    setEvent(){
-        this.inputMessage.onSubmitForm(({message})=>{
-            this.chatContent.appendMsg({
-                msg : message,
-                idSender : this.idUser,
-                fromMe : true
-            })
-        })
     }
-
-    // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('MAIN')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    setDom(){
-        this.chatContentContainer = this.container.querySelector('#msg-container');
-        this.headerContainer = this.container.querySelector('#header');
-        this.inputContainer = this.container.querySelector('#input-msg-container');
-    }
-    setDom(){
-        this.chatContentContainer = null;
-        this.headerContainer = null;
-        this.inputContainer = null;
-    }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
 
     // -- element manipulation --
-    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_3__.mainBodyRoom)();}
-    resetElement(){this.containerElement = (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_3__.mainBodyRoom)()}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
+    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_3__.mainBodyRoom)()}
+    resetElement(){this.containerElement = this.createElement()}
     deleteElement(){this.containerElement = null}
-
-
-    // -- state manipulation --
-    show(){
-        this.header.show();
-        this.chatContent.show();
-        this.inputMessage.show();
+    setPseudoElement(){
+        this.chatContentContainerElement = this.containerElement.querySelector('#msg-container');
+        this.headerContainerElement = this.containerElement.querySelector('#header');
+        this.inputContainerElement = this.containerElement.querySelector('#input-msg-container');
     }
-    hide(){
+    unsetPseudoElement(){
+        this.chatContentContainerElement = null
+        this.headerContainerElement = null
+        this.inputContainerElement = null
+    }
+
+
+    // -- attach dan detach --
+    // ** attach
+    attachHeader(header){this.headerContainerElement.append(this.header.containerElement)}
+    attachInputMessage(input){this.inputContainerElement.append(this.inputMessage.containerElement)}
+    attachChatContent(content){this.chatContentContainerElement.append(this.chatContent.containerElement)}
+
+    // ** detach
+    detachHeader(){this.headerContainerElement.innerHTML = ""}
+    detachInputMessage(){this.inputContainerElement.innerHTML = ""}
+    detachChatContent(){this.chatContentContainerElement.innerHTML = ""}
+
+    prepareElement(){
+        this.resetElement();
+        this.setPseudoElement();
+        console.log(this.containerElement)
+
+        this.header.prepareElement();
+        this.inputMessage.prepareElement();
+        this.chatContent.prepareElement();
+
+        this.attachHeader();
+        this.attachChatContent();
+        this.attachInputMessage();
         
+        this.setSendMessage()
     }
-    remove(){
 
+    // -- status --
+    setInactive(){this.isActive = false;}
+    setActive(){this.isActive = true;}
+
+    // -- event --
+    setSendMessage(){
+        this.inputMessage.onSendMessage(
+            (data)=>{
+                this.chatContent.appendMsg({
+                    fromMe: data.fromMe,
+                    idSender: data.idSender,
+                    msg: data.msg
+                })
+            }
+        )
     }
 
 
@@ -4236,17 +4252,14 @@ class Room {
     msg = [] //saya kurang tahu apakah ini disarankan?
     name
     id
-    isactive
+    isActive
 
-    // -- dom object --
-    sideRoomContainer
-    mainRoomContainer
-
-    constructor({participant, msg, name, id}){
+    constructor({participant, msg, name, id,isActive = false}){
         this.msg = msg;
         this.name = name;
         this.id = id;
         this.participant = participant;
+        this.isActive = isActive
 
         this.roomAside = new _sidebar_roomAside__WEBPACK_IMPORTED_MODULE_0__.RoomAside({
             roomName : this.name,
@@ -4261,13 +4274,25 @@ class Room {
         })
     }
 
-    //saya kurang tahu bagaimana cara yang benar dalam melakukan
-    //operasi pada object, jadi saya pakai cara ini
-    appendRoomSide(sidebar){
-        sidebar.addRoom(roomAside);
+    prepareElement(){
+        this.roomMain.prepareElement();
+        this.roomAside.prepareElement();
     }
 
-    
+    //-- set active inactive --
+    setInactive(){ 
+        this.isActive = false;
+        this.roomAside.setInactive();
+        this.roomMain.setInactive();
+    }
+    setActive(){
+        console.log("ini di set aktiv");
+        this.isActive = true;
+        this.roomAside.setActive();
+        this.roomMain.setActive();
+    }
+
+
 }
 
 
@@ -4294,12 +4319,12 @@ class RoomAside{
     roomId
 
     // --- dom ---
-    asideRoomContainer
-    nameContainer
-    newMsgContainer
-
+    container
+    
     // -- element value --
-    asideRoomContainerElement
+    containerElement
+    nameContainerElement
+    newMsgContainerElement
 
     constructor({roomName = "", newMsg = "", roomId}){
         this.roomName = roomName
@@ -4307,25 +4332,7 @@ class RoomAside{
         this.newMsg = newMsg
     }
 
-    // -- dom manipulation --
-    setDomContainer(){this.asideRoomContainer = document.querySelector(`#room-${this.roomId}-side`);}
-    unsetDomContainer(){this.asideRoomContainer = null}
-    fillElementDomContainer(){this.asideRoomContainer.append(this.asideRoomContainerElement);}
-    setDom(){
-        this.nameContainer = this.asideRoomContainer.querySelector('.room-name-aside');
-        this.newMsgContainer = this.asideRoomContainer.querySelector('.new-msg-container');
-    }
-    usetDom(){
-        this.nameContainer = null
-        this.newMsgContainer = null
-    }
-    deleteDom(){this.asideRoomContainer.innerHTML = ``} //semua dom baik container maupun isi
-
     // -- element manipulation --
-    createElement(){return this.createElement().bind(this)} //perlu di bind supaya dapat mengakses elemen object
-    resetElement(){this.asideRoomContainerElement = this.createElement()}
-    setCurrentElement(){this.asideRoomContainerElement = this.asideRoomContainer.cloneNode(true)}
-    deleteElement(){this.containerElement = null}
     createElement(){
         return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.roomList)({
             isActive: false,
@@ -4333,13 +4340,39 @@ class RoomAside{
             newMsg : this.newMsg,
             roomId : this.roomId
         })
+    } //perlu di bind supaya dapat mengakses elemen object
+    resetElement(){this.containerElement = this.createElement()}
+    deleteElement(){this.containerElement = null}
+    setPseudoElement(){
+        this.nameContainerElement = this.containerElement.querySelector('.room-name-aside');
+        this.newMsgContainerElement = this.containerElement.querySelector('.new-msg-container');
+    }
+    unsetPseudoElement(){
+        this.nameContainerElement = null;
+        this.newMsgContainerElement = null
+    }
+    setActive(){
+        console.log("ini di set aktif");
+        this.containerElement.classList.add("bg-vscode-3")
+    }
+    setInactive(){this.containerElement.classList.remove("bg-vscode-3")}
+
+    prepareElement(){
+        this.resetElement();
+        this.setPseudoElement();
     }
 
-    //karena ini hanya digunakan untuk mengakses dan mendapat , dan tidak sebagai container, maka
-    //hanya akan saya beri delete dan update
-    deleteThisDomAndElement(){
-        this.deleteDom();
-        this.deleteElement();
+    fillCurrentElementDom(){
+        this.nameContainerElement = this.roomName;
+        this.newMsgContainerElement = this.newMsg;
+    }
+
+
+    // --- event ---
+    onClick(callback){
+        this.containerElement.addEventListener('click', ()=>{
+            callback(this.roomId);
+        })
     }
 
 }
@@ -4366,45 +4399,38 @@ __webpack_require__.r(__webpack_exports__);
 class SideBar{
     roomSideList = [] //berisi object roomAside
 
-    // -- dom element ---
-    container
-    roomListContainer
-    settingContainer
-
     // -- element value ---
     containerElement
+    roomListContainerElement
+    settingContainerElement
 
     constructor(roomSideList){
         this.roomSideList = roomSideList;
+        console.log(this.roomSideList)
     }
 
     // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('ASIDE')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    setDom(){
-        this.roomListContainer = this.container.querySelector('#room-list')
-        this.settingContainer = this.container.querySelector('#setting-list');
-    }
-    unsetDom(){
-        this.roomListContainer = null
-        this.settingContainer = null
-    }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
 
     // -- element manipulation --
     createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.sideBody)();}
     resetElement(){this.containerElement = this.createElement()}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
-
-    showThis(){
-        this.setDomContainer();
+    setPseudoElement(){
+        this.roomListContainerElement = this.containerElement.querySelector('#room-list');
+        this.settingContainerElement = this.containerElement.querySelector('#setting-list');
+    }
+    setPseudoElement(){
+        this.roomListContainerElement = this.containerElement.querySelector('#room-list');
+        this.settingContainerElement = this.containerElement.querySelector('#setting-list');
+    }
+    prepareElement(){
         this.resetElement();
-        this.fillElementDomContainer();
-        this.setDom();
+        this.setPseudoElement();
+
         this.fillRoom();
     }
+
+
 
     // -- room manopulation --
     addRoom(roomSide){
@@ -4413,9 +4439,7 @@ class SideBar{
     }
     appendRoom(roomSide){
         console.log(roomSide)
-        this.roomListContainer.append(roomSide.createElement())
-        roomSide.setDomContainer();
-        roomSide.setDom()
+        this.roomListContainerElement.append(roomSide.containerElement)
     }
     fillRoom(){
         this.roomSideList.forEach(room => {this.appendRoom(room)})
@@ -4461,84 +4485,176 @@ class StateRoom{
 
     // -- data value --
     currentActive
+    isFirstOpen
 
     // -- dom elemen --
     container
 
     // -- element value --
     containerElement
+    asideElement
+    mainElement
 
     constructor(roomList){
         this.roomList = roomList;
-        console.log(this.roomList)
 
         //set sidebar
-        this.sideBar = new _components_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_1__.SideBar(
-            this.roomList.map(room => room.roomAside)
-        )
-
-        this.roomList.forEach(room => {
-            console.log(room)
-            console.log(room.roomAside)
-        })
-        
-        //set room yang active
-        let found = this.roomList.find((room,i)=> {
-            if(room.isActive == true ){
-                this.currentActive = room;
-
-            }
-        })
-
-        // bila tidak maka tmapilkan halamn default
-        if(!found) this.defaultPage();
+        this.sideBar = new _components_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_1__.SideBar(this.roomList.map(room => room.roomAside))
     }
-
-    // --- dom ---
-    setDomContainer(){this.container = document.querySelector('body')}
-    unsetDomContainer(){this.container = null;}
-    fillElementDom(){this.container.append(this.containerElement);}
-    deleteDom(){this.container.innerHTML = ""}
 
     // --- element ----
     createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.appBody)();}
     resetElement(){this.containerElement = this.createElement()}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
-
-    showThis(){
-        this.setDomContainer();
-        this.resetElement();
-        this.fillElementDom()
-        this.fillElementDom();
-
-        this.sideBar.showThis();
+    setPseudoElement(){
+        this.asideElement = this.containerElement.querySelector('ASIDE');
+        this.mainElement = this.containerElement.querySelector('MAIN');
+    }
+    unsetPseudoElement(){
+        this.asideElement = this.containerElement.querySelector('ASIDE');
+        this.mainElement = this.containerElement.querySelector('MAIN');
     }
 
-    showActivePage(){
-        this.hideEveryRoom();
-        this.currentActive.showThis();
-    }
+    //menggunakan attach detach
+    attachSidebar(side){this.asideElement.append(side.containerElement)}
+    detachSidebar(){this.asideElement.innerHTML = ""}
+    attachMain(main){this.mainElement.append(main.containerElement)}
+    detachMain(){this.mainElement.innerHTML = ""}
 
-    //saya tahu ini kurang efisien, tapi saya tidak tahu harus bagaimana lagi
-    hideEveryRoom(){
-        this.roomList.forEach(room => {
-            room.hideThis();
+    setActiveRoom(room){room.setActive(); this.currentActive = room}
+    setInactiveRoom(room){room.setInactive()}
+    setTheActivation(){
+        let found = this.roomList.find((room,i)=> {
+            room.isActive ? this.setActiveRoom(room) : this.setInactiveRoom(room)
         })
+
+        if(!found)this.defaultPage();
+    }
+
+    prepareElement(){
+        this.resetElement();
+        this.setPseudoElement();
+        this.roomList.forEach(room => {
+            room.prepareElement();
+        })
+        
+        this.sideBar.prepareElement();
+        this.setTheActivation();
+    }
+
+    changeCurrentPage(room){
+        this.currentActive.setInactive();
+        this.currentActive = room;
+        this.currentActive.setActive();
+        this.showCurrentPage();
+    }
+
+    showCurrentPage(){
+        this.detachMain();
+        this.attachMain(this.currentActive.roomMain); // elemen main yg diattach
     }
 
     run(){
-        this.showThis();
-        this.hideEveryRoom();
-        this.showActivePage();
+        this.prepareElement();
+
+        this.attachSidebar(this.sideBar);
+        this.showCurrentPage();
+        this.setEventChangePage()
     }
 
     //TODO buat default page
     defaultPage(){}
+
+
+    // --- event ----
+    //untuk perpindahan page
+    setEventChangePage(){
+        console.log('roomlist',this.roomList)
+        this.roomList.forEach((room)=>{
+            room.roomAside.onClick(
+                ()=>{
+                    this.changeCurrentPage(room);
+                }
+            )
+        })
+    }
 }
 
 
 
+
+/***/ }),
+
+/***/ "./src/app/js/components/stateControl.js":
+/*!***********************************************!*\
+  !*** ./src/app/js/components/stateControl.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "StateControl": () => (/* binding */ StateControl)
+/* harmony export */ });
+class StateControl{
+
+    container
+    containerElement
+
+    //dom and element control
+    // -- dom manipulation --
+    setDomContainer(){}
+    unsetDomContainer(){this.container = null}
+    fillElementDomContainer(){this.container.innerHTML = this.containerElement.innerHTML;}
+    setDom(){}
+    unsetDom(){}
+    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
+    restoreDom(){this.container.innerHTML = this.containerElement.innerHTML}
+
+    // -- element manipulation --
+    createElement(){} //semua elemen
+    resetElement(){this.containerElement = this.createElement()}
+    setCurrentElement(){this.containerElement = this.container.cloneNode(true)} // untuk update saat ini
+    setPseudoElement(){} // inisialisasi pseudo elemen
+    unsetPseudoElement(){} // hapus pseudo elemen
+    deleteElement(){this.containerElement = null}
+
+    // -- bridge dom and element --
+
+
+
+    // --- hard controll ---
+    //melalukan controlstate dengan menghapus
+    //atau memodifikasi dom secara keseluruhan
+    store(){
+        this.setDomContainer(); //crawl ke dom (sudah disiapkan)
+        this.resetElement(); // reset element
+        this.fillElementDomContainer(); // hasil dom di crawl diisi dengan elemen initial
+        this.setDom(); // crawl dom yg diperlukan
+    }
+    hide(){
+        this.setCurrentElement(); //simpan dom saat ini
+        this.unsetDom(); // hapus ikatan dom terkait
+        this.deleteDom(); // kosongkan domnya
+    }
+
+    show(){
+        this.setDomContainer(); // crawl dom untuk container
+        this.restoreDom(); // restore
+        this.setDom(); // creawldom untuk semuanya
+    }
+    backOperate(){}
+    remove(){
+        this.unsetDom();
+        this.deleteElement();
+        this.unsetDomContainer();
+    }
+
+
+    // --- soft control ---
+    //melakukan control state ysng masih
+    //meninggalkan variabel dom yang terisi
+    //namun akan digunakan untuk object lainya.
+}
 
 /***/ }),
 
@@ -4572,23 +4688,50 @@ sekarang ini berfung mengatur controller alur program
 let rooms = [
     {
         id : 1,
-        name : "test room",
+        name : "test room yang sudah saya editt",
         participant : [],
-        msg : [],
+        msg : [
+            {
+                data : "fesyan satoe",
+                idSender : 123123
+            }, 
+            {
+                data : "fesyan doea",
+                idSender : 122123
+            }
+        ],
         isActive : true,
     },
     {
         id : 3,
         name : "dummy room",
         participant : [],
-        msg : [],
+        msg : [
+            {
+                data : "dumn mess",
+                idSender : 123123
+            }, 
+            {
+                data : "denn meshh",
+                idSender : 122123
+            }
+        ],
         isActive : false,
     },
     {
         id : 2,
         name : "room lagi",
         participant : [],
-        msg : [],
+        msg : [
+            {
+                data : "fesyan satoe",
+                idSender : 123123
+            }, 
+            {
+                data : "fesyan doea",
+                idSender : 122123
+            }
+        ],
         isActive : false,
     },
 ]
@@ -4611,6 +4754,8 @@ function testRun(){
     document.querySelector('body').innerHTML = ""
 
     start.run(); //jalankan program
+
+    document.querySelector('body').append(start.containerElement)
 
     // //definisikan container text
     // let chatContent = new ChatContent();
@@ -4792,11 +4937,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//jalankan tooltip
-(0,_app_js_service_popover__WEBPACK_IMPORTED_MODULE_1__.updateTooltipDom)();
 
 //test untuk run program sederhana
 (0,_app_js_controller_test_send_msg_controller__WEBPACK_IMPORTED_MODULE_2__.testRun)()
+
+//jalankan tooltip
+;(0,_app_js_service_popover__WEBPACK_IMPORTED_MODULE_1__.updateTooltipDom)();
 })();
 
 /******/ })()

@@ -16,15 +16,12 @@ class Room {
     id
     isActive
 
-    // -- dom object --
-    sideRoomContainer
-    mainRoomContainer
-
-    constructor({participant, msg, name, id}){
+    constructor({participant, msg, name, id,isActive = false}){
         this.msg = msg;
         this.name = name;
         this.id = id;
         this.participant = participant;
+        this.isActive = isActive
 
         this.roomAside = new RoomAside({
             roomName : this.name,
@@ -39,14 +36,22 @@ class Room {
         })
     }
 
-    //-- set inactive --
-    setInactive(){
+    prepareElement(){
+        this.roomMain.prepareElement();
+        this.roomAside.prepareElement();
+    }
+
+    //-- set active inactive --
+    setInactive(){ 
+        this.isActive = false;
         this.roomAside.setInactive();
-        this.roomMain.hide();
+        this.roomMain.setInactive();
     }
     setActive(){
+        console.log("ini di set aktiv");
+        this.isActive = true;
         this.roomAside.setActive();
-        this.roomMain.show();
+        this.roomMain.setActive();
     }
 
 

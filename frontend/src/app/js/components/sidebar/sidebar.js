@@ -5,45 +5,38 @@ import { sideBody } from "../../DOM_component/dom_component"
 class SideBar{
     roomSideList = [] //berisi object roomAside
 
-    // -- dom element ---
-    container
-    roomListContainer
-    settingContainer
-
     // -- element value ---
     containerElement
+    roomListContainerElement
+    settingContainerElement
 
     constructor(roomSideList){
         this.roomSideList = roomSideList;
+        console.log(this.roomSideList)
     }
 
     // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('ASIDE')}
-    unsetDomContainer(){this.container = null}
-    fillElementDomContainer(){this.container.append(this.containerElement);}
-    setDom(){
-        this.roomListContainer = this.container.querySelector('#room-list')
-        this.settingContainer = this.container.querySelector('#setting-list');
-    }
-    unsetDom(){
-        this.roomListContainer = null
-        this.settingContainer = null
-    }
-    deleteDom(){this.container.innerHTML = ``} //semua dom baik container maupun isi
 
     // -- element manipulation --
     createElement(){return sideBody();}
     resetElement(){this.containerElement = this.createElement()}
-    setCurrentElement(){this.containerElement = this.container.cloneNode(true)}
     deleteElement(){this.containerElement = null}
-
-    showThis(){
-        this.setDomContainer();
+    setPseudoElement(){
+        this.roomListContainerElement = this.containerElement.querySelector('#room-list');
+        this.settingContainerElement = this.containerElement.querySelector('#setting-list');
+    }
+    setPseudoElement(){
+        this.roomListContainerElement = this.containerElement.querySelector('#room-list');
+        this.settingContainerElement = this.containerElement.querySelector('#setting-list');
+    }
+    prepareElement(){
         this.resetElement();
-        this.fillElementDomContainer();
-        this.setDom();
+        this.setPseudoElement();
+
         this.fillRoom();
     }
+
+
 
     // -- room manopulation --
     addRoom(roomSide){
@@ -52,9 +45,7 @@ class SideBar{
     }
     appendRoom(roomSide){
         console.log(roomSide)
-        this.roomListContainer.append(roomSide.createElement())
-        roomSide.setDomContainer();
-        roomSide.setDom()
+        this.roomListContainerElement.append(roomSide.containerElement)
     }
     fillRoom(){
         this.roomSideList.forEach(room => {this.appendRoom(room)})

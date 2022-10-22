@@ -4,7 +4,7 @@ import {ChatContent} from "./chatContent";
 import {mainBodyRoom} from "./../../DOM_component/dom_component"
 import {StateControl} from "../stateControl";
 
-class RoomMain extends StateControl{
+class RoomMain{
     // -- object --
     header
     inputMessage
@@ -16,9 +16,6 @@ class RoomMain extends StateControl{
 
     // -- dom value --
     container
-    headerContainer
-    inputContainer
-    chatContentContainer
 
     // -- element value --
     containerElement
@@ -29,6 +26,7 @@ class RoomMain extends StateControl{
     constructor({roomName, roomIcon, msg}){
 
         this.idUser = 12312; //ini cuma dummy
+        this.isActive = false;
 
         this.header = new Header({
             roomName: roomName,
@@ -40,95 +38,69 @@ class RoomMain extends StateControl{
             userId : 123, //nah, ini mungkin bisa di lihat nanti
         })
 
-        this.chatContent = new ChatContent({
-            msg : msg
-        })
+        this.chatContent = new ChatContent({msg : msg})
 
 
-    }
-
-
-    //untuk handle event submit
-    setEvent(){
-        this.inputMessage.onSubmitForm(({message})=>{
-            this.chatContent.appendMsg({
-                msg : message,
-                idSender : this.idUser,
-                fromMe : true
-            })
-        })
-    }
-
-    // -- dom manipulation --
-    setDomContainer(){this.container = document.querySelector('MAIN')}
-    setDom(){
-        this.chatContentContainer = this.container.querySelector('#msg-container');
-        this.headerContainer = this.container.querySelector('#header');
-        this.inputContainer = this.container.querySelector('#input-msg-container');
-    }
-    unsetDom(){
-        this.chatContentContainer = null;
-        this.headerContainer = null;
-        this.inputContainer = null;
     }
 
     // -- element manipulation --
-    createElement(){return mainBodyRoom();}
+    createElement(){return mainBodyRoom()}
+    resetElement(){this.containerElement = this.createElement()}
+    deleteElement(){this.containerElement = null}
     setPseudoElement(){
-        this.chatContentContainer = this.containerElement.querySelector('#msg-container');
-        this.headerContainer = this.containerElement.querySelector('#header');
-        this.inputContainer = this.containerElement.querySelector('#input-msg-container');
+        this.chatContentContainerElement = this.containerElement.querySelector('#msg-container');
+        this.headerContainerElement = this.containerElement.querySelector('#header');
+        this.inputContainerElement = this.containerElement.querySelector('#input-msg-container');
     }
     unsetPseudoElement(){
-        this.chatContentContainer = null
-        this.headerContainer = null
-        this.inputContainer = null
+        this.chatContentContainerElement = null
+        this.headerContainerElement = null
+        this.inputContainerElement = null
     }
 
-    // -- state manipulation --
-    store(){
-        this.setDomContainer();
+
+    // -- attach dan detach --
+    // ** attach
+    attachHeader(header){this.headerContainerElement.append(this.header.containerElement)}
+    attachInputMessage(input){this.inputContainerElement.append(this.inputMessage.containerElement)}
+    attachChatContent(content){this.chatContentContainerElement.append(this.chatContent.containerElement)}
+
+    // ** detach
+    detachHeader(){this.headerContainerElement.innerHTML = ""}
+    detachInputMessage(){this.inputContainerElement.innerHTML = ""}
+    detachChatContent(){this.chatContentContainerElement.innerHTML = ""}
+
+    prepareElement(){
         this.resetElement();
-        this.fillElementDomContainer();
-        this.setDom();
+        this.setPseudoElement();
+        console.log(this.containerElement)
 
-        this.header.store();
-        this.chatContent.store();
-        this.inputMessage.store();
-    }
-    remove(){
-        this.header.remove();
-        this.chatContent.remove();
-        this.inputMessage.remove();
-        this.unsetDom();
-        this.unsetDomContainer()
-        this.deleteElement();
-        // this.deleteDom(); // ini optional, terantung penggunaan
-        //dilanjutkan pada bagian admin, apakah elemen didalam juga ikut dihapus..
-    }
-    hide(){
-        this.setCurrentElement();
-        this.unsetDom();
-        this.deleteDom();
-        this.header.hide();
-        this.chatContent.hide();
-        this.inputMessage.hide();
-    }
-    show(){
-        this.setDomContainer();
-        this.setDom();
-        this.restoreDom();
-        this.header.show();
-        this.chatContent.show();
-        this.inputMessage.show();
+        this.header.prepareElement();
+        this.inputMessage.prepareElement();
+        this.chatContent.prepareElement();
+
+        this.attachHeader();
+        this.attachChatContent();
+        this.attachInputMessage();
+        
+        this.setSendMessage()
     }
 
-    setInactive(){
-        this.isActive = false;
+    // -- status --
+    setInactive(){this.isActive = false;}
+    setActive(){this.isActive = true;}
 
-    }
-    setActive(){
-
+    // -- event --
+    setSendMessage(){
+        this.inputMessage.onSendMessage(
+            (data)=>{
+                this.chatContent.appendMsg({
+                    fromMe: data.fromMe,
+                    idSender: data.idSender,
+                    msg: data.msg
+                })
+            }
+        )
     }
 
 

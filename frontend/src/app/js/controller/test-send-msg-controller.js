@@ -15,23 +15,50 @@ import {StateRoom} from "./../components/start"
 let rooms = [
     {
         id : 1,
-        name : "test room",
+        name : "test room yang sudah saya editt",
         participant : [],
-        msg : ["fesyan satoe", "fesyan doea"],
+        msg : [
+            {
+                data : "fesyan satoe",
+                idSender : 123123
+            }, 
+            {
+                data : "fesyan doea",
+                idSender : 122123
+            }
+        ],
         isActive : true,
     },
     {
         id : 3,
         name : "dummy room",
         participant : [],
-        msg : ["dumn message", "dumn message2"],
+        msg : [
+            {
+                data : "dumn mess",
+                idSender : 123123
+            }, 
+            {
+                data : "denn meshh",
+                idSender : 122123
+            }
+        ],
         isActive : false,
     },
     {
         id : 2,
         name : "room lagi",
         participant : [],
-        msg : ["dummy message", "dummy message2"],
+        msg : [
+            {
+                data : "fesyan satoe",
+                idSender : 123123
+            }, 
+            {
+                data : "fesyan doea",
+                idSender : 122123
+            }
+        ],
         isActive : false,
     },
 ]
@@ -54,6 +81,8 @@ function testRun(){
     document.querySelector('body').innerHTML = ""
 
     start.run(); //jalankan program
+
+    document.querySelector('body').append(start.containerElement)
 
     // //definisikan container text
     // let chatContent = new ChatContent();

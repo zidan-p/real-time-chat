@@ -55,7 +55,7 @@ let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div class="absolute w-full inset-x-0 bottom-0 flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
-        <div class="bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
+        <div class="user-id bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
             <p>Ini ID</p>
         </div>
         <div class="w-10/12 text-black rounded-lg text-center">
@@ -63,7 +63,7 @@ let inputMessage = ({inpTxt = ""}) => {
                 <input id="find" class="w-full py-2 px-4 rounded-lg focus-within:outline-none focus-within:bg-white" placeholder="Ketik Disini YGY">
             </form>
         </div>
-        <div class="flex w-1/12 justify-center cursor-pointer">
+        <button class="flex w-1/12 justify-center cursor-pointer">
             <?xml version="1.0" encoding="iso-8859-1"?>
             <svg height="40px" width="40px" fill="#fff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 491.022 491.022" style="enable-background:new 0 0 491.022 491.022;" xml:space="preserve">
@@ -82,7 +82,7 @@ let inputMessage = ({inpTxt = ""}) => {
                     </g>
                 </g>
             </svg>
-        </div>
+        </button>
     </div>
     `.trim()
     return div.firstChild;
@@ -172,18 +172,20 @@ let sideBody = () => {
 let mainBodyRoom = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
-    </div>
-
-    <!--chat container-->
-    <div class="grow overflow-y-auto">
-        <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
+    <div>
+        <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
         </div>
-    </div>
 
-    
-    <!-- Input -->
-    <div id="input-msg-container" class="">
+        <!--chat container-->
+        <div class="grow overflow-y-auto">
+            <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
+            </div>
+        </div>
+
+        
+        <!-- Input -->
+        <div id="input-msg-container" class="">
+        </div>
     </div>
     `.trim();
     return div.firstChild;
