@@ -3711,24 +3711,33 @@ let header = ({roomName = "", roomIcon = ""}) => {
 let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="flex flex-col px-2">
+    <div class="flex flex-col px-2 py-1 h-full">
         <div class="flex">
             <div class="flex py-2 gap-7">
-                <p class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND MSG</p>
-                <p class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND MSG</p>
+                <p class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND ON CLICK</p>
+                <p class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND ON ENTER</p>
                 <p class="text-xs text-gray-300 underline underline-offset-8 decoration-gray-600">SEND MSG</p>
             </div>
             <div class="flex">
             </div>
         </div>
-        <div class="flex py-2 gap-1 group">
+        <div class="send-on-enter flex py-2 gap-1 group">
             <div class="inline-flex gap-1 self-start ">
                 <p class="user-id bg-amber-300 group-focus-within:bg-amber-200 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
-                <button class="bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
+                <button class="input-send bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
             </div>
             <form class="grow">
-                <input id="add" autocomplete="off" type="text" class="w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
+                <input id="add" autocomplete="off" type="text" class="px-2 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
             </form>
+        </div>
+        <div class="send-on-click grow flex flex-col gap-1">
+            <textarea class="px-1 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none h-full resize-none" ></textarea>
+            <div class="w-full bg-vscode-5 h-10 flex justify-end">
+                <div class="inline-flex gap-1 self-start">
+                    <p class="user-id bg-amber-300 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
+                    <button class="text-area-send bg-amber-300 hover:bg-amber-200 rounded-r-full text-black px-2"> send --> </button>
+                </div>
+            </div>
         </div>
     </div>
     `.trim()
@@ -3832,13 +3841,14 @@ let mainBodyRoom = () => {
         </div>
 
         <!--chat container-->
-        <div class="grow overflow-y-auto">
+        <div class="h-full shrink overflow-y-auto">
             <div id="msg-container" class="flex flex-col gap-2 py-2 px-5 text-sm font-bold">
             </div>
         </div>
         
         <!-- Input -->
-        <div id="input-msg-container" class="border-t border-t-gray-600 bg-vscode-4">
+        <div class="resizer w-full bg-none hover:bg-slate-300 h-[6px] transition-all cursor-n-resize" data-direction="vertical"></div>
+        <div id="input-msg-container" class="border-t border-t-gray-600 bg-vscode-4 grow">
         </div>
     </div>
     `.trim();
@@ -3912,6 +3922,7 @@ class ChatContent{
         this.containerElement.append( 
             tempmsg
         )
+        this.containerElement.scrollIntoView({block: "end"});
         setTimeout(()=>{
             tempmsg.classList.remove('bg-vscode-1');
         },100)
@@ -4021,21 +4032,31 @@ class InputMessage{
     idDomElement
     userId
 
+    // -- config --
+    sendMethod //['input','textArea']
+
     //---- dom value -----
     container
 
     // -- element vale --
     containerElement
+    idContainerElement // id user
+
+    // ** send on enter **
     inputElement
     sendBtnElement
-    idContainerElement // id user
     formElement
+    sendOnEnterContainerElement
+
+    // ** send on click **
+    sendTextAreaBtnElement
+    textAreaElement
+    sendOnClickContainer
 
 
     constructor({currentMsg = "", userId = ""}){
         this.currentMsg = currentMsg;
         this.userId = userId;
-
     }
 
     // -- element manipulation --
@@ -4044,15 +4065,28 @@ class InputMessage{
     deleteElement(){this.containerElement = null}
     setPseudoElement(){
         this.inputElement = this.containerElement.querySelector('input');
+        this.idContainerElement = this.containerElement.querySelectorAll('.user-id');
+
+        // ** send on enter **
         this.formElement = this.containerElement.querySelector('form'); //form untuk submit
-        this.idContainerElement = this.containerElement.querySelector('.user-id');
-        this.sendBtnElement = this.containerElement.querySelector('button');
+        this.sendBtnElement = this.containerElement.querySelector('button.input-send');
+        this.sendOnEnterContainerElement = this.containerElement.querySelector('.send-on-enter')
+
+        // ** send on click **
+        this.sendTextAreaBtnElement = this.containerElement.querySelector('button.tex-area-send');
+        this.textAreaElement = this.containerElement.querySelector('textarea');
+        this.sendOnClickContainer = this.containerElement.querySelector('.send-on-click')
     }
     unsetPseudoElement(){
         this.inputElement = null
         this.formElement = null
         this.idContainerElement = null
         this.sendBtnElement = null
+        this.sendTextAreaBtnElement = null
+        this.textAreaElement = null
+        this.sendOnClickContainer = null
+        this.sendOnEnterContainerElement = null
+
     }
 
     prepareElement(){
@@ -4061,17 +4095,46 @@ class InputMessage{
         this.setPseudoElement();
         
         this.fillCurrentElementDom();
+        this.setSendMethod('input')
     }
 
     // -- state control --
     fillCurrentElementDom(){
         this.idContainerElement.innerHTML = "#" + this.userId;
-        this.inputElement.value = this.currentMsg
+        // this.inputElement.value = this.currentMsg; // mugkin dijadikan optional
+
     }
 
+    setSendMethod(conf){
+        //ada dua input method, yaitu textArea dan input
+        switch(conf){
+            case "input":
+                this.sendMethod = "input";
+                this.sendOnEnterContainerElement.classList.remove('hidden');
+                this.sendOnClickContainer.classList.add('hidden')
+                break;
+            case "textArea":
+                this.sendMethod = "textArea";
+                break;
+            default:
+                throw new Error('config tidak valid')
+        }
+    }
+
+    // -- event --
     onSendMessage(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        console.log('form',this.formElement);
-        console.log('sendBtn',this.sendBtnElement);
+        if(this.sendMethod === "input"){
+            this.onEnterSend(callback)
+            return
+        }else if(this.sendMethod === "textArea"){
+            this.onClickSend(callback)
+            return
+        }
+        throw new Error("callback tidak valit")
+    }
+
+    //kirim ketika dienter, untuk input
+    onEnterSend(callback){
         this.formElement.addEventListener('submit',(e)=>{
             e.preventDefault();
             callback({
@@ -4089,6 +4152,18 @@ class InputMessage{
                 fromMe : true,
             });
             this.inputElement.value = "";
+        })
+    }
+
+    //kirim ketika di klik kirim
+    onClickSend(callback){
+        this.sendTextAreaBtnElement.addEventListener('click', (e)=>{
+            e.preventDefault();
+            callback({
+                msg: this.textAreaElement.value,
+                idSender : this.userId,
+                fromMe : true,
+            });
         })
     }
 
@@ -4114,7 +4189,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputMessage */ "./src/app/js/components/main/inputMessage.js");
 /* harmony import */ var _chatContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chatContent */ "./src/app/js/components/main/chatContent.js");
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-/* harmony import */ var _stateControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stateControl */ "./src/app/js/components/stateControl.js");
+/* harmony import */ var _service_resizer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../service/resizer */ "./src/app/js/service/resizer.js");
 
 
 
@@ -4139,6 +4214,7 @@ class RoomMain{
     headerContainerElement
     inputContainerElement
     chatContentContainerElement
+    resizerElement
 
     constructor({roomName, roomIcon, msg}){
 
@@ -4168,11 +4244,13 @@ class RoomMain{
         this.chatContentContainerElement = this.containerElement.querySelector('#msg-container');
         this.headerContainerElement = this.containerElement.querySelector('#header');
         this.inputContainerElement = this.containerElement.querySelector('#input-msg-container');
+        this.resizerElement = this.containerElement.querySelector('.resizer');
     }
     unsetPseudoElement(){
         this.chatContentContainerElement = null
         this.headerContainerElement = null
         this.inputContainerElement = null
+        this.resizerElement = null
     }
 
 
@@ -4200,7 +4278,8 @@ class RoomMain{
         this.attachChatContent();
         this.attachInputMessage();
         
-        this.setSendMessage()
+        this.setSendMessage();
+        this.addResizer();
     }
 
     // -- status --
@@ -4217,6 +4296,14 @@ class RoomMain{
                     msg: data.msg
                 })
             }
+        )
+    }
+
+    // -- service--
+    addResizer(){
+        (0,_service_resizer__WEBPACK_IMPORTED_MODULE_4__.addResizer)(
+            this.resizerElement,
+            this.resizerElement.dataset.direction
         )
     }
 
@@ -4853,6 +4940,98 @@ function updateTooltipDom(){
         //tampilkan saat di hover
         addEvent(tooltipTarget, tooltip, poppperInstance);
     })
+}
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/service/resizer.js":
+/*!***************************************!*\
+  !*** ./src/app/js/service/resizer.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addResizer": () => (/* binding */ addResizer)
+/* harmony export */ });
+// untuk menambahkan fitur resizeable
+
+
+const addResizer = (element, directionRezise) => {
+    let resizer = element
+    let previousSide = resizer.previousElementSibling;
+    let nextSide = resizer.nextElementSibling;
+    console.log("seharusnya resizer bekerja");
+
+    //posisi resizer
+    const direction = resizer.getAttribute('data-direction') || 'horizontal';
+
+    //ukuran tinggi sibling sebelumnya
+    let previousSideHeight = 0; // -- untuk split horizontal
+    let previousSideWidth = 0; // -- untuk split vertikal
+
+
+    // posisi mouse
+    let x = 0;
+    let y = 0;
+
+    // Handle event mouse down
+    const mouseDownHandler = function (e) {
+        console.log("event mouse down")
+        // dapatakn posisi terkini
+        x = e.clientX;
+        y = e.clientY;
+        let rect = previousSide.getBoundingClientRect();
+        previousSideWidth = rect.width
+        previousSideHeight = rect.height
+
+        // sambung listener
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+    };
+
+    const mouseMoveHandler = function(e) {
+        const dx = e.clientX - x;
+        const dy = e.clientY - y;
+
+        switch (direction) {
+            case 'vertical':
+                const h = (previousSideHeight + dy) * 100 / resizer.parentNode.getBoundingClientRect().height;
+                previousSide.style.height = `${h}%`;
+                break;
+            case 'horizontal':
+            default:
+                const w = (previousSideWidth + dx) * 100 / resizer.parentNode.getBoundingClientRect().width;
+                previousSide.style.width = `${w}%`;
+                break;
+        }
+
+        const cursor = direction === 'horizontal' ? 'col-resize' : 'row-resize';
+        resizer.style.cursor = cursor;
+        document.body.style.cursor = cursor;
+    };
+
+    const mouseUpHandler = function () {
+        resizer.style.removeProperty('cursor');
+        document.body.style.removeProperty('cursor');
+
+        previousSide.style.removeProperty('user-select');
+        previousSide.style.removeProperty('pointer-events');
+
+        nextSide.style.removeProperty('user-select');
+        nextSide.style.removeProperty('pointer-events');
+
+        // Remove the handlers of `mousemove` and `mouseup`
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        document.removeEventListener('mouseup', mouseUpHandler);
+    };
+
+    // Attach the handler
+    resizer.addEventListener('mousedown', mouseDownHandler);
+
 }
 
 

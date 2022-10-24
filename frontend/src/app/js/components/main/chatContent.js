@@ -48,10 +48,10 @@ class ChatContent{
         this.containerElement.append( 
             tempmsg
         )
+        this.containerElement.scrollIntoView({block: "end"});
         setTimeout(()=>{
             tempmsg.classList.remove('bg-vscode-1');
         },100)
-
         this.lastRow++;
     }
 

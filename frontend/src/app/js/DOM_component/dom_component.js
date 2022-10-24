@@ -56,24 +56,33 @@ let header = ({roomName = "", roomIcon = ""}) => {
 let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="flex flex-col px-2">
+    <div class="flex flex-col px-2 py-1 h-full">
         <div class="flex">
             <div class="flex py-2 gap-7">
-                <p class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND MSG</p>
-                <p class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND MSG</p>
+                <p class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND ON CLICK</p>
+                <p class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND ON ENTER</p>
                 <p class="text-xs text-gray-300 underline underline-offset-8 decoration-gray-600">SEND MSG</p>
             </div>
             <div class="flex">
             </div>
         </div>
-        <div class="flex py-2 gap-1 group">
+        <div class="send-on-enter flex py-2 gap-1 group">
             <div class="inline-flex gap-1 self-start ">
                 <p class="user-id bg-amber-300 group-focus-within:bg-amber-200 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
-                <button class="bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
+                <button class="input-send bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
             </div>
             <form class="grow">
-                <input id="add" autocomplete="off" type="text" class="w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
+                <input id="add" autocomplete="off" type="text" class="px-2 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
             </form>
+        </div>
+        <div class="send-on-click grow flex flex-col gap-1">
+            <textarea class="px-1 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none h-full resize-none" ></textarea>
+            <div class="w-full bg-vscode-5 h-10 flex justify-end">
+                <div class="inline-flex gap-1 self-start">
+                    <p class="user-id bg-amber-300 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
+                    <button class="text-area-send bg-amber-300 hover:bg-amber-200 rounded-r-full text-black px-2"> send --> </button>
+                </div>
+            </div>
         </div>
     </div>
     `.trim()
@@ -177,14 +186,14 @@ let mainBodyRoom = () => {
         </div>
 
         <!--chat container-->
-        <div class="grow overflow-y-auto">
+        <div class="h-full shrink overflow-y-auto">
             <div id="msg-container" class="flex flex-col gap-2 py-2 px-5 text-sm font-bold">
             </div>
         </div>
         
         <!-- Input -->
-        
-        <div id="input-msg-container" class="border-t border-t-gray-600 bg-vscode-4">
+        <div class="resizer w-full bg-none hover:bg-slate-300 h-[6px] transition-all cursor-n-resize" data-direction="vertical"></div>
+        <div id="input-msg-container" class="border-t border-t-gray-600 bg-vscode-4 grow">
         </div>
     </div>
     `.trim();
