@@ -47,24 +47,13 @@
                 <!--daftar room dan setting-->
                 <div id="room-setting" class="flex w-full h-full ">
                     <div id="setting-list" class="basis-1/5 flex flex-col p-4 justify-between"> <!--setting-->
-                        <div class="flex flex-col gap-2"> 
+                        <div class="flex flex-col"> 
                             <!--tambah room-->
                             <div id="add-room" class="tooltip-collection">
-                                <svg class="tooltip-target stroke-yellow-300 cursor-pointer mx-auto bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="12" y1="8" x2="12" y2="16"></line>
                                     <line x1="8" y1="12" x2="16" y2="12"></line>
-                                </svg>
-                            </div>
-                            <!--room list-->
-                            <div id="room-list" class="tooltip-collection">
-                                <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="8" y1="6" x2="21" y2="6"></line>
-                                    <line x1="8" y1="12" x2="21" y2="12"></line>
-                                    <line x1="8" y1="18" x2="21" y2="18"></line>
-                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
                                 </svg>
                             </div>
                         </div>
@@ -86,60 +75,42 @@
                         </div>
                     </div>
                     <div id="room-list" class="grow bg-vscode-5 py-2"> <!--room-->
-                        <!-- ini tempat roomnya atau settingnya nanti nanti -->
-                        <div id="add-room-side" class="hidden">
-                            <h5 class="text-center font-bold bg-vscode-2" >Add Room</h5>
-                            <form class="text-xs font-bold p-5 " action="">
-                                <div class="mb-2">
-                                    <label class="font-extralight" for="">Nama Room</label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
-                                </div>
-                                <div class="mb-2">
-                                    <label class="font-extralight" for="">Deskripsi Room</label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
-                                </div>
-                                <div class="mb-2">
-                                    <p>Creator id</p>
-                                    <p class="text-[#FFC355]">[#12233]</p>
-                                </div>
-                                <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Create</button>
-                            </form>
+                        <!-- ini tempat roomnya nanti -->
+                        <div class="flex px-2 py-2 gap-3 cursor-pointer hover:bg-vscode-2">
+                            <svg class="w-4 mt-1 self-start" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="41" height="41" fill="#FFF504"/>
+                                <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
+                                <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
+                            </svg>
+                            <div class="flex flex-col">
+                                <h3>ini adalah judul</h3>
+                                <p class="text-xs text-gray-400">ini adalah pesan baru</p>
+                            </div>
                         </div>
-
-                        <div id="setting-side" class="hidden">
-                            <h5 class="text-center font-bold bg-vscode-2" >Setting</h5>
-                            <p class="text-xs text-vscode-1">*TODO : buat functional setting</p>
-                            <form class="text-xs font-black p-5">
-                                <div class="mb-2 flex">
-                                    <label class="basis-1/2 font-extralight" for="">Add</label>
-                                    <span class="basis-1/2">
-                                        <input class="accent-vscode-5 h-3 w-3" type="checkbox" name="" id="">
-                                    </span>
-                                </div>
-                                <div class="mb-2 flex">
-                                    <label class="basis-1/2 font-extralight" for="">Font Size</label>
-                                    <span class="basis-1/2">
-                                        <input type="range" name="" id="">
-                                    </span>
-                                </div>
-                            </form>
+                        <div class="flex px-2 py-2 gap-3 cursor-pointer border-l-gray-500 border-l bg-vscode-3 hover:bg-vscode-2">
+                            <svg class="w-4 mt-1 self-start" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="41" height="41" fill="#FFF504"/>
+                                <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
+                                <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
+                            </svg>
+                            <div class="flex flex-col">
+                                <h3>ini adalah judul</h3>
+                                <p class="text-xs text-gray-400">ini adalah pesan baru</p>
+                            </div>
                         </div>
-
-                        <div id="add-room-side" class="">
-                            <h5 class="text-center font-bold bg-vscode-2" >Account</h5>
-                            <form class="text-xs font-bold p-5 " action="">
-                                <div class="mb-2">
-                                    <label class="font-extralight" for="">Nama</label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
-                                </div>
-                                <div class="mb-2">
-                                    <label class="font-extralight" for="">ID 
-                                        <span class="text-[10px] text-gray-400">*only number</span> 
-                                    </label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
-                                </div>
-                                <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
-                            </form>
+                        <div class="flex px-2 py-2 gap-3 cursor-pointer hover:bg-vscode-2">
+                            <svg class="w-4 mt-1 self-start" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="41" height="41" fill="#FFF504"/>
+                                <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
+                                <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
+                            </svg>
+                            <div class="flex flex-col">
+                                <h3>ini adalah judul</h3>
+                                <p class="text-xs text-gray-400">ini adalah pesan baru</p>
+                            </div>
                         </div>
                             
                             

@@ -3665,7 +3665,7 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
         </div>
         <div class="basis-1/4 ${fromMe ? 'flex-row-reverse' : ''}  grow flex gap-3 px-4">
             <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[#${idSender}]</p>
-            <p class="text-justify" >"${msg}"</p>
+            <p class="text-justify " >"${msg}"</p>
         </div>
     </div>
     `.trim()
@@ -3714,9 +3714,8 @@ let inputMessage = ({inpTxt = ""}) => {
     <div class="flex flex-col px-2 py-1 h-full">
         <div class="flex">
             <div class="flex py-2 gap-7">
-                <p class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND ON CLICK</p>
-                <p class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND ON ENTER</p>
-                <p class="text-xs text-gray-300 underline underline-offset-8 decoration-gray-600">SEND MSG</p>
+                <button id="send-on-click-btn" class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND ON CLICK</button>
+                <button id="send-on-enter-btn" class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND ON ENTER</button>
             </div>
             <div class="flex">
             </div>
@@ -3785,15 +3784,30 @@ let sideBody = () => {
         <div id="room-setting" class="flex w-full h-full">
             <!-- setting list -->
             <div id="setting-list" class="basis-[23%] flex flex-col p-4 justify-between"> <!--setting-->
-                <div class="flex flex-col"> 
+                <div class="flex flex-col gap-2"> 
+                    <!--room list-->
+                    <div id="room-list-btn" class="tooltip-collection">
+                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                            Room list
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
+                    </div>
                     <!--tambah room-->
                     <div id="add-room" class="tooltip-collection">
-                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="8" x2="12" y2="16"></line>
                             <line x1="8" y1="12" x2="16" y2="12"></line>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Add Room
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -3802,22 +3816,22 @@ let sideBody = () => {
                 <div class="flex flex-col gap-2">
                     <!--setting-->
                     <div id="setting" class="tooltip-collection">
-                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Setting
                             <div class="arrow" data-popper-arrow></div>
                         </div>
                     </div>
                     <!--account-->
                     <div id="account" class="tooltip-collection">
-                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Account
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -3926,7 +3940,6 @@ class ChatContent{
         setTimeout(()=>{
             tempmsg.classList.remove('bg-vscode-1');
         },100)
-
         this.lastRow++;
     }
 
@@ -4040,7 +4053,11 @@ class InputMessage{
 
     // -- element vale --
     containerElement
-    idContainerElement // id user
+    idContainerElement = [] // id user
+
+    // -- btn elemen --
+    sendOnEnterBtnConfig
+    sendOnClickBtnConfig
 
     // ** send on enter **
     inputElement
@@ -4067,15 +4084,19 @@ class InputMessage{
         this.inputElement = this.containerElement.querySelector('input');
         this.idContainerElement = this.containerElement.querySelectorAll('.user-id');
 
+        // ** config btn **
+        this.sendOnClickBtnConfig = this.containerElement.querySelector('#send-on-click-btn')
+        this.sendOnEnterBtnConfig = this.containerElement.querySelector('#send-on-enter-btn')
+
         // ** send on enter **
         this.formElement = this.containerElement.querySelector('form'); //form untuk submit
         this.sendBtnElement = this.containerElement.querySelector('button.input-send');
         this.sendOnEnterContainerElement = this.containerElement.querySelector('.send-on-enter')
 
         // ** send on click **
-        this.sendTextAreaBtnElement = this.containerElement.querySelector('button.tex-area-send');
+        this.sendTextAreaBtnElement = this.containerElement.querySelector('button.text-area-send');
         this.textAreaElement = this.containerElement.querySelector('textarea');
-        this.sendOnClickContainer = this.containerElement.querySelector('.send-on-click')
+        this.sendOnClickContainerElement = this.containerElement.querySelector('.send-on-click')
     }
     unsetPseudoElement(){
         this.inputElement = null
@@ -4084,9 +4105,10 @@ class InputMessage{
         this.sendBtnElement = null
         this.sendTextAreaBtnElement = null
         this.textAreaElement = null
-        this.sendOnClickContainer = null
+        this.sendOnClickContainerElement = null
         this.sendOnEnterContainerElement = null
-
+        this.sendOnClickBtnConfig = null
+        this.sendOnEnterBtnConfig = null
     }
 
     prepareElement(){
@@ -4096,41 +4118,63 @@ class InputMessage{
         
         this.fillCurrentElementDom();
         this.setSendMethod('input')
+        this.setConfigBtnSend()
     }
 
     // -- state control --
     fillCurrentElementDom(){
-        this.idContainerElement.innerHTML = "#" + this.userId;
+        // this.idContainerElement.innerHTML = "#" + this.userId;
+        this.idContainerElement.forEach((idc) => {
+            idc.innerHTML = "#" + this.userId
+        })
         // this.inputElement.value = this.currentMsg; // mugkin dijadikan optional
 
     }
 
     setSendMethod(conf){
+        console.log("sennd mehtod sudah di set");
         //ada dua input method, yaitu textArea dan input
         switch(conf){
             case "input":
                 this.sendMethod = "input";
                 this.sendOnEnterContainerElement.classList.remove('hidden');
-                this.sendOnClickContainer.classList.add('hidden')
+                this.sendOnClickContainerElement.classList.add('hidden')
+                this.sendOnClickBtnConfig.classList.remove('underline');
+                this.sendOnEnterBtnConfig.classList.add('underline');
                 break;
             case "textArea":
                 this.sendMethod = "textArea";
+                this.sendOnEnterContainerElement.classList.add('hidden');
+                this.sendOnClickContainerElement.classList.remove('hidden')                         
+                this.sendOnClickBtnConfig.classList.add('underline');
+                this.sendOnEnterBtnConfig.classList.remove('underline');
                 break;
             default:
                 throw new Error('config tidak valid')
         }
+
+        console.log("send mthod : "+ this.sendMethod)
     }
 
     // -- event --
     onSendMessage(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        if(this.sendMethod === "input"){
+
+        console.log("ini akan melakuakan send yg mana? { "+ this.sendMethod )
+        if(this.sendMethod === "input" || this.sendMethod === "textArea"){
             this.onEnterSend(callback)
-            return
-        }else if(this.sendMethod === "textArea"){
             this.onClickSend(callback)
-            return
+        }else{
+            throw new Error("callback tidak valit")
         }
-        throw new Error("callback tidak valit")
+    }
+
+    setConfigBtnSend(){
+        this.sendOnClickBtnConfig.addEventListener('click', (e)=>{
+            this.setSendMethod('textArea')
+        })
+        this.sendOnEnterBtnConfig.addEventListener('click',(e)=>{
+            this.setSendMethod('input')
+        })
     }
 
     //kirim ketika dienter, untuk input
@@ -4164,6 +4208,7 @@ class InputMessage{
                 idSender : this.userId,
                 fromMe : true,
             });
+            this.textAreaElement.value = ""
         })
     }
 

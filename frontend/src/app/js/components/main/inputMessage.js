@@ -14,7 +14,11 @@ class InputMessage{
 
     // -- element vale --
     containerElement
-    idContainerElement // id user
+    idContainerElement = [] // id user
+
+    // -- btn elemen --
+    sendOnEnterBtnConfig
+    sendOnClickBtnConfig
 
     // ** send on enter **
     inputElement
@@ -41,15 +45,19 @@ class InputMessage{
         this.inputElement = this.containerElement.querySelector('input');
         this.idContainerElement = this.containerElement.querySelectorAll('.user-id');
 
+        // ** config btn **
+        this.sendOnClickBtnConfig = this.containerElement.querySelector('#send-on-click-btn')
+        this.sendOnEnterBtnConfig = this.containerElement.querySelector('#send-on-enter-btn')
+
         // ** send on enter **
         this.formElement = this.containerElement.querySelector('form'); //form untuk submit
         this.sendBtnElement = this.containerElement.querySelector('button.input-send');
         this.sendOnEnterContainerElement = this.containerElement.querySelector('.send-on-enter')
 
         // ** send on click **
-        this.sendTextAreaBtnElement = this.containerElement.querySelector('button.tex-area-send');
+        this.sendTextAreaBtnElement = this.containerElement.querySelector('button.text-area-send');
         this.textAreaElement = this.containerElement.querySelector('textarea');
-        this.sendOnClickContainer = this.containerElement.querySelector('.send-on-click')
+        this.sendOnClickContainerElement = this.containerElement.querySelector('.send-on-click')
     }
     unsetPseudoElement(){
         this.inputElement = null
@@ -58,9 +66,10 @@ class InputMessage{
         this.sendBtnElement = null
         this.sendTextAreaBtnElement = null
         this.textAreaElement = null
-        this.sendOnClickContainer = null
+        this.sendOnClickContainerElement = null
         this.sendOnEnterContainerElement = null
-
+        this.sendOnClickBtnConfig = null
+        this.sendOnEnterBtnConfig = null
     }
 
     prepareElement(){
@@ -70,41 +79,63 @@ class InputMessage{
         
         this.fillCurrentElementDom();
         this.setSendMethod('input')
+        this.setConfigBtnSend()
     }
 
     // -- state control --
     fillCurrentElementDom(){
-        this.idContainerElement.innerHTML = "#" + this.userId;
+        // this.idContainerElement.innerHTML = "#" + this.userId;
+        this.idContainerElement.forEach((idc) => {
+            idc.innerHTML = "#" + this.userId
+        })
         // this.inputElement.value = this.currentMsg; // mugkin dijadikan optional
 
     }
 
     setSendMethod(conf){
+        console.log("sennd mehtod sudah di set");
         //ada dua input method, yaitu textArea dan input
         switch(conf){
             case "input":
                 this.sendMethod = "input";
                 this.sendOnEnterContainerElement.classList.remove('hidden');
-                this.sendOnClickContainer.classList.add('hidden')
+                this.sendOnClickContainerElement.classList.add('hidden')
+                this.sendOnClickBtnConfig.classList.remove('underline');
+                this.sendOnEnterBtnConfig.classList.add('underline');
                 break;
             case "textArea":
                 this.sendMethod = "textArea";
+                this.sendOnEnterContainerElement.classList.add('hidden');
+                this.sendOnClickContainerElement.classList.remove('hidden')                         
+                this.sendOnClickBtnConfig.classList.add('underline');
+                this.sendOnEnterBtnConfig.classList.remove('underline');
                 break;
             default:
                 throw new Error('config tidak valid')
         }
+
+        console.log("send mthod : "+ this.sendMethod)
     }
 
     // -- event --
     onSendMessage(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-        if(this.sendMethod === "input"){
+
+        console.log("ini akan melakuakan send yg mana? { "+ this.sendMethod )
+        if(this.sendMethod === "input" || this.sendMethod === "textArea"){
             this.onEnterSend(callback)
-            return
-        }else if(this.sendMethod === "textArea"){
             this.onClickSend(callback)
-            return
+        }else{
+            throw new Error("callback tidak valit")
         }
-        throw new Error("callback tidak valit")
+    }
+
+    setConfigBtnSend(){
+        this.sendOnClickBtnConfig.addEventListener('click', (e)=>{
+            this.setSendMethod('textArea')
+        })
+        this.sendOnEnterBtnConfig.addEventListener('click',(e)=>{
+            this.setSendMethod('input')
+        })
     }
 
     //kirim ketika dienter, untuk input
@@ -138,6 +169,7 @@ class InputMessage{
                 idSender : this.userId,
                 fromMe : true,
             });
+            this.textAreaElement.value = ""
         })
     }
 
