@@ -56,6 +56,14 @@
                                     <line x1="8" y1="12" x2="16" y2="12"></line>
                                 </svg>
                             </div>
+                            <!--join room-->
+                            <div id="join-room" class="tooltip-collection">
+                                <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 16 16 12 12 8"></polyline>
+                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                </svg>
+                            </div>
                             <!--room list-->
                             <div id="room-list" class="tooltip-collection">
                                 <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -87,19 +95,19 @@
                     </div>
                     <div id="room-list" class="grow bg-vscode-5 py-2"> <!--room-->
                         <!-- ini tempat roomnya atau settingnya nanti nanti -->
-                        <div id="add-room-side" class="hidden">
+                        <div id="create-room-side" class="hidden">
                             <h5 class="text-center font-bold bg-vscode-2" >Add Room</h5>
                             <form class="text-xs font-bold p-5 " action="">
                                 <div class="mb-2">
                                     <label class="font-extralight" for="">Nama Room</label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
+                                    <input class="room-name-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
                                 </div>
                                 <div class="mb-2">
                                     <label class="font-extralight" for="">Deskripsi Room</label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
+                                    <input class="room-description-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
                                 </div>
                                 <div class="mb-2">
-                                    <p>Creator id</p>
+                                    <p class="id-creator">Creator id</p>
                                     <p class="text-[#FFC355]">[#12233]</p>
                                 </div>
                                 <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Create</button>
@@ -111,35 +119,56 @@
                             <p class="text-xs text-vscode-1">*TODO : buat functional setting</p>
                             <form class="text-xs font-black p-5">
                                 <div class="mb-2 flex">
-                                    <label class="basis-1/2 font-extralight" for="">Add</label>
+                                    <label class="basis-1/2 font-extralight" for="">Global on enter Submit</label>
                                     <span class="basis-1/2">
-                                        <input class="accent-vscode-5 h-3 w-3" type="checkbox" name="" id="">
+                                        <input id="set-global-on-enter-submit" class="accent-vscode-5 h-3 w-3" type="checkbox" name="" id="">
                                     </span>
                                 </div>
                                 <div class="mb-2 flex">
                                     <label class="basis-1/2 font-extralight" for="">Font Size</label>
                                     <span class="basis-1/2">
-                                        <input type="range" name="" id="">
+                                        <input id="setting-font-size" type="range" name="" id="">
                                     </span>
                                 </div>
+                                <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
                             </form>
                         </div>
 
-                        <div id="add-room-side" class="">
+                        <div id="account-room-side" class="hidden">
                             <h5 class="text-center font-bold bg-vscode-2" >Account</h5>
                             <form class="text-xs font-bold p-5 " action="">
                                 <div class="mb-2">
                                     <label class="font-extralight" for="">Nama</label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
+                                    <input id="name-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
                                 </div>
                                 <div class="mb-2">
                                     <label class="font-extralight" for="">ID 
                                         <span class="text-[10px] text-gray-400">*only number</span> 
                                     </label>
-                                    <input class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
+                                    <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
                                 </div>
-                                <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
+                                <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
                             </form>
+                        </div>
+
+                        <div id="join-room-side" class="">
+                            <h5 class="text-center font-bold bg-vscode-2" >Join</h5>
+                            <form class="text-xs font-bold p-5 " action="">
+                                <div class="mb-2">
+                                    <label class="font-extralight" for="">Room id 
+                                        <span class="id-room-input text-[10px] text-gray-400">*only existing room</span> 
+                                    </label>
+                                    <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
+                                </div>
+                                <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Find</button>
+                            </form>
+                            <div class="w-full border border-red-700 bg-[rgb(89,6,6)]">
+                                <p class="text-sm font-thin">maaf, room yang anda cari tidak terdaftar</p>
+                            </div>
+                        </div>
+
+                        <div id="room-list-content" class="">
+
                         </div>
                             
                             

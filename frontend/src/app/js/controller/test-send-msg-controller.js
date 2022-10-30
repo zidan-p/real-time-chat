@@ -63,16 +63,20 @@ let rooms = [
     },
 ]
 
+let user = {
+    id : 1234,
+    name : "zidan putra rahman",
+    lastActive : null
+}
+
 
 
 function testRun(){
-    // let roomList = rooms.map(room => {
-    //     return new Room(room)
-    // });
-    
-    // let side = new SideBar(
-    //     roomList.map(room =>room.roomAside)
-    // )
+
+    //set local storage
+    localStorage.setItem('userData', JSON.stringify(
+        user
+    ));
 
     let start = new StateRoom(
         rooms.map(room => new Room(room))
@@ -84,9 +88,6 @@ function testRun(){
 
     document.querySelector('body').append(start.containerElement)
 
-    // //definisikan container text
-    // let chatContent = new ChatContent();
-    // chatContent.setEvent();
 }
 
 

@@ -1,6 +1,0 @@
-
-
-class JoinRoom{}
-
-
-export {JoinRoom}
