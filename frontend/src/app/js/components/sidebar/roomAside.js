@@ -1,5 +1,7 @@
 import {roomList} from "./../../DOM_component/dom_component"
 
+
+
 //room bagian samping
 class RoomAside{
     roomName
@@ -40,10 +42,16 @@ class RoomAside{
         this.newMsgContainerElement = null
     }
     setActive(){
-        console.log("ini di set aktif");
         this.containerElement.classList.add("bg-vscode-3")
+        this.containerElement.classList.add("border-l");
+        this.containerElement.classList.add("border-l-gray-200");
+        
     }
-    setInactive(){this.containerElement.classList.remove("bg-vscode-3")}
+    setInactive(){
+        this.containerElement.classList.remove("bg-vscode-3")
+        this.containerElement.classList.remove("border-l");
+        this.containerElement.classList.remove("border-l-gray-200");
+    }
 
     prepareElement(){
         this.resetElement();

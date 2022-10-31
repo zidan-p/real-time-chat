@@ -2,7 +2,7 @@ import {Header} from "./header";
 import {InputMessage} from "./inputMessage";
 import {ChatContent} from "./chatContent";
 import {mainBodyRoom} from "./../../DOM_component/dom_component"
-import {StateControl} from "../stateControl";
+import {addResizer} from "./../../service/resizer";
 
 class RoomMain{
     // -- object --
@@ -22,6 +22,7 @@ class RoomMain{
     headerContainerElement
     inputContainerElement
     chatContentContainerElement
+    resizerElement
 
     constructor({roomName, roomIcon, msg}){
 
@@ -51,11 +52,13 @@ class RoomMain{
         this.chatContentContainerElement = this.containerElement.querySelector('#msg-container');
         this.headerContainerElement = this.containerElement.querySelector('#header');
         this.inputContainerElement = this.containerElement.querySelector('#input-msg-container');
+        this.resizerElement = this.containerElement.querySelector('.resizer');
     }
     unsetPseudoElement(){
         this.chatContentContainerElement = null
         this.headerContainerElement = null
         this.inputContainerElement = null
+        this.resizerElement = null
     }
 
 
@@ -83,7 +86,8 @@ class RoomMain{
         this.attachChatContent();
         this.attachInputMessage();
         
-        this.setSendMessage()
+        this.setSendMessage();
+        this.addResizer();
     }
 
     // -- status --
@@ -100,6 +104,14 @@ class RoomMain{
                     msg: data.msg
                 })
             }
+        )
+    }
+
+    // -- service--
+    addResizer(){
+        addResizer(
+            this.resizerElement,
+            this.resizerElement.dataset.direction
         )
     }
 

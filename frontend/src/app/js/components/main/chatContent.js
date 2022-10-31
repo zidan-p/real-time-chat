@@ -39,14 +39,19 @@ class ChatContent{
 
     // -- state controll --
     appendMsg({msg = "",idSender = NaN, fromMe = false}){
-        this.containerElement.append( msgRow({
+        let tempmsg = msgRow({
             numberRow : this.lastRow,
             msg : msg,
             idSender : idSender,
             fromMe :fromMe
-        }))
-
-        console.log("text appended")
+        })
+        this.containerElement.append( 
+            tempmsg
+        )
+        this.containerElement.scrollIntoView({block: "end"});
+        setTimeout(()=>{
+            tempmsg.classList.remove('bg-vscode-1');
+        },100)
         this.lastRow++;
     }
 

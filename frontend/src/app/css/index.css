@@ -64,7 +64,6 @@
 }
 *::-webkit-scrollbar-thumb{
   background-color: #34352F;
-  border-radius: 10px;
   transition: all 1s;
 }
 *::-webkit-scrollbar-thumb:hover{

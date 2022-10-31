@@ -21,36 +21,7 @@ export class StateControl{
     unsetPseudoElement(){} // hapus pseudo elemen
     deleteElement(){this.containerElement = null}
 
-    // -- bridge dom and element --
-
-
-
-    // --- hard controll ---
-    //melalukan controlstate dengan menghapus
-    //atau memodifikasi dom secara keseluruhan
-    store(){
-        this.setDomContainer(); //crawl ke dom (sudah disiapkan)
-        this.resetElement(); // reset element
-        this.fillElementDomContainer(); // hasil dom di crawl diisi dengan elemen initial
-        this.setDom(); // crawl dom yg diperlukan
-    }
-    hide(){
-        this.setCurrentElement(); //simpan dom saat ini
-        this.unsetDom(); // hapus ikatan dom terkait
-        this.deleteDom(); // kosongkan domnya
-    }
-
-    show(){
-        this.setDomContainer(); // crawl dom untuk container
-        this.restoreDom(); // restore
-        this.setDom(); // creawldom untuk semuanya
-    }
-    backOperate(){}
-    remove(){
-        this.unsetDom();
-        this.deleteElement();
-        this.unsetDomContainer();
-    }
+    
 
 
     // --- soft control ---

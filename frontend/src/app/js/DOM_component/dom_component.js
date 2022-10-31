@@ -1,16 +1,22 @@
 // :: ini adalah tempat untuk menyimpan semua dom component ::
 
+// let habibiCat = require('./src/app/img/habibi-cat.jpg')
+let habibiCat = require('./../../img/habibi-cat.jpg')
+
+
 //untuk baris pesan
 let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="w-full flex">
-        <div class="basis-10">
+    <div class="w-full flex bg-vscode-1 transition-all duration-300">
+        <div class="basis-10 ${fromMe? "border-r-4 border-r-[#FFC355]" : ""}">
             <p class="text-center text-gray-400">${numberRow}</p>
         </div>
-        <div class="basis-1/4 ${fromMe ? 'flex-row-reverse' : ''}  grow flex gap-3 px-4">
-            <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[ #${idSender} ]</p>
-            <p class="text-justify" >"${msg}"</p>
+        <div class=" ${fromMe ? 'flex-row-reverse' : ''}  w-full grow flex gap-3 px-4">
+            <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[#${idSender}]</p>
+            <div class="">
+                <p class="text-justify whitespace-pre-line max-w-full">"${msg}"</p>
+            </div>
         </div>
     </div>
     `.trim()
@@ -18,31 +24,15 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
 }
 
 
-//daftar room
-let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="room-${roomId}-side" class="hover:bg-vscode-2 flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
-        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
-        <div class="flex flex-col py-2">
-            <h4 class="room-name-aside font-semibold text">${roomName}</h4>
-            <h4 class="new-msg-container font-extralight text-xs text-gray-400">${newMsg}...</h4>
-        </div>
-    </div>
-    `.trim()
-    return div.firstChild;
-}
+
 
 //untuk header
 let header = ({roomName = "", roomIcon = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
-        <div class="flex justify-between p-5">
-            <h1 class="font-semibold text-2xl pl-5 m-2">${roomName}</h1>
-            <button class="bg-white rounded-full mr-10 openModal">
-            ${roomIcon}
-            </button>
+    <div class="bg-vscode-2 shadow min-h-36 cursor-default">
+        <div class="flex justify-between p-1">
+            <h1 id="header-room-name" class="font-semibold text-xl pl-5 m-2">${roomName}</h1>
         </div>
     </div>
     `.trim()
@@ -54,35 +44,54 @@ let header = ({roomName = "", roomIcon = ""}) => {
 let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="w-full flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
-        <div class="user-id bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
-            <p>Ini ID</p>
+    <div class="flex flex-col px-2 py-1 h-full">
+        <div class="flex">
+            <div class="flex py-2 gap-7">
+                <button id="send-on-click-btn" class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND ON CLICK</button>
+                <button id="send-on-enter-btn" class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND ON ENTER</button>
+            </div>
+            <div class="flex">
+            </div>
         </div>
-        <div class="w-10/12 text-black rounded-lg text-center">
-            <form>
-                <input id="find" class="w-full py-2 px-4 rounded-lg focus-within:outline-none focus-within:bg-white" placeholder="Ketik Disini YGY">
+        <div class="send-on-enter flex py-2 gap-1 group">
+            <div class="inline-flex gap-1 self-start ">
+                <p class="user-id bg-amber-300 group-focus-within:bg-amber-200 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
+                <button class="input-send bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
+            </div>
+            <form class="grow">
+                <input id="add" autocomplete="off" type="text" class="px-2 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
             </form>
         </div>
-        <button class="flex w-1/12 justify-center cursor-pointer">
-            <?xml version="1.0" encoding="iso-8859-1"?>
-            <svg height="40px" width="40px" fill="#fff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="0 0 491.022 491.022" style="enable-background:new 0 0 491.022 491.022;" xml:space="preserve">
-                <g>
-                    <g>
-                        <path d="M490.916,13.991c-0.213-1.173-0.64-2.347-1.28-3.307c-0.107-0.213-0.213-0.533-0.32-0.747
-                            c-0.107-0.213-0.32-0.32-0.533-0.533c-0.427-0.533-0.96-1.067-1.493-1.493c-0.427-0.32-0.853-0.64-1.28-0.96
-                            c-0.213-0.107-0.32-0.32-0.533-0.427c-0.32-0.107-0.747-0.32-1.173-0.427c-0.533-0.213-1.067-0.427-1.6-0.533
-                            c-0.64-0.107-1.28-0.213-1.92-0.213c-0.533,0-1.067,0-1.6,0c-0.747,0.107-1.493,0.32-2.133,0.533
-                            c-0.32,0.107-0.747,0.107-1.067,0.213L6.436,209.085c-5.44,2.347-7.893,8.64-5.547,14.08c1.067,2.347,2.88,4.373,5.227,5.44
-                            l175.36,82.453v163.947c0,5.867,4.8,10.667,10.667,10.667c3.733,0,7.147-1.92,9.067-5.12l74.133-120.533l114.56,60.373
-                            c5.227,2.773,11.627,0.747,14.4-4.48c0.427-0.853,0.747-1.813,0.96-2.667l85.547-394.987c0-0.213,0-0.427,0-0.64
-                            c0.107-0.64,0.107-1.173,0.213-1.707C491.022,15.271,491.022,14.631,490.916,13.991z M190.009,291.324L36.836,219.218
-                            L433.209,48.124L190.009,291.324z M202.809,437.138V321.831l53.653,28.267L202.809,437.138z M387.449,394.898l-100.8-53.013
-                            l-18.133-11.2l-0.747,1.28l-57.707-30.4L462.116,49.298L387.449,394.898z"/>
-                    </g>
-                </g>
-            </svg>
-        </button>
+        <div class="send-on-click grow flex flex-col gap-1">
+            <textarea class="px-1 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none h-full resize-none" ></textarea>
+            <div class="w-full bg-vscode-5 h-10 flex justify-end">
+                <div class="inline-flex gap-1 self-start">
+                    <p class="user-id bg-amber-300 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
+                    <button class="text-area-send bg-amber-300 hover:bg-amber-200 rounded-r-full text-black px-2"> send --> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `.trim()
+    return div.firstChild;
+}
+
+//----- side bar element --------
+//daftar room
+let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="room-${roomId}-side" class="flex px-2 py-2 gap-3 cursor-pointer hover:bg-vscode-2 transition ${isActive ? 'bg-vscode-3' : ''}">
+        <svg class="shrink-0 basis-[7%] w-4 mt-1 self-start" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="41" height="41" fill="#FFF504"/>
+            <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
+            <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
+        </svg>
+        <div class="flex grow flex-col">
+            <p class="room-name-aside break-words">${roomName}</p>
+            <h4 class="new-msg-container font-extralight text-xs text-gray-400">${newMsg}...</h4>
+        </div>
     </div>
     `.trim()
     return div.firstChild;
@@ -92,11 +101,18 @@ let inputMessage = ({inpTxt = ""}) => {
 let appBody = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div id="body-program" class="h-screen flex bg-vscode-2">
-        <aside class="basis-1/3 ">
-        </aside>
-        <main class="w-full">
-        </main>
+    <div class="h-screen max-h-screen flex flex-col ">
+        <div class="basis-[97%] max-h-[97%] shrink-0 grow-0">
+            <div id="body-program" class="h-full max-h-max overflow-hidden flex bg-vscode-2">
+                <aside class="basis-1/5 shrink-0">
+                </aside>
+                <main class="w-full grow-0">
+                </main>
+            </div>
+        </div>
+        <div class="flex text-xs bg-vscode-1 h-full px-5">
+            <p>ini adalah paragraf</p>
+        </div>
     </div>
     `.trim()
     return div.firstChild;
@@ -106,64 +122,92 @@ let appBody = () => {
 let sideBody = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="bg-vscode-4 h-full rounded-r-2xl overflow-hidden flex flex-col">
-    <div class="wrapper">
-        <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
-        <div class="px-3 mb-5 group"> <!-- search bar -->
-            <form id="form-find" class="p-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 rounded-full transition">
-                <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-                <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none rounded-full focus-within:bg-white transition" placeholder="Search.."/>
-            </form>
-        </div>
-    </div>
-    <!--daftar room dan setting-->
-    <div id="room-setting" class="flex w-full h-full gap-2">
-        <div id="setting-list" class="basis-1/6 bg-vscode-5 rounded-r-xl flex flex-col p-4 justify-between"> <!--setting-->
-            <div class="flex flex-col"> 
-                <!--tambah room-->
-                <div id="add-room" class="tooltip-collection">
-                    <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
+    <div class=" bg-vscode-4 h-full overflow-hidden flex flex-col">
+        <div class="wrapper shadow">
+            <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
+            <div class="px-3 mb-5 group"> <!-- search bar -->
+                <form id="form-find" class="px-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 transition">
+                    <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
-                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
-                        Add Room
-                        <div class="arrow" data-popper-arrow></div>
+                    <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none focus-within:bg-white transition" placeholder="Search.."/>
+                </form>
+            </div>
+        </div>
+        <!--daftar room dan setting-->
+        <div id="room-setting" class="flex w-full h-full">
+            <!-- setting list -->
+            <div id="setting-list" class="basis-1/5 shrink-0 flex flex-col justify-between"> <!--setting-->
+                <div class="flex flex-col "> 
+                    <!--room list-->
+                    <div id="room-list-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none focus:outline-none ">
+                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm focus:outline-none transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                            Room list
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
+                    </div>
+                    <!--join room-->
+                            <div id="join-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
+                                <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 16 16 12 12 8"></polyline>
+                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                </svg>
+                                <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                                    Join Room
+                                    <div class="arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
+                    <!--tambah room-->
+                    <div id="add-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
+                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                            Add Room
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <!--setting-->
+                    <div id="setting-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
+                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                            Setting
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
+                    </div>
+                    <!--account-->
+                    <div id="account-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
+                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                            Account
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col gap-2">
-                <!--setting-->
-                <div id="setting" class="tooltip-collection">
-                    <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                    </svg>
-                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
-                        Setting
-                        <div class="arrow" data-popper-arrow></div>
-                    </div>
-                </div>
-                <!--account-->
-                <div id="account" class="tooltip-collection">
-                    <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
-                        Account
-                        <div class="arrow" data-popper-arrow></div>
-                    </div>
-                </div>
+            <div id="side-content" class="grow bg-vscode-5 py-2"> <!--room-->
+                <!-- ini tempat roomnya nanti -->
             </div>
         </div>
-        <div id="room-list" class="grow"> <!--room-->
-            <!-- ini tempat roomnya nanti -->
-        </div>
-    </div>
     </div>
     `.trim();
     return div.firstChild;
@@ -172,24 +216,191 @@ let sideBody = () => {
 let mainBodyRoom = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="h-screen flex flex-col relative bg-vscode-3">
-        <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
+    <div class="max-h-full h-full flex flex-col relative bg-vscode-3">
+        <div id="header" class="bg-vscode-2 shadow min-h-36 cursor-default">
         </div>
 
         <!--chat container-->
-        <div class="grow overflow-y-auto">
-            <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
+        <div class="h-full shrink overflow-y-auto">
+            <div id="msg-container" class="flex flex-col gap-2 py-2 px-5 text-sm font-bold">
             </div>
         </div>
-
         
         <!-- Input -->
-        <div id="input-msg-container" class="">
+        <div class="resizer w-full bg-none hover:bg-slate-300 h-[6px] transition-all cursor-n-resize" data-direction="vertical"></div>
+        <div id="input-msg-container" class="border-t border-t-gray-600 bg-vscode-4 grow">
         </div>
     </div>
     `.trim();
     return div.firstChild;
 }
+
+
+
+// -- ini bagian untuk side body --
+
+let createRoomSideContent = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="create-room-side" >
+        <h5 class="text-center font-bold bg-vscode-2" >Add Room</h5>
+        <form class="text-xs font-bold p-5 " action="">
+            <div class="mb-2">
+                <label class="font-extralight" for="">Nama Room</label>
+                <input class="room-name-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
+            </div>
+            <div class="mb-2">
+                <label class="font-extralight" for="">Deskripsi Room</label>
+                <input class="room-description-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
+            </div>
+            <div class="mb-2">
+                <p class="id-creator">Creator id</p>
+                <p class="text-[#FFC355]">[#12233]</p>
+            </div>
+            <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Create</button>
+        </form>
+    </div>
+    `.trim();
+    return div.firstChild
+}
+
+let settingSideContent = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="setting-side" >
+        <h5 class="text-center font-bold bg-vscode-2" >Setting</h5>
+        <p class="text-xs text-vscode-1">*TODO : buat functional setting</p>
+        <form class="text-xs font-black p-5">
+            <div class="mb-2 flex">
+                <label class="basis-1/2 font-extralight" for="">Global on enter Submit</label>
+                <span class="basis-1/2">
+                    <input id="set-global-on-enter-submit" class="accent-vscode-5 h-3 w-3" type="checkbox" name="" id="">
+                </span>
+            </div>
+            <div class="mb-2 flex">
+                <label class="basis-1/2 font-extralight" for="">Font Size</label>
+                <span class="basis-1/2">
+                    <input id="setting-font-size" type="range" name="" id="">
+                </span>
+            </div>
+            <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
+        </form>
+    </div>
+    `.trim()
+    return div.firstChild
+}
+
+let accountSideContent = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="account-room-side" >
+        <h5 class="text-center font-bold bg-vscode-2" >Account</h5>
+        <form class="text-xs font-bold p-5 " action="">
+            <div class="mb-2">
+                <label class="font-extralight" for="">Nama</label>
+                <input id="name-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
+            </div>
+            <div class="mb-2">
+                <label class="font-extralight" for="">ID 
+                    <span class="text-[10px] text-gray-400">*only number</span> 
+                </label>
+                <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
+            </div>
+            <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
+        </form>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+let joinRoomSideContent = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="join-room-side" class="">
+        <h5 class="text-center font-bold bg-vscode-2" >Join</h5>
+        <form class="text-xs font-bold p-5 " action="">
+            <div class="mb-2">
+                <label class="font-extralight" for="">Room id 
+                    <span class="text-[10px] text-gray-400">*only existing room</span> 
+                </label>
+                <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
+            </div>
+            <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Find</button>
+        </form>
+        <div id="found-alert-room" class=" hidden w-full border border-red-700 bg-[rgb(89,6,6)]">
+            <p class="not-found-room text-sm font-thin">maaf, room yang anda cari tidak terdaftar</p>
+        </div>
+        <div id="not-found-alert-room" class="hidden w-full border border-green-700 bg-[rgb(6,89,11)]">
+            <p class="not-found-room text-sm font-thin">room ditemukan, anda sudah menjadi member
+                <span class="founded-room"><span>
+            </p>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+let roomListSideContent = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="room-list-content" class="">
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+
+// ------------------------------------ DAFTAR ------------------------------------------
+let signinView = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="h-screen flex justify-center w-full bg-vscode-3">
+        <div class="max-w-xl rounded-md p-3 bg-vscode-4 mx-auto my-auto border border-purple-700">
+            <img class="mx-auto mb-2" src="./img/habibi-cat.jpg" alt="" srcset="">
+
+            <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar terlebih dahulu</h1>
+            <form class="" action="">
+                <div class="mb-3">
+                    <label class="block" for="">Name :</label>
+                    <input id="name-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="block" for="">Desc :</label>
+                    <input id="desc-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="block" for="">Id anda :</label>
+                    <span id="id-user-signin" >#1242</span>
+                </div> 
+                <button class="bg-vscode-2 w-full active:bg-vscode-1" >Daftar</button>
+            </form>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+
+// ------------------------------------- LOADER -----------------------------------------
+let loaderView = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="h-screen w-full bg-vscode-3 flex justify-center">
+        <div class="bg-vscode-4 self-center p-3 rounded-md">
+            <svg class="animate-spin mx-auto mb-4" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="68.5" cy="68.5" r="63" stroke="#1E1F1C" stroke-width="11"/>
+                <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
+            </svg>
+            <h1 class="border-t border-vscode-1 pt-2">Harap tunggu, sedang memuat semua profile <span class="text-amber-500">user</span></h1>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+
+
+
 
 
 export {
@@ -199,5 +410,14 @@ export {
     inputMessage,
     appBody,
     sideBody,
-    mainBodyRoom
+    mainBodyRoom,
+    
+    createRoomSideContent,
+    settingSideContent,
+    accountSideContent,
+    joinRoomSideContent,
+    roomListSideContent,
+
+    loaderView,
+    signinView,
 }
