@@ -90,6 +90,15 @@ function testRun(){
 
 }
 
+class ChatProgram{
+    // -- data value --
+    rooms
+
+
+    // -- elemen --
+    container
+}
+
 
 export {testRun}
 

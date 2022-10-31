@@ -3651,14 +3651,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "header": () => (/* binding */ header),
 /* harmony export */   "inputMessage": () => (/* binding */ inputMessage),
 /* harmony export */   "joinRoomSideContent": () => (/* binding */ joinRoomSideContent),
+/* harmony export */   "loaderView": () => (/* binding */ loaderView),
 /* harmony export */   "mainBodyRoom": () => (/* binding */ mainBodyRoom),
 /* harmony export */   "msgRow": () => (/* binding */ msgRow),
 /* harmony export */   "roomList": () => (/* binding */ roomList),
 /* harmony export */   "roomListSideContent": () => (/* binding */ roomListSideContent),
 /* harmony export */   "settingSideContent": () => (/* binding */ settingSideContent),
-/* harmony export */   "sideBody": () => (/* binding */ sideBody)
+/* harmony export */   "sideBody": () => (/* binding */ sideBody),
+/* harmony export */   "signinView": () => (/* binding */ signinView)
 /* harmony export */ });
 // :: ini adalah tempat untuk menyimpan semua dom component ::
+
+// let habibiCat = require('./src/app/img/habibi-cat.jpg')
+let habibiCat = __webpack_require__(/*! ./../../img/habibi-cat.jpg */ "./src/app/img/habibi-cat.jpg")
+
 
 //untuk baris pesan
 let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
@@ -4005,6 +4011,54 @@ let roomListSideContent = () => {
     return div.firstChild;
 }
 
+
+// ------------------------------------ DAFTAR ------------------------------------------
+let signinView = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="h-screen flex justify-center w-full bg-vscode-3">
+        <div class="max-w-xl rounded-md p-3 bg-vscode-4 mx-auto my-auto border border-purple-700">
+            <img class="mx-auto mb-2" src="./img/habibi-cat.jpg" alt="" srcset="">
+
+            <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar terlebih dahulu</h1>
+            <form class="" action="">
+                <div class="mb-3">
+                    <label class="block" for="">Name :</label>
+                    <input id="name-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="block" for="">Desc :</label>
+                    <input id="desc-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="block" for="">Id anda :</label>
+                    <span id="id-user-signin" >#1242</span>
+                </div> 
+                <button class="bg-vscode-2 w-full active:bg-vscode-1" >Daftar</button>
+            </form>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+
+// ------------------------------------- LOADER -----------------------------------------
+let loaderView = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="h-screen w-full bg-vscode-3 flex justify-center">
+        <div class="bg-vscode-4 self-center p-3 rounded-md">
+            <svg class="animate-spin mx-auto mb-4" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="68.5" cy="68.5" r="63" stroke="#1E1F1C" stroke-width="11"/>
+                <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
+            </svg>
+            <h1 class="border-t border-vscode-1 pt-2">Harap tunggu, sedang memuat semua profile <span class="text-amber-500">user</span></h1>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
 
 
 
@@ -5001,7 +5055,7 @@ class CreateRoomSide{
     }
     setInactive(){
         this.active = false
-         
+        this.resetElement();
     }
 
     // -- event --
@@ -5088,6 +5142,7 @@ class JoinRoomSide{
     }
     setInactive(){
         this.active = false
+        this.resetElement();
     }
     prepareElement(){
         this.resetElement();
@@ -5244,7 +5299,7 @@ class SettingSide{
     }
     setInactive(){
         this.active = false
-         
+        
     }
 
     //-- set event --
@@ -5255,6 +5310,71 @@ class SettingSide{
         })
     }
 
+}
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/components/signin/signin.js":
+/*!************************************************!*\
+  !*** ./src/app/js/components/signin/signin.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Signin": () => (/* binding */ Signin)
+/* harmony export */ });
+/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+
+
+
+class Signin{
+
+    //-- elemen --
+    containerElement
+    idUser
+    nameUser
+    descUser
+    form
+
+    constructor(){
+        console.log(_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.signinView);
+    }
+
+    // -- element manipulation --
+    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.signinView)();}
+    resetElement(){this.containerElement = this.createElement()}
+    deleteElement(){this.containerElement = null}
+    setPseudoElement(){
+        this.idUser = this.containerElement.querySelector('#id-user-signin')
+        this.nameUser = this.containerElement.querySelector('#name-user')
+        this.descUser = this.containerElement.querySelector('#desc-user')
+        this.form = this.containerElement.querySelector('form')
+    }
+    unsetPseudoElement(){
+        this.idUser = null
+        this.nameUser = null
+        this.descUser = null
+        this.form = null
+    }
+
+    prepareElement(){
+        this.resetElement();
+        this.setPseudoElement();
+        this.setEvent();
+    }
+
+    setEvent(){
+        //sebelum adanay set event, ada baiknya untuk mendapat id dari server
+        //sebelum eventlistener dibuat request untuk mendapat id di admin
+
+        this.form.addEventListener('submit',(e)=>{
+            //mungkin bisa dilakukan handle server
+            e.preventDefault()
+        })
+    }
 }
 
 
@@ -5430,19 +5550,19 @@ class StateControl{
 
 /***/ }),
 
-/***/ "./src/app/js/controller/test-send-msg-controller.js":
-/*!***********************************************************!*\
-  !*** ./src/app/js/controller/test-send-msg-controller.js ***!
-  \***********************************************************/
+/***/ "./src/app/js/controller/chatProgram.js":
+/*!**********************************************!*\
+  !*** ./src/app/js/controller/chatProgram.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "testRun": () => (/* binding */ testRun)
 /* harmony export */ });
-/* harmony import */ var _components_room__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/room */ "./src/app/js/components/room.js");
-/* harmony import */ var _components_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/sidebar/sidebar */ "./src/app/js/components/sidebar/sidebar.js");
-/* harmony import */ var _components_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/start */ "./src/app/js/components/start.js");
+/* harmony import */ var _components_room__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/room */ "./src/app/js/components/room.js");
+/* harmony import */ var _components_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/sidebar/sidebar */ "./src/app/js/components/sidebar/sidebar.js");
+/* harmony import */ var _components_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/start */ "./src/app/js/components/start.js");
 /*
 sekarang ini berfung mengatur controller alur program
 */
@@ -5535,8 +5655,74 @@ function testRun(){
 
 }
 
+class ChatProgram{
+    // -- data value --
+    rooms
 
 
+    // -- elemen --
+    container
+}
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/js/controller/initialProgram.js":
+/*!*************************************************!*\
+  !*** ./src/app/js/controller/initialProgram.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Initial": () => (/* binding */ Initial)
+/* harmony export */ });
+/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
+/* harmony import */ var _components_signin_signin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/signin/signin */ "./src/app/js/components/signin/signin.js");
+// dimana proram pertama kali dijalankan
+// bila data belum ada maka dusuruh untuk signup terlebig dahulu
+
+
+
+class Initial{
+    // -- data value 
+    isSet
+    signin
+
+    // -- elemen --
+    loaderview
+    initial
+
+    
+    constructor(){
+        this.signin = new _components_signin_signin__WEBPACK_IMPORTED_MODULE_1__.Signin();
+    }
+
+    checkIsset(){
+        let check = localStorage.getItem('userData');
+        if(check){
+            this.isSet = true;
+        }else{
+            this.isSet = false;
+        }
+        return false
+    }
+
+    showSignin(){
+        document.querySelector('body').innerHTML = "";
+        this.signin.prepareElement();
+        document.querySelector('body').append(this.signin.containerElement);
+    }
+
+    showLoader(){
+
+    }
+
+}
 
 
 
@@ -5713,6 +5899,16 @@ const addResizer = (element, directionRezise) => {
 
 
 
+/***/ }),
+
+/***/ "./src/app/img/habibi-cat.jpg":
+/*!************************************!*\
+  !*** ./src/app/img/habibi-cat.jpg ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "img/habibi-cat.jpg";
+
 /***/ })
 
 /******/ 	});
@@ -5766,6 +5962,18 @@ const addResizer = (element, directionRezise) => {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -5780,6 +5988,26 @@ const addResizer = (element, directionRezise) => {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
@@ -5797,17 +6025,47 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/css/index.css */ "./src/app/css/index.css");
 /* harmony import */ var _app_js_service_popover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app/js/service/popover */ "./src/app/js/service/popover.js");
-/* harmony import */ var _app_js_controller_test_send_msg_controller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/js/controller/test-send-msg-controller */ "./src/app/js/controller/test-send-msg-controller.js");
+/* harmony import */ var _app_js_controller_chatProgram__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/js/controller/chatProgram */ "./src/app/js/controller/chatProgram.js");
+/* harmony import */ var _app_js_controller_initialProgram__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/js/controller/initialProgram */ "./src/app/js/controller/initialProgram.js");
 
 
 
 
 
-//test untuk run program sederhana
-(0,_app_js_controller_test_send_msg_controller__WEBPACK_IMPORTED_MODULE_2__.testRun)()
+
+//1. cek apakah sudah login
+const init = new _app_js_controller_initialProgram__WEBPACK_IMPORTED_MODULE_3__.Initial();
+
+let checkSignin = () => {
+    if(init.checkIsset()){ 
+        //bila sudah di set user sebelumnya maka jalankan
+        //1. fect data class dan msg
+        //2. prepare elemen
+        
+        //test untuk run program sederhana
+        (0,_app_js_controller_chatProgram__WEBPACK_IMPORTED_MODULE_2__.testRun)()
+        
+        return;
+    }else{
+        //bila belum maka lakuakn pendaftaran terlebih dahulu
+        //1. tampilkan view pendafatran
+        //2. lakukan pendaftaran
+
+        init.showSignin();
+    
+    }
+}
+
+checkSignin();
+
+
+
+
+
+
 
 //jalankan tooltip
-;(0,_app_js_service_popover__WEBPACK_IMPORTED_MODULE_1__.updateTooltipDom)();
+(0,_app_js_service_popover__WEBPACK_IMPORTED_MODULE_1__.updateTooltipDom)();
 })();
 
 /******/ })()

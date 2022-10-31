@@ -1,5 +1,9 @@
 // :: ini adalah tempat untuk menyimpan semua dom component ::
 
+// let habibiCat = require('./src/app/img/habibi-cat.jpg')
+let habibiCat = require('./../../img/habibi-cat.jpg')
+
+
 //untuk baris pesan
 let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
     let div = document.createElement('DIV');
@@ -352,7 +356,7 @@ let signinView = () => {
     div.innerHTML = `
     <div class="h-screen flex justify-center w-full bg-vscode-3">
         <div class="max-w-xl rounded-md p-3 bg-vscode-4 mx-auto my-auto border border-purple-700">
-            <img class="mx-auto mb-2" src="./app/img/habibi-cat.jpg" alt="" srcset="">
+            <img class="mx-auto mb-2" src="./img/habibi-cat.jpg" alt="" srcset="">
 
             <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar terlebih dahulu</h1>
             <form class="" action="">
@@ -381,7 +385,14 @@ let signinView = () => {
 let loaderView = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div id="room-list-content" class="">
+    <div class="h-screen w-full bg-vscode-3 flex justify-center">
+        <div class="bg-vscode-4 self-center p-3 rounded-md">
+            <svg class="animate-spin mx-auto mb-4" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="68.5" cy="68.5" r="63" stroke="#1E1F1C" stroke-width="11"/>
+                <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
+            </svg>
+            <h1 class="border-t border-vscode-1 pt-2">Harap tunggu, sedang memuat semua profile <span class="text-amber-500">user</span></h1>
+        </div>
     </div>
     `.trim();
     return div.firstChild;
@@ -405,5 +416,8 @@ export {
     settingSideContent,
     accountSideContent,
     joinRoomSideContent,
-    roomListSideContent
+    roomListSideContent,
+
+    loaderView,
+    signinView,
 }
