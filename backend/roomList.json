@@ -1,0 +1,50 @@
+[
+    {
+        "id" : 1,
+        "name" : "test room yang sudah saya editt",
+        "participant" : [],
+        "msg" : [
+            {
+                "data" : "fesyan satoe",
+                "idSender" : 123123
+            },
+            {
+                "data" : "fesyan doea",
+                "idSender" : 122123
+            }
+        ],
+        "isActive" : true
+    },
+    {
+        "id" : 3,
+        "name" : "dummy room",
+        "participant" : [],
+        "msg" : [
+            {
+                "data" : "dumn mess",
+                "idSender" : 123123
+            },
+            {
+                "data" : "denn meshh",
+                "idSender" : 122123
+            }
+        ],
+        "isActive" : false
+    },
+    {
+        "id" : 2,
+        "name" : "room lagi",
+        "participant" : [],
+        "msg" : [
+            {
+                "data" : "fesyan satoe",
+                "idSender" : 123123
+            },
+            {
+                "data" : "fesyan doea",
+                "idSender" : 122123
+            }
+        ],
+        "isActive" : false
+    }
+]
