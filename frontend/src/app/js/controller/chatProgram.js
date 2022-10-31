@@ -2,9 +2,9 @@
 sekarang ini berfung mengatur controller alur program
 */
 
-import { Room } from "./../components/room";
-import {SideBar} from "./../components/sidebar/sidebar"
-import {StateRoom} from "./../components/start"
+import { Room } from "../components/room";
+import {SideBar} from "../components/sidebar/sidebar"
+import {StateRoom} from "../components/start"
 
 // baru pertama kali user masuk
 // ada 1 room

@@ -7,6 +7,7 @@ module.exports = merge(config, {
     output : {
         path : path.resolve(__dirname,"../", "dist"),
         filename : "bundle-[contenthash].js", //identifier bundle
+        assetModuleFilename: 'img/[name][ext]',
         clean : true, //hapus setiap bundle
     },
     watch : true, //supaya webpack selau melakukan monitor setiap perubahan file

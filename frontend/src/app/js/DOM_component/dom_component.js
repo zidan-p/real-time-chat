@@ -346,6 +346,47 @@ let roomListSideContent = () => {
 }
 
 
+// ------------------------------------ DAFTAR ------------------------------------------
+let signinView = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="h-screen flex justify-center w-full bg-vscode-3">
+        <div class="max-w-xl rounded-md p-3 bg-vscode-4 mx-auto my-auto border border-purple-700">
+            <img class="mx-auto mb-2" src="./app/img/habibi-cat.jpg" alt="" srcset="">
+
+            <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar terlebih dahulu</h1>
+            <form class="" action="">
+                <div class="mb-3">
+                    <label class="block" for="">Name :</label>
+                    <input id="name-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="block" for="">Desc :</label>
+                    <input id="desc-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="block" for="">Id anda :</label>
+                    <span id="id-user-signin" >#1242</span>
+                </div> 
+                <button class="bg-vscode-2 w-full active:bg-vscode-1" >Daftar</button>
+            </form>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+
+// ------------------------------------- LOADER -----------------------------------------
+let loaderView = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="room-list-content" class="">
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
 
 
 

@@ -4,13 +4,14 @@
   "description": "frontend webview for real-time-chat app",
   "main": "tailwind.config.js",
   "scripts": {
-    "dev" : "webpack --config ./config/webpack.dev.js",
+    "dev": "webpack --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js"
   },
   "author": "zidan-p",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.1",
+    "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",

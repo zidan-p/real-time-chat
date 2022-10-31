@@ -9,5 +9,6 @@ module.exports = merge(config,{
         path : path.resolve(__dirname,"../", "dist"),
         filename : "bundle.js",
         clean : true, //hapus setap bundle
+        assetModuleFilename: 'img/[name]-[hash][ext]',
     },
 })

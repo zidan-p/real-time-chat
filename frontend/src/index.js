@@ -1,6 +1,6 @@
 import css from "./app/css/index.css"
 import {updateTooltipDom} from "./app/js/service/popover";
-import {testRun} from "./app/js/controller/test-send-msg-controller"
+import {testRun} from "./app/js/controller/chatProgram"
 
 
 //test untuk run program sederhana

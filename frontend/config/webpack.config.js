@@ -16,6 +16,14 @@ module.exports = {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"], //hati2 dengan urutanya, karena webpack membcaa loader dari kanan ke kiri
             },
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                type: 'asset/resource'
+            },
         ],
     },
 }
