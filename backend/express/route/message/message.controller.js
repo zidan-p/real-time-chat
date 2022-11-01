@@ -25,7 +25,12 @@ module.exports = {
     controllerGetById : async (req,res)=>{
         let id = parseInt(req.params.id);
         try {
-            let result = await message.findByPk(id)
+            let result = await message.findByPk(id,{
+                include:[
+                    {model : user,},
+                    {model : room}
+                ]
+            })
             res.status(200)
             res.json({
                 success : true,
@@ -42,7 +47,7 @@ module.exports = {
     controllerGetByRoom : async (req,res)=>{
         let param = {roomId : parseInt(req.params.room_id)}
         try {
-            let result = await message.findOne({where : param})
+            let result = await message.findAll({where : param})
             res.status(200)
             res.json({
                 success : true,
@@ -59,7 +64,7 @@ module.exports = {
     controllerGetByUser : async (req,res)=>{
         let param = {userId : parseInt(req.params.user_id)}
         try {
-            let result = await message.findOne({where : param})
+            let result = await message.findAll({where : param})
             res.status(200)
             res.json({
                 success : true,
@@ -86,6 +91,24 @@ module.exports = {
             if(!await user.findByPk(data.userId)) throw Error('user undefined')
 
             let result = await message.create(data)
+            res.status(201)
+            res.json({
+                success : true,
+                data : result
+            })
+        } catch (error) {
+            res.status(500)
+            res.json({
+                success : false,
+                data : error.message
+            })
+        }
+    },
+
+    controllerBulkCreate : async (req,res) => {
+        try {
+            const datas = req.body.messages;
+            let result = await message.bulkCreate(datas);
             res.status(201)
             res.json({
                 success : true,

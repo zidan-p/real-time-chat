@@ -39,7 +39,8 @@ app.put('/remove-message/:room_id',controllerRemoveMessage); // ?
 app.put('/set-creator/:room_id', controllerSetCreator); // v
 
 // --- delete ---
-app.delete('/:id', controllerDelete); //V
+app.delete('/:id', controllerDelete); // *
+//TODO: config association for deleting room
 
 
 

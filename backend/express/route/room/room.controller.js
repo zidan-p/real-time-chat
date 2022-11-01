@@ -284,7 +284,7 @@ module.exports = {
     controllerAddMessage : async (req,res) => {
         try {
             let roomId = req.params.room_id
-            let messageInstance = req.body.msg
+            let messageInstance = req.body.message
             const [_message, created] = await message.findOrCreate({
                 where : {id : messageInstance.id},
                 defaults : messageInstance

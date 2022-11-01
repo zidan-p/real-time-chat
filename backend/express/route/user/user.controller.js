@@ -36,6 +36,10 @@ module.exports = {
                     {
                         model : room,
                         as : "rooms"
+                    },
+                    {
+                        model: room,
+                        as : "room_created"
                     }
                 ]
             });
@@ -82,15 +86,15 @@ module.exports = {
         }
     },
 
-    controllerGetByRoom : async (req,res)=>{
-        const params = {roomId : req.params.room_id}
+    controllerGetByRoom : async (req,res) => {
+        const params = {id : req.params.room_id}
         try {
-            let result = await user.findOne({
+            let result = await room.findOne({
                 where : params,
-                include : {
-                    model : message,
-                    as : "messages"
-                }
+                include : [{
+                    model : user,
+                    through: "pair_user_room"
+                }]
             })
             res.status(200)
             res.json({
@@ -185,29 +189,29 @@ module.exports = {
         }
     },
 
-    controllerAddRoom : async (req,res) => {
-        try {
-            let userId = req.params.user_id;
-            let roomId = req.params.room_id;
+    // controllerAddRoom : async (req,res) => {
+    //     try {
+    //         let userId = req.params.user_id;
+    //         let roomId = req.params.room_id;
     
-            const _user = await user.findByPk(userId);
-            const _room = await room.findByPk(roomId);
+    //         const _user = await user.findByPk(userId);
+    //         const _room = await room.findByPk(roomId);
 
-            _user.addRooms(_room);
-            if(_user.hasRooms(_room)){
-                res.json({
-                    success : true,
-                    data : {}
-                })
-            }
-        } catch (error) {
-            res.status(500)
-            res.json({
-                success : false,
-                data : error.message
-            })
-        }
-    },
+    //         _user.addRooms(_room);
+    //         if(_user.hasRooms(_room)){
+    //             res.json({
+    //                 success : true,
+    //                 data : {}
+    //             })
+    //         }
+    //     } catch (error) {
+    //         res.status(500)
+    //         res.json({
+    //             success : false,
+    //             data : error.message
+    //         })
+    //     }
+    // },
 
     controllerAddRoom : async (req,res) => {
         try {
