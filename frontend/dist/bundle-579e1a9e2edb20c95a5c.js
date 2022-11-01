@@ -3145,7 +3145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* ---- untuk TOOLTIP ---- */\n.tooltip {\n  /* ... */\n  /* display: none; */\n  opacity : 0;\n}\n\n.tooltip[data-show] {\n  opacity : 100%;\n  display: block;\n\n}\n\n.arrow,\n.arrow::before {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  background: inherit;\n}\n\n.arrow {\n  visibility: hidden;\n}\n\n.arrow::before {\n  visibility: visible;\n  content: '';\n  transform: rotate(45deg);\n}\n\n.tooltip[data-popper-placement^='top'] > .arrow {\n  bottom: -4px;\n}\n\n.tooltip[data-popper-placement^='bottom'] > .arrow {\n  top: -4px;\n}\n\n.tooltip[data-popper-placement^='left'] > .arrow {\n  right: -4px;\n}\n\n.tooltip[data-popper-placement^='right'] > .arrow {\n  left: -4px;\n}\n\n\n\n/* --- untuk scroller --- */\n*::-webkit-scrollbar-track{\n  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\n  background-color: transparent;\n  border-radius: 10px;\n  border: 3px solid white;\n}\n*::-webkit-scrollbar{\n  width: 6px;\n  height: 5px;\n}\n*::-webkit-scrollbar:hover{\n  width: 12px;\n}\n*::-webkit-scrollbar-thumb{\n  background-color: #34352F;\n  transition: all 1s;\n}\n*::-webkit-scrollbar-thumb:hover{\n  background-color: #414339;\n  border-radius: 0PX;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* ---- untuk TOOLTIP ---- */\r\n.tooltip {\r\n  /* ... */\r\n  /* display: none; */\r\n  opacity : 0;\r\n}\r\n\r\n.tooltip[data-show] {\r\n  opacity : 100%;\r\n  display: block;\r\n\r\n}\r\n\r\n.arrow,\r\n.arrow::before {\r\n  position: absolute;\r\n  width: 8px;\r\n  height: 8px;\r\n  background: inherit;\r\n}\r\n\r\n.arrow {\r\n  visibility: hidden;\r\n}\r\n\r\n.arrow::before {\r\n  visibility: visible;\r\n  content: '';\r\n  transform: rotate(45deg);\r\n}\r\n\r\n.tooltip[data-popper-placement^='top'] > .arrow {\r\n  bottom: -4px;\r\n}\r\n\r\n.tooltip[data-popper-placement^='bottom'] > .arrow {\r\n  top: -4px;\r\n}\r\n\r\n.tooltip[data-popper-placement^='left'] > .arrow {\r\n  right: -4px;\r\n}\r\n\r\n.tooltip[data-popper-placement^='right'] > .arrow {\r\n  left: -4px;\r\n}\r\n\r\n\r\n\r\n/* --- untuk scroller --- */\r\n*::-webkit-scrollbar-track{\r\n  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\r\n  background-color: transparent;\r\n  border-radius: 10px;\r\n  border: 3px solid white;\r\n}\r\n*::-webkit-scrollbar{\r\n  width: 6px;\r\n  height: 5px;\r\n}\r\n*::-webkit-scrollbar:hover{\r\n  width: 12px;\r\n}\r\n*::-webkit-scrollbar-thumb{\r\n  background-color: #34352F;\r\n  transition: all 1s;\r\n}\r\n*::-webkit-scrollbar-thumb:hover{\r\n  background-color: #414339;\r\n  border-radius: 0PX;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3645,40 +3645,27 @@ module.exports = styleTagTransform;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "accountSideContent": () => (/* binding */ accountSideContent),
 /* harmony export */   "appBody": () => (/* binding */ appBody),
-/* harmony export */   "createRoomSideContent": () => (/* binding */ createRoomSideContent),
 /* harmony export */   "header": () => (/* binding */ header),
 /* harmony export */   "inputMessage": () => (/* binding */ inputMessage),
-/* harmony export */   "joinRoomSideContent": () => (/* binding */ joinRoomSideContent),
-/* harmony export */   "loaderView": () => (/* binding */ loaderView),
 /* harmony export */   "mainBodyRoom": () => (/* binding */ mainBodyRoom),
 /* harmony export */   "msgRow": () => (/* binding */ msgRow),
 /* harmony export */   "roomList": () => (/* binding */ roomList),
-/* harmony export */   "roomListSideContent": () => (/* binding */ roomListSideContent),
-/* harmony export */   "settingSideContent": () => (/* binding */ settingSideContent),
-/* harmony export */   "sideBody": () => (/* binding */ sideBody),
-/* harmony export */   "signinView": () => (/* binding */ signinView)
+/* harmony export */   "sideBody": () => (/* binding */ sideBody)
 /* harmony export */ });
 // :: ini adalah tempat untuk menyimpan semua dom component ::
-
-// let habibiCat = require('./src/app/img/habibi-cat.jpg')
-let habibiCat = __webpack_require__(/*! ./../../img/habibi-cat.jpg */ "./src/app/img/habibi-cat.jpg")
-
 
 //untuk baris pesan
 let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="w-full flex bg-vscode-1 transition-all duration-300">
-        <div class="basis-10 ${fromMe? "border-r-4 border-r-[#FFC355]" : ""}">
+    <div class="w-full flex">
+        <div class="basis-10">
             <p class="text-center text-gray-400">${numberRow}</p>
         </div>
-        <div class=" ${fromMe ? 'flex-row-reverse' : ''}  w-full grow flex gap-3 px-4">
-            <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[#${idSender}]</p>
-            <div class="">
-                <p class="text-justify whitespace-pre-line max-w-full">"${msg}"</p>
-            </div>
+        <div class="basis-1/4 ${fromMe ? 'flex-row-reverse' : ''}  grow flex gap-3 px-4">
+            <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[ #${idSender} ]</p>
+            <p class="text-justify" >"${msg}"</p>
         </div>
     </div>
     `.trim()
@@ -3686,15 +3673,31 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
 }
 
 
-
+//daftar room
+let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div id="room-${roomId}-side" class="hover:bg-vscode-2 flex gap-3 py-2 ${isActive ? 'bg-vscode-3' : ''} rounded-l-full transition cursor-pointer">
+        <div class="bg-green-300 ml-2 basis-1/6 rounded-full"></div>
+        <div class="flex flex-col py-2">
+            <h4 class="room-name-aside font-semibold text">${roomName}</h4>
+            <h4 class="new-msg-container font-extralight text-xs text-gray-400">${newMsg}...</h4>
+        </div>
+    </div>
+    `.trim()
+    return div.firstChild;
+}
 
 //untuk header
 let header = ({roomName = "", roomIcon = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="bg-vscode-2 shadow min-h-36 cursor-default">
-        <div class="flex justify-between p-1">
-            <h1 id="header-room-name" class="font-semibold text-xl pl-5 m-2">${roomName}</h1>
+    <div class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
+        <div class="flex justify-between p-5">
+            <h1 class="font-semibold text-2xl pl-5 m-2">${roomName}</h1>
+            <button class="bg-white rounded-full mr-10 openModal">
+            ${roomIcon}
+            </button>
         </div>
     </div>
     `.trim()
@@ -3706,54 +3709,35 @@ let header = ({roomName = "", roomIcon = ""}) => {
 let inputMessage = ({inpTxt = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="flex flex-col px-2 py-1 h-full">
-        <div class="flex">
-            <div class="flex py-2 gap-7">
-                <button id="send-on-click-btn" class="text-xs text-gray-300  underline-offset-8 decoration-gray-600">SEND ON CLICK</button>
-                <button id="send-on-enter-btn" class="text-xs text-gray-300 underline-offset-8 decoration-gray-600">SEND ON ENTER</button>
-            </div>
-            <div class="flex">
-            </div>
+    <div class="w-full flex flex-row gap-x-5 px-6 py-[28px] shadow-inner group bg-vscode-2">
+        <div class="user-id bg-white text-black rounded-lg w-1/12 text-center p-2 cursor-copy">
+            <p>Ini ID</p>
         </div>
-        <div class="send-on-enter flex py-2 gap-1 group">
-            <div class="inline-flex gap-1 self-start ">
-                <p class="user-id bg-amber-300 group-focus-within:bg-amber-200 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
-                <button class="input-send bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
-            </div>
-            <form class="grow">
-                <input id="add" autocomplete="off" type="text" class="px-2 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
+        <div class="w-10/12 text-black rounded-lg text-center">
+            <form>
+                <input id="find" class="w-full py-2 px-4 rounded-lg focus-within:outline-none focus-within:bg-white" placeholder="Ketik Disini YGY">
             </form>
         </div>
-        <div class="send-on-click grow flex flex-col gap-1">
-            <textarea class="px-1 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none h-full resize-none" ></textarea>
-            <div class="w-full bg-vscode-5 h-10 flex justify-end">
-                <div class="inline-flex gap-1 self-start">
-                    <p class="user-id bg-amber-300 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
-                    <button class="text-area-send bg-amber-300 hover:bg-amber-200 rounded-r-full text-black px-2"> send --> </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    `.trim()
-    return div.firstChild;
-}
-
-//----- side bar element --------
-//daftar room
-let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="room-${roomId}-side" class="flex px-2 py-2 gap-3 cursor-pointer hover:bg-vscode-2 transition ${isActive ? 'bg-vscode-3' : ''}">
-        <svg class="shrink-0 basis-[7%] w-4 mt-1 self-start" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="41" height="41" fill="#FFF504"/>
-            <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
-            <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
-        </svg>
-        <div class="flex grow flex-col">
-            <p class="room-name-aside break-words">${roomName}</p>
-            <h4 class="new-msg-container font-extralight text-xs text-gray-400">${newMsg}...</h4>
-        </div>
+        <button class="flex w-1/12 justify-center cursor-pointer">
+            <?xml version="1.0" encoding="iso-8859-1"?>
+            <svg height="40px" width="40px" fill="#fff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 491.022 491.022" style="enable-background:new 0 0 491.022 491.022;" xml:space="preserve">
+                <g>
+                    <g>
+                        <path d="M490.916,13.991c-0.213-1.173-0.64-2.347-1.28-3.307c-0.107-0.213-0.213-0.533-0.32-0.747
+                            c-0.107-0.213-0.32-0.32-0.533-0.533c-0.427-0.533-0.96-1.067-1.493-1.493c-0.427-0.32-0.853-0.64-1.28-0.96
+                            c-0.213-0.107-0.32-0.32-0.533-0.427c-0.32-0.107-0.747-0.32-1.173-0.427c-0.533-0.213-1.067-0.427-1.6-0.533
+                            c-0.64-0.107-1.28-0.213-1.92-0.213c-0.533,0-1.067,0-1.6,0c-0.747,0.107-1.493,0.32-2.133,0.533
+                            c-0.32,0.107-0.747,0.107-1.067,0.213L6.436,209.085c-5.44,2.347-7.893,8.64-5.547,14.08c1.067,2.347,2.88,4.373,5.227,5.44
+                            l175.36,82.453v163.947c0,5.867,4.8,10.667,10.667,10.667c3.733,0,7.147-1.92,9.067-5.12l74.133-120.533l114.56,60.373
+                            c5.227,2.773,11.627,0.747,14.4-4.48c0.427-0.853,0.747-1.813,0.96-2.667l85.547-394.987c0-0.213,0-0.427,0-0.64
+                            c0.107-0.64,0.107-1.173,0.213-1.707C491.022,15.271,491.022,14.631,490.916,13.991z M190.009,291.324L36.836,219.218
+                            L433.209,48.124L190.009,291.324z M202.809,437.138V321.831l53.653,28.267L202.809,437.138z M387.449,394.898l-100.8-53.013
+                            l-18.133-11.2l-0.747,1.28l-57.707-30.4L462.116,49.298L387.449,394.898z"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
     </div>
     `.trim()
     return div.firstChild;
@@ -3763,18 +3747,11 @@ let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
 let appBody = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="h-screen max-h-screen flex flex-col ">
-        <div class="basis-[97%] max-h-[97%] shrink-0 grow-0">
-            <div id="body-program" class="h-full max-h-max overflow-hidden flex bg-vscode-2">
-                <aside class="basis-1/5 shrink-0">
-                </aside>
-                <main class="w-full grow-0">
-                </main>
-            </div>
-        </div>
-        <div class="flex text-xs bg-vscode-1 h-full px-5">
-            <p>ini adalah paragraf</p>
-        </div>
+    <div id="body-program" class="h-screen flex bg-vscode-2">
+        <aside class="basis-1/3 ">
+        </aside>
+        <main class="w-full">
+        </main>
     </div>
     `.trim()
     return div.firstChild;
@@ -3784,92 +3761,64 @@ let appBody = () => {
 let sideBody = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class=" bg-vscode-4 h-full overflow-hidden flex flex-col">
-        <div class="wrapper shadow">
-            <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
-            <div class="px-3 mb-5 group"> <!-- search bar -->
-                <form id="form-find" class="px-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 transition">
-                    <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    <div class="bg-vscode-4 h-full rounded-r-2xl overflow-hidden flex flex-col">
+    <div class="wrapper">
+        <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
+        <div class="px-3 mb-5 group"> <!-- search bar -->
+            <form id="form-find" class="p-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 rounded-full transition">
+                <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none rounded-full focus-within:bg-white transition" placeholder="Search.."/>
+            </form>
+        </div>
+    </div>
+    <!--daftar room dan setting-->
+    <div id="room-setting" class="flex w-full h-full gap-2">
+        <div id="setting-list" class="basis-1/6 bg-vscode-5 rounded-r-xl flex flex-col p-4 justify-between"> <!--setting-->
+            <div class="flex flex-col"> 
+                <!--tambah room-->
+                <div id="add-room" class="tooltip-collection">
+                    <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
                     </svg>
-                    <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none focus-within:bg-white transition" placeholder="Search.."/>
-                </form>
-            </div>
-        </div>
-        <!--daftar room dan setting-->
-        <div id="room-setting" class="flex w-full h-full">
-            <!-- setting list -->
-            <div id="setting-list" class="basis-1/5 shrink-0 flex flex-col justify-between"> <!--setting-->
-                <div class="flex flex-col "> 
-                    <!--room list-->
-                    <div id="room-list-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none focus:outline-none ">
-                        <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm focus:outline-none transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="8" y1="6" x2="21" y2="6"></line>
-                            <line x1="8" y1="12" x2="21" y2="12"></line>
-                            <line x1="8" y1="18" x2="21" y2="18"></line>
-                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                        </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
-                            Room list
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
-                    <!--join room-->
-                            <div id="join-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
-                                <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 16 16 12 12 8"></polyline>
-                                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                                </svg>
-                                <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
-                                    Join Room
-                                    <div class="arrow" data-popper-arrow></div>
-                                </div>
-                            </div>
-                    <!--tambah room-->
-                    <div id="add-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
-                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
-                        </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
-                            Add Room
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <!--setting-->
-                    <div id="setting-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
-                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                        </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
-                            Setting
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
-                    <!--account-->
-                    <div id="account-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
-                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
-                            Account
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
+                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                        Add Room
+                        <div class="arrow" data-popper-arrow></div>
                     </div>
                 </div>
             </div>
-            <div id="side-content" class="grow bg-vscode-5 py-2"> <!--room-->
-                <!-- ini tempat roomnya nanti -->
+            <div class="flex flex-col gap-2">
+                <!--setting-->
+                <div id="setting" class="tooltip-collection">
+                    <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                        Setting
+                        <div class="arrow" data-popper-arrow></div>
+                    </div>
+                </div>
+                <!--account-->
+                <div id="account" class="tooltip-collection">
+                    <svg class="tooltip-target cursor-pointer mx-auto hover:bg-vscode-2 rounded transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded text-sm text-gray-400" role="tooltip">
+                        Account
+                        <div class="arrow" data-popper-arrow></div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div id="room-list" class="grow"> <!--room-->
+            <!-- ini tempat roomnya nanti -->
+        </div>
+    </div>
     </div>
     `.trim();
     return div.firstChild;
@@ -3878,191 +3827,24 @@ let sideBody = () => {
 let mainBodyRoom = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="max-h-full h-full flex flex-col relative bg-vscode-3">
-        <div id="header" class="bg-vscode-2 shadow min-h-36 cursor-default">
+    <div class="h-screen flex flex-col relative bg-vscode-3">
+        <div id="header" class="bg-vscode-2 drop-shadow-2xl min-h-36 cursor-default">
         </div>
 
         <!--chat container-->
-        <div class="h-full shrink overflow-y-auto">
-            <div id="msg-container" class="flex flex-col gap-2 py-2 px-5 text-sm font-bold">
+        <div class="grow overflow-y-auto">
+            <div id="msg-container" class="flex flex-col gap-2 py-8 px-5">
             </div>
         </div>
+
         
         <!-- Input -->
-        <div class="resizer w-full bg-none hover:bg-slate-300 h-[6px] transition-all cursor-n-resize" data-direction="vertical"></div>
-        <div id="input-msg-container" class="border-t border-t-gray-600 bg-vscode-4 grow">
+        <div id="input-msg-container" class="">
         </div>
     </div>
     `.trim();
     return div.firstChild;
 }
-
-
-
-// -- ini bagian untuk side body --
-
-let createRoomSideContent = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="create-room-side" >
-        <h5 class="text-center font-bold bg-vscode-2" >Add Room</h5>
-        <form class="text-xs font-bold p-5 " action="">
-            <div class="mb-2">
-                <label class="font-extralight" for="">Nama Room</label>
-                <input class="room-name-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
-            </div>
-            <div class="mb-2">
-                <label class="font-extralight" for="">Deskripsi Room</label>
-                <input class="room-description-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
-            </div>
-            <div class="mb-2">
-                <p class="id-creator">Creator id</p>
-                <p class="text-[#FFC355]">[#12233]</p>
-            </div>
-            <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Create</button>
-        </form>
-    </div>
-    `.trim();
-    return div.firstChild
-}
-
-let settingSideContent = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="setting-side" >
-        <h5 class="text-center font-bold bg-vscode-2" >Setting</h5>
-        <p class="text-xs text-vscode-1">*TODO : buat functional setting</p>
-        <form class="text-xs font-black p-5">
-            <div class="mb-2 flex">
-                <label class="basis-1/2 font-extralight" for="">Global on enter Submit</label>
-                <span class="basis-1/2">
-                    <input id="set-global-on-enter-submit" class="accent-vscode-5 h-3 w-3" type="checkbox" name="" id="">
-                </span>
-            </div>
-            <div class="mb-2 flex">
-                <label class="basis-1/2 font-extralight" for="">Font Size</label>
-                <span class="basis-1/2">
-                    <input id="setting-font-size" type="range" name="" id="">
-                </span>
-            </div>
-            <button class="bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
-        </form>
-    </div>
-    `.trim()
-    return div.firstChild
-}
-
-let accountSideContent = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="account-room-side" >
-        <h5 class="text-center font-bold bg-vscode-2" >Account</h5>
-        <form class="text-xs font-bold p-5 " action="">
-            <div class="mb-2">
-                <label class="font-extralight" for="">Nama</label>
-                <input id="name-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
-            </div>
-            <div class="mb-2">
-                <label class="font-extralight" for="">ID 
-                    <span class="text-[10px] text-gray-400">*only number</span> 
-                </label>
-                <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
-            </div>
-            <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
-        </form>
-    </div>
-    `.trim();
-    return div.firstChild;
-}
-
-let joinRoomSideContent = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="join-room-side" class="">
-        <h5 class="text-center font-bold bg-vscode-2" >Join</h5>
-        <form class="text-xs font-bold p-5 " action="">
-            <div class="mb-2">
-                <label class="font-extralight" for="">Room id 
-                    <span class="text-[10px] text-gray-400">*only existing room</span> 
-                </label>
-                <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
-            </div>
-            <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Find</button>
-        </form>
-        <div id="found-alert-room" class=" hidden w-full border border-red-700 bg-[rgb(89,6,6)]">
-            <p class="not-found-room text-sm font-thin">maaf, room yang anda cari tidak terdaftar</p>
-        </div>
-        <div id="not-found-alert-room" class="hidden w-full border border-green-700 bg-[rgb(6,89,11)]">
-            <p class="not-found-room text-sm font-thin">room ditemukan, anda sudah menjadi member
-                <span class="founded-room"><span>
-            </p>
-        </div>
-    </div>
-    `.trim();
-    return div.firstChild;
-}
-
-let roomListSideContent = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div id="room-list-content" class="">
-    </div>
-    `.trim();
-    return div.firstChild;
-}
-
-
-// ------------------------------------ DAFTAR ------------------------------------------
-let signinView = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div class="h-screen flex justify-center w-full bg-vscode-3">
-        <div class="max-w-xl rounded-md p-3 bg-vscode-4 mx-auto my-auto border border-purple-700">
-            <img class="mx-auto mb-2" src="./img/habibi-cat.jpg" alt="" srcset="">
-
-            <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar terlebih dahulu</h1>
-            <form class="" action="">
-                <div class="mb-3">
-                    <label class="block" for="">Name :</label>
-                    <input id="name-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
-                </div>
-                <div class="mb-3">
-                    <label class="block" for="">Desc :</label>
-                    <input id="desc-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
-                </div>
-                <div class="mb-3">
-                    <label class="block" for="">Id anda :</label>
-                    <span id="id-user-signin" >#1242</span>
-                </div> 
-                <button class="bg-vscode-2 w-full active:bg-vscode-1" >Daftar</button>
-            </form>
-        </div>
-    </div>
-    `.trim();
-    return div.firstChild;
-}
-
-
-// ------------------------------------- LOADER -----------------------------------------
-let loaderView = () => {
-    let div = document.createElement('DIV');
-    div.innerHTML = `
-    <div class="h-screen w-full bg-vscode-3 flex justify-center">
-        <div class="bg-vscode-4 self-center p-3 rounded-md">
-            <svg class="animate-spin mx-auto mb-4" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="68.5" cy="68.5" r="63" stroke="#1E1F1C" stroke-width="11"/>
-                <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
-            </svg>
-            <h1 class="border-t border-vscode-1 pt-2">Harap tunggu, sedang memuat semua profile <span class="text-amber-500">user</span></h1>
-        </div>
-    </div>
-    `.trim();
-    return div.firstChild;
-}
-
-
-
-
 
 
 
@@ -4122,19 +3904,14 @@ class ChatContent{
 
     // -- state controll --
     appendMsg({msg = "",idSender = NaN, fromMe = false}){
-        let tempmsg = (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.msgRow)({
+        this.containerElement.append( (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.msgRow)({
             numberRow : this.lastRow,
             msg : msg,
             idSender : idSender,
             fromMe :fromMe
-        })
-        this.containerElement.append( 
-            tempmsg
-        )
-        this.containerElement.scrollIntoView({block: "end"});
-        setTimeout(()=>{
-            tempmsg.classList.remove('bg-vscode-1');
-        },100)
+        }))
+
+        console.log("text appended")
         this.lastRow++;
     }
 
@@ -4240,35 +4017,21 @@ class InputMessage{
     idDomElement
     userId
 
-    // -- config --
-    sendMethod //['input','textArea']
-
     //---- dom value -----
     container
 
     // -- element vale --
     containerElement
-    idContainerElement = [] // id user
-
-    // -- btn elemen --
-    sendOnEnterBtnConfig
-    sendOnClickBtnConfig
-
-    // ** send on enter **
     inputElement
     sendBtnElement
+    idContainerElement // id user
     formElement
-    sendOnEnterContainerElement
-
-    // ** send on click **
-    sendTextAreaBtnElement
-    textAreaElement
-    sendOnClickContainer
 
 
     constructor({currentMsg = "", userId = ""}){
         this.currentMsg = currentMsg;
         this.userId = userId;
+
     }
 
     // -- element manipulation --
@@ -4277,33 +4040,15 @@ class InputMessage{
     deleteElement(){this.containerElement = null}
     setPseudoElement(){
         this.inputElement = this.containerElement.querySelector('input');
-        this.idContainerElement = this.containerElement.querySelectorAll('.user-id');
-
-        // ** config btn **
-        this.sendOnClickBtnConfig = this.containerElement.querySelector('#send-on-click-btn')
-        this.sendOnEnterBtnConfig = this.containerElement.querySelector('#send-on-enter-btn')
-
-        // ** send on enter **
         this.formElement = this.containerElement.querySelector('form'); //form untuk submit
-        this.sendBtnElement = this.containerElement.querySelector('button.input-send');
-        this.sendOnEnterContainerElement = this.containerElement.querySelector('.send-on-enter')
-
-        // ** send on click **
-        this.sendTextAreaBtnElement = this.containerElement.querySelector('button.text-area-send');
-        this.textAreaElement = this.containerElement.querySelector('textarea');
-        this.sendOnClickContainerElement = this.containerElement.querySelector('.send-on-click')
+        this.idContainerElement = this.containerElement.querySelector('.user-id');
+        this.sendBtnElement = this.containerElement.querySelector('button');
     }
     unsetPseudoElement(){
         this.inputElement = null
         this.formElement = null
         this.idContainerElement = null
         this.sendBtnElement = null
-        this.sendTextAreaBtnElement = null
-        this.textAreaElement = null
-        this.sendOnClickContainerElement = null
-        this.sendOnEnterContainerElement = null
-        this.sendOnClickBtnConfig = null
-        this.sendOnEnterBtnConfig = null
     }
 
     prepareElement(){
@@ -4312,68 +4057,17 @@ class InputMessage{
         this.setPseudoElement();
         
         this.fillCurrentElementDom();
-        this.setSendMethod('input')
-        this.setConfigBtnSend()
     }
 
     // -- state control --
     fillCurrentElementDom(){
-        // this.idContainerElement.innerHTML = "#" + this.userId;
-        this.idContainerElement.forEach((idc) => {
-            idc.innerHTML = "#" + this.userId
-        })
-        // this.inputElement.value = this.currentMsg; // mugkin dijadikan optional
-
+        this.idContainerElement.innerHTML = "#" + this.userId;
+        this.inputElement.value = this.currentMsg
     }
 
-    setSendMethod(conf){
-        console.log("sennd mehtod sudah di set");
-        //ada dua input method, yaitu textArea dan input
-        switch(conf){
-            case "input":
-                this.sendMethod = "input";
-                this.sendOnEnterContainerElement.classList.remove('hidden');
-                this.sendOnClickContainerElement.classList.add('hidden')
-                this.sendOnClickBtnConfig.classList.remove('underline');
-                this.sendOnEnterBtnConfig.classList.add('underline');
-                break;
-            case "textArea":
-                this.sendMethod = "textArea";
-                this.sendOnEnterContainerElement.classList.add('hidden');
-                this.sendOnClickContainerElement.classList.remove('hidden')                         
-                this.sendOnClickBtnConfig.classList.add('underline');
-                this.sendOnEnterBtnConfig.classList.remove('underline');
-                break;
-            default:
-                throw new Error('config tidak valid')
-        }
-
-        console.log("send mthod : "+ this.sendMethod)
-    }
-
-    // -- event --
     onSendMessage(callback){ //berisi callback untuk menjalankan fungsi yg dikirim nanti
-
-        console.log("ini akan melakuakan send yg mana? { "+ this.sendMethod )
-        if(this.sendMethod === "input" || this.sendMethod === "textArea"){
-            this.onEnterSend(callback)
-            this.onClickSend(callback)
-        }else{
-            throw new Error("callback tidak valit")
-        }
-    }
-
-    setConfigBtnSend(){
-        this.sendOnClickBtnConfig.addEventListener('click', (e)=>{
-            this.setSendMethod('textArea')
-        })
-        this.sendOnEnterBtnConfig.addEventListener('click',(e)=>{
-            this.setSendMethod('input')
-        })
-    }
-
-    //kirim ketika dienter, untuk input
-    onEnterSend(callback){
+        console.log('form',this.formElement);
+        console.log('sendBtn',this.sendBtnElement);
         this.formElement.addEventListener('submit',(e)=>{
             e.preventDefault();
             callback({
@@ -4391,19 +4085,6 @@ class InputMessage{
                 fromMe : true,
             });
             this.inputElement.value = "";
-        })
-    }
-
-    //kirim ketika di klik kirim
-    onClickSend(callback){
-        this.sendTextAreaBtnElement.addEventListener('click', (e)=>{
-            e.preventDefault();
-            callback({
-                msg: this.textAreaElement.value,
-                idSender : this.userId,
-                fromMe : true,
-            });
-            this.textAreaElement.value = ""
         })
     }
 
@@ -4429,7 +4110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputMessage */ "./src/app/js/components/main/inputMessage.js");
 /* harmony import */ var _chatContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chatContent */ "./src/app/js/components/main/chatContent.js");
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-/* harmony import */ var _service_resizer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../service/resizer */ "./src/app/js/service/resizer.js");
+/* harmony import */ var _stateControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stateControl */ "./src/app/js/components/stateControl.js");
 
 
 
@@ -4454,7 +4135,6 @@ class RoomMain{
     headerContainerElement
     inputContainerElement
     chatContentContainerElement
-    resizerElement
 
     constructor({roomName, roomIcon, msg}){
 
@@ -4484,13 +4164,11 @@ class RoomMain{
         this.chatContentContainerElement = this.containerElement.querySelector('#msg-container');
         this.headerContainerElement = this.containerElement.querySelector('#header');
         this.inputContainerElement = this.containerElement.querySelector('#input-msg-container');
-        this.resizerElement = this.containerElement.querySelector('.resizer');
     }
     unsetPseudoElement(){
         this.chatContentContainerElement = null
         this.headerContainerElement = null
         this.inputContainerElement = null
-        this.resizerElement = null
     }
 
 
@@ -4518,8 +4196,7 @@ class RoomMain{
         this.attachChatContent();
         this.attachInputMessage();
         
-        this.setSendMessage();
-        this.addResizer();
+        this.setSendMessage()
     }
 
     // -- status --
@@ -4536,14 +4213,6 @@ class RoomMain{
                     msg: data.msg
                 })
             }
-        )
-    }
-
-    // -- service--
-    addResizer(){
-        (0,_service_resizer__WEBPACK_IMPORTED_MODULE_4__.addResizer)(
-            this.resizerElement,
-            this.resizerElement.dataset.direction
         )
     }
 
@@ -4643,8 +4312,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
 
 
-
-
 //room bagian samping
 class RoomAside{
     roomName
@@ -4685,16 +4352,10 @@ class RoomAside{
         this.newMsgContainerElement = null
     }
     setActive(){
+        console.log("ini di set aktif");
         this.containerElement.classList.add("bg-vscode-3")
-        this.containerElement.classList.add("border-l");
-        this.containerElement.classList.add("border-l-gray-200");
-        
     }
-    setInactive(){
-        this.containerElement.classList.remove("bg-vscode-3")
-        this.containerElement.classList.remove("border-l");
-        this.containerElement.classList.remove("border-l-gray-200");
-    }
+    setInactive(){this.containerElement.classList.remove("bg-vscode-3")}
 
     prepareElement(){
         this.resetElement();
@@ -4731,492 +4392,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SideBar": () => (/* binding */ SideBar)
 /* harmony export */ });
 /* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-/* harmony import */ var _tool_accountSide__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tool/accountSide */ "./src/app/js/components/sidebar/tool/accountSide.js");
-/* harmony import */ var _tool_createRoomSide__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tool/createRoomSide */ "./src/app/js/components/sidebar/tool/createRoomSide.js");
-/* harmony import */ var _tool_joinRoomSide__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tool/joinRoomSide */ "./src/app/js/components/sidebar/tool/joinRoomSide.js");
-/* harmony import */ var _tool_roomListSide__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tool/roomListSide */ "./src/app/js/components/sidebar/tool/roomListSide.js");
-/* harmony import */ var _tool_settingSide__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tool/settingSide */ "./src/app/js/components/sidebar/tool/settingSide.js");
-
-
-
-
-
 
 
 
 
 class SideBar{
-    
+    roomSideList = [] //berisi object roomAside
 
     // -- element value ---
     containerElement
-    sideContentContainerElement
-    // ** button value **
-    roomListSidebtn
-    joinRoomBtn
-    settingBtn
-    createRoomBtn // -- create room
-    accountBtn
-
-    // -- data value --
-    active
-
-    // -- object value --
-    account
-    createRoom // -- create room
-    joinRoom
-    roomListSide
-    setting
+    roomListContainerElement
+    settingContainerElement
 
     constructor(roomSideList){
-        this.roomListSide = new _tool_roomListSide__WEBPACK_IMPORTED_MODULE_4__.RoomListSide(roomSideList);
-        this.account = new _tool_accountSide__WEBPACK_IMPORTED_MODULE_1__.AccountSide();
-        this.createRoom = new _tool_createRoomSide__WEBPACK_IMPORTED_MODULE_2__.CreateRoomSide();
-        this.joinRoom = new _tool_joinRoomSide__WEBPACK_IMPORTED_MODULE_3__.JoinRoomSide();
-        this.setting = new _tool_settingSide__WEBPACK_IMPORTED_MODULE_5__.SettingSide();
-
-        //set active defaultnya adalah room list
-        this.active = this.roomListSide
+        this.roomSideList = roomSideList;
+        console.log(this.roomSideList)
     }
+
+    // -- dom manipulation --
 
     // -- element manipulation --
     createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.sideBody)();}
     resetElement(){this.containerElement = this.createElement()}
     deleteElement(){this.containerElement = null}
     setPseudoElement(){
-        this.sideContentContainerElement = this.containerElement.querySelector('#side-content')
-        this.roomListSidebtn = this.containerElement.querySelector('#room-list-btn')
-        this.joinRoomBtn = this.containerElement.querySelector('#join-room-btn')
-        this.createRoomBtn = this.containerElement.querySelector('#add-room-btn')
-        this.settingBtn = this.containerElement.querySelector('#setting-btn')
-        this.accountBtn = this.containerElement.querySelector('#account-btn')
+        this.roomListContainerElement = this.containerElement.querySelector('#room-list');
+        this.settingContainerElement = this.containerElement.querySelector('#setting-list');
     }
-    unsetPseudoElement(){
-        this.sideContentContainerElement = this.containerElement.querySelector('#side-content')
-        this.roomListSidebtn = null 
-        this.joinRoomBtn = null
-        this.createRoomBtn = null
-        this.settingBtn = null
-        this.accountBtn = null
-    }
-
-
-    // -- state --
-    setActiveContent(content){
-        console.log('---- content di set active')
-        this.active = content;
-        content.setActive();
-    };
-    setInactiveContent(content){
-        content.setInactive()
-    };
-    attachContent(content){
-        console.log("konten yg akan di append",content)
-        this.sideContentContainerElement.append(content)
-    }
-    detachContent(){
-        this.sideContentContainerElement.innerHTML = "";
-    }
-    changeMainContent(content){
-        this.setInactiveContent(this.active);
-        this.detachContent();
-        this.setActiveContent(content);
-        this.attachContent(content.containerElement)
-    }
-    showCurrentContent(){
-        console.log("content akan di attach")
-        this.attachContent(this.active.containerElement);
-    }
-    prepareElement(){
-        this.resetElement();
-        this.setPseudoElement();
-
-        this.roomListSide.prepareElement();
-        this.account.prepareElement();
-        this.createRoom.prepareElement();
-        this.joinRoom.prepareElement();
-        this.setting.prepareElement();
-
-        this.setBtnEvent()
-        // this.testing()
-        this.showCurrentContent()
-    }
-
-    // -- event --
-    setBtnEvent(){
-        this.roomListSidebtn.addEventListener('click',(e)=>{this.changeMainContent(this.roomListSide)}) 
-        this.joinRoomBtn.addEventListener('click',(e)=>{this.changeMainContent(this.joinRoom)}) 
-        this.createRoomBtn.addEventListener('click',(e)=>{this.changeMainContent(this.createRoom)})
-        this.settingBtn.addEventListener('click',(e)=>{this.changeMainContent(this.setting)})
-        this.accountBtn.addEventListener('click',(e)=>{this.changeMainContent(this.account)})
-    }
-
-    testing(){
-        console.log(this.sideContentContainerElement)
-        console.log(this.roomListSidebtn)
-        console.log(this.joinRoomBtn)
-        console.log(this.createRoomBtn)
-        console.log(this.settingBtn)
-    }
-
-
-
-
-}
-
-
-
-
-/***/ }),
-
-/***/ "./src/app/js/components/sidebar/tool/accountSide.js":
-/*!***********************************************************!*\
-  !*** ./src/app/js/components/sidebar/tool/accountSide.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AccountSide": () => (/* binding */ AccountSide)
-/* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-
-
-
-
-class AccountSide{
-
-    // -- dom - element --
-    containerElement
-    nameContainer
-    idContainer
-    saveBtn
-    formElement
-
-    // -- data value --
-    userData
-    active = false
-
-    constructor(){
-        this.getUserData()
-    }
-
-    // -- element manipulation --
-    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.accountSideContent)();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
     setPseudoElement(){
-        this.nameContainer = this.containerElement.querySelector('#name-account-side')
-        this.idContainer = this.containerElement.querySelector('#id-account-side')
-        this.saveBtn = this.containerElement.querySelector('button');
-        this.formElement = this.containerElement.querySelector('form');
-    }
-    unsetPseudoElement(){
-        this.nameContainer = null
-        this.idContainer = null
-        this.saveBtn = null
-        this.formElement = null
-    }
-    
-    // -- state --
-    prepareElement(){
-        this.resetElement();
-        this.setPseudoElement();
-        this.fillCurrentElementDom();
-        this.setEvent();
-    }
-    fillCurrentElementDom(){
-        this.nameContainer.value = this.userData.name
-        this.idContainer.value = this.userData.id
-    }
-    setActive(){
-        this.active = true
-         
-    }
-    setInactive(){
-        this.active = false;
-        this.fillCurrentElementDom();
-         
-        //dibuat supaya ketika diubah2 datanya masih sama
-        //nanti kana di imporve supaya bisa handle emit
-    }
-
-    // -- state control --
-    setActive(){this.active = true}
-    setInactive(){this.active = false}
-
-    
-
-    // -- event --
-    setEvent(){
-        this.formElement.addEventListener('submit',(e)=>{
-            e.preventDefault();
-            this.changeUserData();
-
-            //todo: create event untuk emit event websokcet global
-        })
-    }
-
-    
-    // -- functional behavior --
-    getUserData(){
-        this.userData = JSON.parse(
-            localStorage.getItem('userData')
-        )
-    }
-    
-
-    changeUserData(){
-        let user = {
-            id: this.idContainer.value,
-            name: this.nameContainer.value,
-            lastActive : this.userData.latActive
-        }
-
-        localStorage.setItem("userData",JSON.stringify(
-            user
-        ))
-    }
-
-}
-
-
-
-
-/***/ }),
-
-/***/ "./src/app/js/components/sidebar/tool/createRoomSide.js":
-/*!**************************************************************!*\
-  !*** ./src/app/js/components/sidebar/tool/createRoomSide.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CreateRoomSide": () => (/* binding */ CreateRoomSide)
-/* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-
-
-
-class CreateRoomSide{
-    // -- dom - element --
-    containerElement
-    roomNameContainerElement
-    roomDescriptionContainerElement
-    idCreatorContainerElement
-    saveBtn
-    form
-
-    // -- value data --
-    userData
-    active = false
-
-    constructor(){
-
-        //dapatkan id creator
-        this.getUserData();
-    }
-
-    // -- element manipulation --
-    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.createRoomSideContent)();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.roomNameContainerElement = this.containerElement.querySelector('.room-name-side')
-        this.roomDescriptionContainerElement = this.containerElement.querySelector('.room-description-side')
-        this.saveBtn = this.containerElement.querySelector('button')
-        this.form = this.containerElement.querySelector('form')
-        this.idCreatorContainerElement = this.containerElement.querySelector('.id-creator');
-    }
-    unsetPseudoElement(){
-        this.roomNameContainerElement = null
-        this.roomDescriptionContainerElement = null
-        this.saveBtn = null
-        this.form = null
-        this.idCreatorContainerElement = null
-    }
-
-    // -- state --
-    prepareElement(){
-        this.resetElement();
-        this.setPseudoElement();
-        this.fillCurrentElementDom();
-    }
-    fillCurrentElementDom(){
-        this.idCreatorContainerElement.value = this.userData.id
-
-    }
-
-    // -- state control --
-    setActive(){
-        this.active = true
-         
-    }
-    setInactive(){
-        this.active = false
-        this.resetElement();
-    }
-
-    // -- event --
-    setEvent(){
-        this.form.addEventListener('submit',(e)=>{
-            e.preventDefault()
-            //todo: buat emit untuk ini
-        })
-    }
-
-    // -- functional behavior --
-    getUserData(){
-        this.userData = JSON.stringify(
-            localStorage.getItem('userData')
-        )
-    }
-
-}
-
-
-
-/***/ }),
-
-/***/ "./src/app/js/components/sidebar/tool/joinRoomSide.js":
-/*!************************************************************!*\
-  !*** ./src/app/js/components/sidebar/tool/joinRoomSide.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JoinRoomSide": () => (/* binding */ JoinRoomSide)
-/* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-
-
-class JoinRoomSide{
-    // -- dom - element --
-    containerElement
-    idRoomInput
-    form
-    sendBtn
-    alertNotFoundContainer
-    alertFoundContainer
-    foundedRoomContainer
-    
-    // -- data value --
-    active = false
-    foundedRoom
-
-
-    constructor(){
-
-        
-    }
-
-    // -- element manipulation --
-    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.joinRoomSideContent)();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.idRoomInput = this.containerElement.querySelector('.id-room-input')
-        this.form = this.containerElement.querySelector('form');
-        this.sendBtn = this.containerElement.querySelector('button')
-        
-        this.alertFoundContainer = this.containerElement.querySelector('#found-alert-room');
-        this.alertNotFoundContainer = this.containerElement.querySelector('#not-found-alert-room')
-        this.foundedRoomContainer = this.alertNotFoundContainer.querySelector('span');
-    }
-    unsetPseudoElement(){
-        this.idRoomInput = null
-        this.form = null
-        this.sendBtn = null
-
-        this.alertFoundContainer = null
-        this.alertNotFoundContainer = null
-        this.foundedRoomContainer = null
-    }
-
-
-    // -- state control --
-    setActive(){
-        this.active = true
-    }
-    setInactive(){
-        this.active = false
-        this.resetElement();
+        this.roomListContainerElement = this.containerElement.querySelector('#room-list');
+        this.settingContainerElement = this.containerElement.querySelector('#setting-list');
     }
     prepareElement(){
         this.resetElement();
         this.setPseudoElement();
-    }
 
-    setFound(bool){
-        if(!bool){
-            this.alertNotFoundContainer.classList.toggle('hidden')
-            return
-        }
-        this.alertFoundContainer.toggle('hidden')
-        this.foundedRoomContainer.innerHTML = this.foundedRoom
+        this.fillRoom();
     }
 
 
-    // -- event --
-    setEvent(){
-        this.form.addEventListener('submit',(e)=>{
-            //todo: buat emit untuk ini
-        })
-    }
-}
-
-
-
-
-/***/ }),
-
-/***/ "./src/app/js/components/sidebar/tool/roomListSide.js":
-/*!************************************************************!*\
-  !*** ./src/app/js/components/sidebar/tool/roomListSide.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RoomListSide": () => (/* binding */ RoomListSide)
-/* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-
-
-class RoomListSide{
-    roomSideList = [] //berisi object roomAside
-
-    // -- element dom --
-    containerElement
-
-    // -- data value --
-    active = false
-
-    constructor(roomList){
-        this.roomSideList = roomList
-    }
-    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.roomListSideContent)();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){}//gk ada elemen
-    unsetPseudoElement(){}//gk ada elemen
-    prepareElement(){
-        this.resetElement();
-        this.fillRoom()
-    }
-
-    // -- state control --
-    setActive(){
-        this.active = true
-         
-        console.log('---------- set active untuk room list')
-    }
-    setInactive(){
-        this.active = false
-         
-    }
 
     // -- room manopulation --
     addRoom(roomSide){
@@ -5225,7 +4439,7 @@ class RoomListSide{
     }
     appendRoom(roomSide){
         console.log(roomSide)
-        this.containerElement.append(roomSide.containerElement)
+        this.roomListContainerElement.append(roomSide.containerElement)
     }
     fillRoom(){
         this.roomSideList.forEach(room => {this.appendRoom(room)})
@@ -5238,79 +4452,9 @@ class RoomListSide{
             }
         })
     }
-}
-
-
-
-/***/ }),
-
-/***/ "./src/app/js/components/sidebar/tool/settingSide.js":
-/*!***********************************************************!*\
-  !*** ./src/app/js/components/sidebar/tool/settingSide.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SettingSide": () => (/* binding */ SettingSide)
-/* harmony export */ });
-/* harmony import */ var _DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../DOM_component/dom_component */ "./src/app/js/DOM_component/dom_component.js");
-
-
-class SettingSide{
-    containerElement
-    globalOnEnterSubmitInput
-    fontSizeInput
-    saveBtn
-    form
-
-    // -- data value --
-    active = false
-
-    //ini mungkin akan diberi default settng
-    constructor(){
-
-    }
-    createElement(){return (0,_DOM_component_dom_component__WEBPACK_IMPORTED_MODULE_0__.settingSideContent)();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.globalOnEnterSubmitInput = this.containerElement.querySelector('#set-global-on-enter-submit')
-        this.fontSizeInput = this.containerElement.querySelector('#setting-font-size')
-        this.saveBtn = this.containerElement.querySelector('button')
-        this.form = this.containerElement.querySelector('form')
-    }
-    unsetPseudoElement(){
-        
-        this.globalOnEnterSubmitInput = null
-        this.fontSizeInput = null
-        this.saveBtn = null
-        this.form = null
-    }
-    prepareElement(){
-        this.resetElement();
-        this.setPseudoElement();
-    }
-
-    // -- state control --
-    setActive(){
-        this.active = true
-         
-    }
-    setInactive(){
-        this.active = false
-        
-    }
-
-    //-- set event --
-    setEvent(){
-        this.form.addEventListener("submit",(e)=>{
-            e.preventDefault();
-            //TODO: buat emit untuk ini
-        })
-    }
 
 }
+
 
 
 
@@ -5539,7 +4683,36 @@ class StateControl{
     unsetPseudoElement(){} // hapus pseudo elemen
     deleteElement(){this.containerElement = null}
 
-    
+    // -- bridge dom and element --
+
+
+
+    // --- hard controll ---
+    //melalukan controlstate dengan menghapus
+    //atau memodifikasi dom secara keseluruhan
+    store(){
+        this.setDomContainer(); //crawl ke dom (sudah disiapkan)
+        this.resetElement(); // reset element
+        this.fillElementDomContainer(); // hasil dom di crawl diisi dengan elemen initial
+        this.setDom(); // crawl dom yg diperlukan
+    }
+    hide(){
+        this.setCurrentElement(); //simpan dom saat ini
+        this.unsetDom(); // hapus ikatan dom terkait
+        this.deleteDom(); // kosongkan domnya
+    }
+
+    show(){
+        this.setDomContainer(); // crawl dom untuk container
+        this.restoreDom(); // restore
+        this.setDom(); // creawldom untuk semuanya
+    }
+    backOperate(){}
+    remove(){
+        this.unsetDom();
+        this.deleteElement();
+        this.unsetDomContainer();
+    }
 
 
     // --- soft control ---
@@ -5807,108 +4980,6 @@ function updateTooltipDom(){
 
 
 
-/***/ }),
-
-/***/ "./src/app/js/service/resizer.js":
-/*!***************************************!*\
-  !*** ./src/app/js/service/resizer.js ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addResizer": () => (/* binding */ addResizer)
-/* harmony export */ });
-// untuk menambahkan fitur resizeable
-
-
-const addResizer = (element, directionRezise) => {
-    let resizer = element
-    let previousSide = resizer.previousElementSibling;
-    let nextSide = resizer.nextElementSibling;
-    console.log("seharusnya resizer bekerja");
-
-    //posisi resizer
-    const direction = resizer.getAttribute('data-direction') || 'horizontal';
-
-    //ukuran tinggi sibling sebelumnya
-    let previousSideHeight = 0; // -- untuk split horizontal
-    let previousSideWidth = 0; // -- untuk split vertikal
-
-
-    // posisi mouse
-    let x = 0;
-    let y = 0;
-
-    // Handle event mouse down
-    const mouseDownHandler = function (e) {
-        console.log("event mouse down")
-        // dapatakn posisi terkini
-        x = e.clientX;
-        y = e.clientY;
-        let rect = previousSide.getBoundingClientRect();
-        previousSideWidth = rect.width
-        previousSideHeight = rect.height
-
-        // sambung listener
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
-    };
-
-    const mouseMoveHandler = function(e) {
-        const dx = e.clientX - x;
-        const dy = e.clientY - y;
-
-        switch (direction) {
-            case 'vertical':
-                const h = (previousSideHeight + dy) * 100 / resizer.parentNode.getBoundingClientRect().height;
-                previousSide.style.height = `${h}%`;
-                break;
-            case 'horizontal':
-            default:
-                const w = (previousSideWidth + dx) * 100 / resizer.parentNode.getBoundingClientRect().width;
-                previousSide.style.width = `${w}%`;
-                break;
-        }
-
-        const cursor = direction === 'horizontal' ? 'col-resize' : 'row-resize';
-        resizer.style.cursor = cursor;
-        document.body.style.cursor = cursor;
-    };
-
-    const mouseUpHandler = function () {
-        resizer.style.removeProperty('cursor');
-        document.body.style.removeProperty('cursor');
-
-        previousSide.style.removeProperty('user-select');
-        previousSide.style.removeProperty('pointer-events');
-
-        nextSide.style.removeProperty('user-select');
-        nextSide.style.removeProperty('pointer-events');
-
-        // Remove the handlers of `mousemove` and `mouseup`
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
-    };
-
-    // Attach the handler
-    resizer.addEventListener('mousedown', mouseDownHandler);
-
-}
-
-
-
-
-/***/ }),
-
-/***/ "./src/app/img/habibi-cat.jpg":
-/*!************************************!*\
-  !*** ./src/app/img/habibi-cat.jpg ***!
-  \************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-module.exports = __webpack_require__.p + "img/habibi-cat.jpg";
-
 /***/ })
 
 /******/ 	});
@@ -5962,18 +5033,6 @@ module.exports = __webpack_require__.p + "img/habibi-cat.jpg";
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -5988,26 +5047,6 @@ module.exports = __webpack_require__.p + "img/habibi-cat.jpg";
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
