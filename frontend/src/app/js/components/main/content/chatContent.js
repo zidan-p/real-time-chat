@@ -1,5 +1,5 @@
-import {msgRow} from '../../DOM_component/dom_component'
-import {StateControl} from "../stateControl";
+import {msgRow} from '../../../DOM_component/dom_component'
+// import {StateControl} from "../../stateControl";
 
 // container atau tempat untuk menampilkan pesan
 //disini dibuat setiap room
@@ -14,7 +14,7 @@ class ChatContent{
 
 
     constructor({msg, idUser}){
-        this.idUser = 12321;
+        this.idUser = idUser;
         this.msg = msg;
     }
 
@@ -30,9 +30,9 @@ class ChatContent{
     fillCurrentElementDom(){
         this.msg.forEach(msg => {
             this.appendMsg({
-                msg : msg.data,
-                idSender : msg.idSender,
-                fromMe : false
+                msg : msg.message,
+                idSender : msg.userId,
+                fromMe : msg.userId == this.idUser
             })
         })
     }
@@ -43,15 +43,13 @@ class ChatContent{
             numberRow : this.lastRow,
             msg : msg,
             idSender : idSender,
-            fromMe :fromMe
+            fromMe : fromMe
         })
         this.containerElement.append( 
             tempmsg
         )
         this.containerElement.scrollIntoView({block: "end"});
-        setTimeout(()=>{
-            tempmsg.classList.remove('bg-vscode-1');
-        },100)
+        setTimeout(()=>{tempmsg.classList.remove('bg-vscode-1')},100)
         this.lastRow++;
     }
 

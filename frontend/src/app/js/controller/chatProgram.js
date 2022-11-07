@@ -69,17 +69,38 @@ let user = {
     lastActive : null
 }
 
+async function fecthData(){
+    let results = await fetch('http://127.0.0.1:3004/room/full',{
+        // mode: 'no-cors',
+        headers:{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        }
+    })
+    results = await results.json()
+    results = results.data
+    return results.map(res => {
+        return {
+            id : res.id,
+            name : res.name,
+            participant : res.users,
+            msg : res.messages,
+            creator : res.creator_room,
+            description : res.description
+        }
+    })
+}
 
-
-function testRun(){
+async function testRun(){
 
     //set local storage
     localStorage.setItem('userData', JSON.stringify(
         user
     ));
 
+    let group = await fecthData();
     let start = new StateRoom(
-        rooms.map(room => new Room(room))
+        group.map(room => new Room(room))
     )
 
     document.querySelector('body').innerHTML = ""

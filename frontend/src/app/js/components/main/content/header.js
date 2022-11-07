@@ -1,5 +1,5 @@
-import {header} from "./../../DOM_component/dom_component";
-import {StateControl} from "../stateControl";
+import {header} from "../../../DOM_component/dom_component";
+// import {StateControl} from "../stateControl";
 
 
 class Header{
@@ -15,9 +15,8 @@ class Header{
     nameContainerElement
     iconContainerElement
 
-    constructor({roomName = "", roomIcon = ""}){
+    constructor({roomName = ""}){
         this.roomName = roomName;
-        this.roomIcon = roomIcon;
 
     }
 
@@ -32,11 +31,9 @@ class Header{
     deleteElement(){this.containerElement = null}
     setPseudoElement(){
         this.nameContainerElement = this.containerElement.querySelector('#header-room-name');
-        this.iconContainerElement = "";
     }
     unsetPseudoElement(){
         this.nameContainerElement = null
-        this.iconContainerElement = null
     }
 
     prepareElement(){
@@ -49,7 +46,6 @@ class Header{
     // -- state controll --
     fillCurrentElementDom(){
         this.nameContainerElement = this.roomName
-        this.iconContainerElement = this.icon
     }
 
     slide(){

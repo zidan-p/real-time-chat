@@ -3,6 +3,7 @@
 // state disini adalah state roomnya? mungkin,,
 import { appBody } from "../DOM_component/dom_component"
 import {SideBar} from "./../components/sidebar/sidebar"
+import {DefaultMain} from "./main/defaultMain"
 
 class StateRoom{
     // -- object elemen ---
@@ -48,7 +49,7 @@ class StateRoom{
     detachMain(){this.mainElement.innerHTML = ""}
 
     setActiveRoom(room){room.setActive(); this.currentActive = room}
-    setInactiveRoom(room){room.setInactive()}
+    setInactiveRoom(room){console.log(room);room.setInactive()}
     setTheActivation(){
         let found = this.roomList.find((room,i)=> {
             room.isActive ? this.setActiveRoom(room) : this.setInactiveRoom(room)
@@ -69,7 +70,10 @@ class StateRoom{
     }
 
     changeCurrentPage(room){
-        this.currentActive.setInactive();
+        // this.currentActive.setInactive();
+        if(this.currentActive){
+            this.setInactiveRoom(this.currentActive)
+        }
         this.currentActive = room;
         this.currentActive.setActive();
         this.showCurrentPage();
@@ -77,10 +81,15 @@ class StateRoom{
 
     showCurrentPage(){
         this.detachMain();
-        this.attachMain(this.currentActive.roomMain); // elemen main yg diattach
+        if(!this.currentActive){
+            return
+        }
+        if(this.currentActive){
+            this.attachMain(this.currentActive.roomMain); // elemen main yg diattach
+        }
     }
 
-    run(){
+    async run(){
         this.prepareElement();
 
         this.attachSidebar(this.sideBar);
@@ -89,7 +98,11 @@ class StateRoom{
     }
 
     //TODO buat default page
-    defaultPage(){}
+    defaultPage(){
+        this.currentActive = false
+        let deff = new DefaultMain();
+        return deff;
+    }
 
 
     // --- event ----

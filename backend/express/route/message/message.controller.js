@@ -127,6 +127,7 @@ module.exports = {
     controllerEdit : async (req,res)=>{
         try {
             const id = req.params.id
+            console.log("the id --> ",id);
             const data = {
                 message : req.body.message,
                 userId : req.body.userId,
@@ -135,7 +136,7 @@ module.exports = {
             if(!await room.findByPk(data.roomId)) throw Error('room undefined')
             if(!await user.findByPk(data.userId)) throw Error('user undefined')
 
-            let result = await message.update(data, {where : id})
+            let result = await message.update(data, {where : {id : id}})
             res.status(201)
             res.json({
                 success : true,

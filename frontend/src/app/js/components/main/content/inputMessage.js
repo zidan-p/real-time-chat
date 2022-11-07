@@ -1,5 +1,5 @@
-import {inputMessage} from "./../../DOM_component/dom_component"
-import {StateControl} from "../stateControl";
+import {inputMessage} from "../../../DOM_component/dom_component"
+// import {StateControl} from "../stateControl";
 
 class InputMessage{
     currentMsg

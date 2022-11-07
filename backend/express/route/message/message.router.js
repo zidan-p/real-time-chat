@@ -10,25 +10,24 @@ const {
     controllerDelete,
     controllerEdit,
     controllerBulkCreate,
-    
 } = require('./message.controller');
 
 
 // --- get ---
-app.get('/',controllerGetAll); // apakah ini perlu???
-app.get('/get-by-room/:room_id', controllerGetByRoom); 
-app.get('/get-by-user/:user_id',controllerGetByUser);
-app.get('/:id',controllerGetById);
+app.get('/', controllerGetAll); // apakah ini perlu??? // V
+app.get('/get-by-room/:room_id', controllerGetByRoom); // V
+app.get('/get-by-user/:user_id', controllerGetByUser); // V
+app.get('/:id', controllerGetById);
 
 // --- post ---
-app.post('/',controllerCreate);
-app.post('/bulk-create',controllerBulkCreate); // V
+app.post('/', controllerCreate); // V
+app.post('/bulk-create', controllerBulkCreate); // V
 
 // --- put ---
-app.put('/:id',controllerEdit);
+app.put('/:id', controllerEdit); // V
 
 // -- delete --
-app.delete('/:id',controllerDelete);
+app.delete('/:id',controllerDelete); // V
 
 
 module.exports = app

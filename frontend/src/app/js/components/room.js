@@ -15,23 +15,26 @@ class Room {
     name
     id
     isActive
+    creator
+    description
 
-    constructor({participant, msg, name, id,isActive = false}){
+    constructor({participant, msg, name, id,creator,description,isActive = false}){
         this.msg = msg;
         this.name = name;
         this.id = id;
         this.participant = participant;
         this.isActive = isActive
+        this.creator = creator
+        this.description = description
 
         this.roomAside = new RoomAside({
             roomName : this.name,
-            newMsg: "",
+            newMsg: msg[msg.length-1]?.message,
             roomId : this.id
         });
 
         this.roomMain = new RoomMain({
             roomName : this.name,
-            roomIcon : "dummy icon",
             msg: msg
         })
     }
@@ -48,7 +51,6 @@ class Room {
         this.roomMain.setInactive();
     }
     setActive(){
-        console.log("ini di set aktiv");
         this.isActive = true;
         this.roomAside.setActive();
         this.roomMain.setActive();

@@ -21,10 +21,10 @@ class Initial{
         let check = localStorage.getItem('userData');
         if(check){
             this.isSet = true;
-        }else{
-            this.isSet = false;
+            return true;
         }
-        return false
+        this.isSet = false;
+        return true
     }
 
     showSignin(){

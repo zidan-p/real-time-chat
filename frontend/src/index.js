@@ -7,14 +7,15 @@ import {Initial} from "./app/js/controller/initialProgram"
 //1. cek apakah sudah login
 const init = new Initial();
 
-let checkSignin = () => {
+let checkSignin =async () => {
     if(init.checkIsset()){ 
         //bila sudah di set user sebelumnya maka jalankan
         //1. fect data class dan msg
         //2. prepare elemen
         
         //test untuk run program sederhana
-        testRun()
+        await testRun()
+        updateTooltipDom()
         
         return;
     }else{
@@ -23,7 +24,6 @@ let checkSignin = () => {
         //2. lakukan pendaftaran
 
         init.showSignin();
-    
     }
 }
 

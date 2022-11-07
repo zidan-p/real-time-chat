@@ -89,7 +89,7 @@ let roomList = ({isActive = false, roomName = "", newMsg = "", roomId=0}) => {
             <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
         </svg>
         <div class="flex grow flex-col">
-            <p class="room-name-aside break-words">${roomName}</p>
+            <p class="room-name-aside bg-vscode-3 px-1 rounded-sm break-words">${roomName}</p>
             <h4 class="new-msg-container font-extralight text-xs text-gray-400">${newMsg}...</h4>
         </div>
     </div>
@@ -126,11 +126,11 @@ let sideBody = () => {
         <div class="wrapper shadow">
             <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
             <div class="px-3 mb-5 group"> <!-- search bar -->
-                <form id="form-find" class="px-2 bg-vscode-2 group-focus-within:bg-white flex flex-nowrap gap-2 transition">
+                <form id="form-find" class="px-2 bg-vscode-2 rounded group-focus-within:bg-white flex flex-nowrap gap-2 transition">
                     <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
-                    <input id="find" class="bg-vscode-2 w-full px-1 text-vscode-5 focus-within:outline-none focus-within:bg-white transition" placeholder="Search.."/>
+                    <input id="find" class="bg-vscode-2 w-full px-1 rounded text-vscode-5 focus-within:outline-none focus-within:bg-white transition" placeholder="Search.."/>
                 </form>
             </div>
         </div>
@@ -155,17 +155,17 @@ let sideBody = () => {
                         </div>
                     </div>
                     <!--join room-->
-                            <div id="join-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
-                                <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 16 16 12 12 8"></polyline>
-                                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                                </svg>
-                                <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
-                                    Join Room
-                                    <div class="arrow" data-popper-arrow></div>
-                                </div>
-                            </div>
+                    <div id="join-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
+                        <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 16 16 12 12 8"></polyline>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                            Join Room
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
+                    </div>
                     <!--tambah room-->
                     <div id="add-room-btn" class="tooltip-collection px-4 py-1.5 focus-visible:outline-none">
                         <svg class="tooltip-target focus:outline-none cursor-pointer mx-auto hover:bg-vscode-2 rounded-sm transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -247,11 +247,11 @@ let createRoomSideContent = () => {
         <form class="text-xs font-bold p-5 " action="">
             <div class="mb-2">
                 <label class="font-extralight" for="">Nama Room</label>
-                <input class="room-name-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
+                <input class="room-name-side rounded-sm w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
             </div>
             <div class="mb-2">
                 <label class="font-extralight" for="">Deskripsi Room</label>
-                <input class="room-description-side w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
+                <input class="room-description-side rounded-sm w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="room name..">
             </div>
             <div class="mb-2">
                 <p class="id-creator">Creator id</p>
@@ -298,7 +298,7 @@ let accountSideContent = () => {
         <form class="text-xs font-bold p-5 " action="">
             <div class="mb-2">
                 <label class="font-extralight" for="">Nama</label>
-                <input id="name-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
+                <input id="name-account-side" class="w-full rounded-sm text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
             </div>
             <div class="mb-2">
                 <label class="font-extralight" for="">ID 
@@ -323,7 +323,7 @@ let joinRoomSideContent = () => {
                 <label class="font-extralight" for="">Room id 
                     <span class="text-[10px] text-gray-400">*only existing room</span> 
                 </label>
-                <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
+                <input id="id-account-side" class="w-full rounded-sm text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
             </div>
             <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Find</button>
         </form>
@@ -392,6 +392,21 @@ let loaderView = () => {
                 <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
             </svg>
             <h1 class="border-t border-vscode-1 pt-2">Harap tunggu, sedang memuat semua profile <span class="text-amber-500">user</span></h1>
+        </div>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
+
+let loaderGeneral = () => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="h-screen w-full bg-vscode-3 flex justify-center">
+        <div class="bg-vscode-4 self-center p-3 rounded-md">
+            <svg class="animate-spin mx-auto mb-4" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="68.5" cy="68.5" r="63" stroke="#1E1F1C" stroke-width="11"/>
+                <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
+            </svg>
         </div>
     </div>
     `.trim();

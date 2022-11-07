@@ -1,6 +1,6 @@
-import {Header} from "./header";
-import {InputMessage} from "./inputMessage";
-import {ChatContent} from "./chatContent";
+import {Header} from "./content/header";
+import {InputMessage} from "./content/inputMessage";
+import {ChatContent} from "./content/chatContent";
 import {mainBodyRoom} from "./../../DOM_component/dom_component"
 import {addResizer} from "./../../service/resizer";
 
@@ -24,14 +24,13 @@ class RoomMain{
     chatContentContainerElement
     resizerElement
 
-    constructor({roomName, roomIcon, msg}){
+    constructor({roomName, msg}){
 
         this.idUser = 12312; //ini cuma dummy
         this.isActive = false;
 
         this.header = new Header({
             roomName: roomName,
-            roomIcon: roomIcon
         });
 
         this.inputMessage = new InputMessage({
