@@ -35,7 +35,9 @@ class Room {
 
         this.roomMain = new RoomMain({
             roomName : this.name,
-            msg: msg
+            msg: msg,
+            memberList : participant,
+            
         })
     }
 

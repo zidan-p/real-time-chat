@@ -34,14 +34,14 @@ let header = ({roomName = ""}) => {
         <div class="flex justify-between px-5 p-1">
             <h1 id="header-room-name" class="font-semibold text-xl m-2">${roomName}</h1>
             <div class="self-center flex gap-3 rounded bg-vscode-4 p-1"">
-                <button class="self-center hover:bg-vscode-2 inline-flex gap-2 bg-vscode-3 px-2 rounded-sm">
+                <button id="log-out-header" class="self-center hover:bg-vscode-2 inline-flex gap-2 bg-vscode-3 px-2 rounded-sm">
                     <svg class="self-center w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline>
                         <line x1="21" y1="12" x2="9" y2="12"></line>
                     </svg>
                     <span>Log out</span>
                 </button>
-                <button class="self-center hover:bg-vscode-2 inline-flex gap-2 bg-vscode-3 px-2 rounded-sm">
+                <button id="info-header" class="self-center hover:bg-vscode-2 inline-flex gap-2 bg-vscode-3 px-2 rounded-sm">
                     <svg class="self-center w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"></circle>
                         <line x1="12" y1="16" x2="12" y2="12"></line>
@@ -56,21 +56,16 @@ let header = ({roomName = ""}) => {
     return div.firstChild;
 }
 
-let roomMenu = ({roomName, msgCount, }) => {
+//room menu
+let roomMenu = ({roomName, msgCount, membersCount, createdAt, creatorId, roomDescription}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div class="bg-vscode-3 shadow rounded max-w-xl p-3  absolute w-full">
         <div class="title border-b-[1px] border-b-gray-600 mb-2 py-1 pb-2 flex gap-2">
-            <svg class="shrink-0 w-7" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="41" height="41" fill="#FFF504"/>
-                <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
-                <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
-            </svg>
             <h1 class="text-2xl">${roomName}</h1>
         </div>
         <div class="info">
-            <div class="info-bar mb-4 flex gap-2 px-2 py-0.5 rounded bg-vscode-1">
+            <div class="info-bar mb-4 flex gap-2 py-0.5 rounded">
                 <div class="message-count-container flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -81,31 +76,44 @@ let roomMenu = ({roomName, msgCount, }) => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                     </svg>
-                    <span id="member-count" class="self-center">${memberCount} member</span>
+                    <span id="member-count" class="self-center">${membersCount} member</span>
                 </div>
             </div>
-            <table class="table-auto text-sm w-3/4 mb-4">
+            <table class="table-auto text-sm w-3/4 mb-2">
                 <tbody>
                     <tr>
-                        <td>Created at</td>
-                        <td>12 may 2022, 12.00</td>
+                        <td class="font-bold">Created at</td>
+                        <td class="text-gray-500">${createdAt}</td>
                     </tr>
                     <tr>
-                        <td>Creator</td>
-                        <td class="text-amber-500">[#1234]</td>
+                        <td class="font-bold">Creator</td>
+                        <td class="text-amber-300">[#${creatorId}]</td>
                     </tr>
                     <tr>
-                        <td>Description</td>
-                        <td>"ini adalah grup yang luar biasa"</td>
+                        <td class="font-bold">Description</td>
+                        <td class="text-gray-500">"${roomDescription}"</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="member-list flex flex-col bg-vscode-4 rounded-sm p-2 max-h-[40vh] overflow-y-auto mb-2">
+            <h1 class="text-center">Members list</h1>
+            
+        </div>
         <div class="option flex gap-2">
-            <button class="close w-full bg-vscode-2 hover:bg-vscode-3 active:bg-vscode-4 rounded-sm text-center">
-                X Close
+            <button class="close-menu w-full bg-vscode-2 hover:bg-vscode-1 active:bg-vscode-4 rounded-sm flex gap-2 justify-center">
+                <svg class="w-4 self-center" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Close
             </button>
-            <button class="log-out w-full hover:bg-red-800 active:bg-red-900 bg-red-700 rounded-sm text-center">
+            <button class="log-out w-full hover:bg-red-600 active:bg-red-900 bg-red-700 rounded-sm flex gap-2 justify-center">
+                <svg class="w-4 self-center" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
                 Sign Out
             </button>
         </div>
@@ -114,6 +122,17 @@ let roomMenu = ({roomName, msgCount, }) => {
     return div.firstChild;
 }
 
+//member pada menu
+let memberMenuList = ({userId, userName}) => {
+    let div = document.createElement('DIV');
+    div.innerHTML = `
+    <div class="member py-1">
+        <p class="text-amber-300">[#${userId}]</p>
+        <span class="text-sm text-gray-500">${userName}</span>
+    </div>
+    `.trim();
+    return div.firstChild;
+}
 
 //input pesan
 let inputMessage = ({inpTxt = ""}) => {
@@ -502,6 +521,7 @@ export {
     sideBody,
     mainBodyRoom,
     roomMenu,
+    memberMenuList,
     
     createRoomSideContent,
     settingSideContent,

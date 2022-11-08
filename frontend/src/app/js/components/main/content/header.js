@@ -13,7 +13,8 @@ class Header{
     // -- elemen value --
     containerElement
     nameContainerElement
-    iconContainerElement
+    buttonLogoutElement
+    buttonInfoElement
 
     constructor({roomName = ""}){
         this.roomName = roomName;
@@ -31,9 +32,13 @@ class Header{
     deleteElement(){this.containerElement = null}
     setPseudoElement(){
         this.nameContainerElement = this.containerElement.querySelector('#header-room-name');
+        this.buttonInfoElement = this.containerElement.querySelector('#info-header');
+        this.buttonLogoutElement = this.containerElement.querySelector('#log-out-header')
     }
     unsetPseudoElement(){
         this.nameContainerElement = null
+        this.buttonInfoElement = null
+        this.buttonLogoutElement = null
     }
 
     prepareElement(){
@@ -48,10 +53,14 @@ class Header{
         this.nameContainerElement = this.roomName
     }
 
-    slide(){
-        this.fillCurrentElementDom();
+    // -- event list --
+    onInfoClick(callback){
+        
     }
 
+    onLogoutClick(callback){
+
+    }
 }
 
 export {Header}

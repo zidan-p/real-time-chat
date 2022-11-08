@@ -138,6 +138,7 @@ class InputMessage{
         })
     }
 
+    // ---- event list ----
     //kirim ketika dienter, untuk input
     onEnterSend(callback){
         this.formElement.addEventListener('submit',(e)=>{

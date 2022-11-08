@@ -3,12 +3,14 @@ import {InputMessage} from "./content/inputMessage";
 import {ChatContent} from "./content/chatContent";
 import {mainBodyRoom} from "./../../DOM_component/dom_component"
 import {addResizer} from "./../../service/resizer";
+import { RoomMenu } from "./content/roomMenu";
 
 class RoomMain{
     // -- object --
     header
     inputMessage
     chatContent
+    roomMenu
 
     // -- data --
     idUser // user ini
@@ -40,7 +42,9 @@ class RoomMain{
 
         this.chatContent = new ChatContent({msg : msg})
 
-
+        this.roomMenu = new RoomMenu({
+            
+        })
     }
 
     // -- element manipulation --
