@@ -23,18 +23,45 @@
         }
       </script>
     <title>Real time chat</title>
-<script defer src="bundle-184c9db328fc608fa499.js"></script></head>
+<script defer src="bundle-75d95c40d233ba7e2059.js"></script></head>
 <!-- file index ini dalah tempat dimana nantinay elemen js dirender -->
 <!-- file ini hanya satu, karena project ini akan buat sebagai project spa vanilla js -->
 <!-- juga file ini nantinya aakan dibuat menjadi template untuk webpack-->
-<body class="font-mono text-white">
-    <div class="h-screen w-full bg-vscode-3 flex justify-center">
-        <div class="bg-vscode-4 self-center p-3 rounded-md">
-            <svg class="animate-spin mx-auto mb-4" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="68.5" cy="68.5" r="63" stroke="#1E1F1C" stroke-width="11"/>
-                <path d="M120.937 32.6869C127.975 42.9914 131.817 55.1352 131.994 67.599C132.001 68.0965 131.597 68.5 131.099 68.5V68.5C130.602 68.5 130.199 68.0965 130.192 67.5991C130.015 55.4978 126.283 43.7081 119.45 33.703C112.616 23.6979 102.993 15.9317 91.7851 11.3643C91.3244 11.1765 91.0951 10.6547 91.2761 10.1913V10.1913C91.4571 9.72786 91.9799 9.49838 92.4407 9.68595C103.986 14.3855 113.9 22.3824 120.937 32.6869Z" stroke="white" stroke-width="2"/>
+<body class="font-mono text-white bg-vscode-4">
+    <div class="bg-vscode-3 shadow rounded max-w-3xl p-3  absolute w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div class="title border-b-[1px] border-b-gray-600 mb-2 py-1 pb-2 flex gap-2">
+            <svg class="shrink-0 w-7" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="41" height="41" fill="#FFF504"/>
+                <rect x="20.5494" y="4.34717" width="16.4" height="16.4" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M29.0458 4.59375V20.648" stroke="black" stroke-width="2"/>
+                <path d="M36.6036 12.646L20.5494 12.646" stroke="black" stroke-width="2"/>
             </svg>
-            <h1 class="border-t border-vscode-1 pt-2">Harap tunggu, sedang memuat semua profile <span class="text-amber-500">user</span></h1>
+            <h1 class="text-2xl">Judul grup</h1>
+        </div>
+        <div class="info">
+            <!-- <h3>info </h3>
+            <p class="text-sm text-gray-500">ini adalah deskripsi untuk mengisi tempat kosong</p>
+            <div class="created-at flex gap-2 text-[12px]">
+                <svg class="w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="self-center">19:12:12.00</span>
+            </div> -->
+            <div class="info-bar flex px-2 py-0.5 rounded bg-vscode-1">
+                <div class="message-count-container flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    </svg>
+                    <span id="message-count" class="self-center">122 message</span>
+                </div>
+                <div class="member-count-container flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                    <span id="member-count" class="self-center">10 member</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
