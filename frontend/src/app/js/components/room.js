@@ -18,7 +18,8 @@ class Room {
     creator
     description
 
-    constructor({participant, msg, name, id,creator,description,isActive = false}){
+    constructor(room){
+        let {participant, msg, name, id,creator,description,isActive = false} = room
         this.msg = msg;
         this.name = name;
         this.id = id;
@@ -33,12 +34,7 @@ class Room {
             roomId : this.id
         });
 
-        this.roomMain = new RoomMain({
-            roomName : this.name,
-            msg: msg,
-            memberList : participant,
-            
-        })
+        this.roomMain = new RoomMain(room)
     }
 
     prepareElement(){

@@ -1,41 +1,26 @@
 import {accountSideContent} from "./../../../DOM_component/dom_component"
+import {ComponentStruct} from "../../../core/component_struct";
 
 
-
-class AccountSide{
-
-    // -- dom - element --
-    containerElement
-    nameContainer
-    idContainer
-    saveBtn
-    formElement
-
+class AccountSide extends ComponentStruct{
     // -- data value --
     userData
     active = false
 
     constructor(){
-        this.getUserData()
+        super()
+        this.getUserData();
+
+        // -- define contructor --
+        this.defineCreateElement(accountSideContent);
+        this.defineElementStruct({
+            nameContainer : "#name-account-side",
+            idContainer : "#id-account-side",
+            saveBtn : "button",
+            formElement : "form"
+        })
     }
 
-    // -- element manipulation --
-    createElement(){return accountSideContent();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.nameContainer = this.containerElement.querySelector('#name-account-side')
-        this.idContainer = this.containerElement.querySelector('#id-account-side')
-        this.saveBtn = this.containerElement.querySelector('button');
-        this.formElement = this.containerElement.querySelector('form');
-    }
-    unsetPseudoElement(){
-        this.nameContainer = null
-        this.idContainer = null
-        this.saveBtn = null
-        this.formElement = null
-    }
-    
     // -- state --
     prepareElement(){
         this.resetElement();
@@ -44,8 +29,8 @@ class AccountSide{
         this.setEvent();
     }
     fillCurrentElementDom(){
-        this.nameContainer.value = this.userData.name
-        this.idContainer.value = this.userData.id
+        this.elementStruct.nameContainer.value = this.userData.name
+        this.elementStruct.idContainer.value = this.userData.id
     }
     setActive(){
         this.active = true
@@ -67,7 +52,7 @@ class AccountSide{
 
     // -- event --
     setEvent(){
-        this.formElement.addEventListener('submit',(e)=>{
+        this.elementStruct.formElement.addEventListener('submit',(e)=>{
             e.preventDefault();
             this.changeUserData();
 

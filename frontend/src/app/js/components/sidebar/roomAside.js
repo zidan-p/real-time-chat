@@ -1,9 +1,9 @@
 import {roomList} from "./../../DOM_component/dom_component"
-
+import {ComponentStruct} from "./../../core/component_struct";
 
 
 //room bagian samping
-class RoomAside{
+class RoomAside extends ComponentStruct{
     roomName
     newMsg
     roomId
@@ -16,30 +16,24 @@ class RoomAside{
     nameContainerElement
     newMsgContainerElement
 
-    constructor({roomName = "", newMsg = "", roomId}){
+    constructor({roomName = "", newMsg = "", roomId}){ 
+        super();
         this.roomName = roomName
         this.roomId = roomId
         this.newMsg = newMsg
-    }
 
-    // -- element manipulation --
-    createElement(){
-        return roomList({
-            isActive: false,
-            roomName: this.roomName,
-            newMsg : this.newMsg,
-            roomId : this.roomId
+        this.defineCreateElement(()=>{
+            return roomList({
+                isActive: false,
+                roomName: this.roomName,
+                newMsg : this.newMsg,
+                roomId : this.roomId
+            })
         })
-    } //perlu di bind supaya dapat mengakses elemen object
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.nameContainerElement = this.containerElement.querySelector('.room-name-aside');
-        this.newMsgContainerElement = this.containerElement.querySelector('.new-msg-container');
-    }
-    unsetPseudoElement(){
-        this.nameContainerElement = null;
-        this.newMsgContainerElement = null
+        this.defineElementStruct({
+            nameContainer : ".room-name-aside",
+            newMsgContainer : ".new-msg-container"
+        })
     }
     setActive(){
         this.containerElement.classList.add("bg-vscode-3")
@@ -59,8 +53,8 @@ class RoomAside{
     }
 
     fillCurrentElementDom(){
-        this.nameContainerElement = this.roomName;
-        this.newMsgContainerElement = this.newMsg;
+        this.elementStruct.nameContainer = this.roomName;
+        this.elementStruct.newMsgContainer = this.newMsg;
     }
 
 

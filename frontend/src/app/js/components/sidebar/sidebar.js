@@ -4,21 +4,11 @@ import {CreateRoomSide} from "./tool/createRoomSide";
 import {JoinRoomSide} from "./tool/joinRoomSide";
 import {RoomListSide} from "./tool/roomListSide";
 import {SettingSide} from "./tool/settingSide"
+import {ComponentStruct} from "../../core/component_struct"
 
 
 
-class SideBar{
-    
-
-    // -- element value ---
-    containerElement
-    sideContentContainerElement
-    // ** button value **
-    roomListSidebtn
-    joinRoomBtn
-    settingBtn
-    createRoomBtn // -- create room
-    accountBtn
+class SideBar extends ComponentStruct{
 
     // -- data value --
     active
@@ -31,6 +21,7 @@ class SideBar{
     setting
 
     constructor(roomSideList){
+        super()
         this.roomListSide = new RoomListSide(roomSideList);
         this.account = new AccountSide();
         this.createRoom = new CreateRoomSide();
@@ -39,27 +30,21 @@ class SideBar{
 
         //set active defaultnya adalah room list
         this.active = this.roomListSide
-    }
 
-    // -- element manipulation --
-    createElement(){return sideBody();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.sideContentContainerElement = this.containerElement.querySelector('#side-content')
-        this.roomListSidebtn = this.containerElement.querySelector('#room-list-btn')
-        this.joinRoomBtn = this.containerElement.querySelector('#join-room-btn')
-        this.createRoomBtn = this.containerElement.querySelector('#add-room-btn')
-        this.settingBtn = this.containerElement.querySelector('#setting-btn')
-        this.accountBtn = this.containerElement.querySelector('#account-btn')
-    }
-    unsetPseudoElement(){
-        this.sideContentContainerElement = this.containerElement.querySelector('#side-content')
-        this.roomListSidebtn = null 
-        this.joinRoomBtn = null
-        this.createRoomBtn = null
-        this.settingBtn = null
-        this.accountBtn = null
+        // -- define from constrcutor --
+        this.defineCreateElement(sideBody)
+        this.defineElementStruct({
+            sideContentContainer : {
+                selector : "#side-content",
+                freeze : true
+            },
+            // ** button value **
+            roomListSidebtn : "#room-list-btn",
+            joinRoomBtn : "#join-room-btn",
+            settingBtn : "#add-room-btn",
+            createRoomBtn : "#setting-btn",// -- create room
+            accountBtn : "#account-btn"
+        })
     }
 
 
@@ -72,26 +57,23 @@ class SideBar{
     setInactiveContent(content){
         content.setInactive()
     };
-    attachContent(content){
-        console.log("konten yg akan di append",content)
-        this.sideContentContainerElement.append(content)
-    }
-    detachContent(){
-        this.sideContentContainerElement.innerHTML = "";
-    }
     changeMainContent(content){
         this.setInactiveContent(this.active);
-        this.detachContent();
+        this.detachProp.sideContentContainer();
         this.setActiveContent(content);
-        this.attachContent(content.containerElement)
+        this.attachProp.sideContentContainer(content)
     }
     showCurrentContent(){
-        console.log("content akan di attach")
-        this.attachContent(this.active.containerElement);
+        console.log("yang aktif adalah",this.active);
+        console.log(this.attachProp);
+        this.attachProp.sideContentContainer(this.active);
+        // this.attachProp.sideContentContainer(document.createElement('H1'));
+        console.log(this.elementStruct.sideContentContainer);
     }
     prepareElement(){
         this.resetElement();
         this.setPseudoElement();
+        this.defineAttachcement();
 
         this.roomListSide.prepareElement();
         this.account.prepareElement();
@@ -100,17 +82,16 @@ class SideBar{
         this.setting.prepareElement();
 
         this.setBtnEvent()
-        // this.testing()
         this.showCurrentContent()
     }
 
     // -- event --
     setBtnEvent(){
-        this.roomListSidebtn.addEventListener('click',(e)=>{this.changeMainContent(this.roomListSide)}) 
-        this.joinRoomBtn.addEventListener('click',(e)=>{this.changeMainContent(this.joinRoom)}) 
-        this.createRoomBtn.addEventListener('click',(e)=>{this.changeMainContent(this.createRoom)})
-        this.settingBtn.addEventListener('click',(e)=>{this.changeMainContent(this.setting)})
-        this.accountBtn.addEventListener('click',(e)=>{this.changeMainContent(this.account)})
+        this.elementStruct.roomListSidebtn.addEventListener('click',(e)=>{this.changeMainContent(this.roomListSide)}) 
+        this.elementStruct.joinRoomBtn.addEventListener('click',(e)=>{this.changeMainContent(this.joinRoom)}) 
+        this.elementStruct.createRoomBtn.addEventListener('click',(e)=>{this.changeMainContent(this.createRoom)})
+        this.elementStruct.settingBtn.addEventListener('click',(e)=>{this.changeMainContent(this.setting)})
+        this.elementStruct.accountBtn.addEventListener('click',(e)=>{this.changeMainContent(this.account)})
     }
 
     testing(){

@@ -1,11 +1,12 @@
 // ini adalh program utama tempat ini dijalankan
 // akan berisi beberapa state mengenai tampilanya.
 // state disini adalah state roomnya? mungkin,,
-import { appBody } from "../DOM_component/dom_component"
+import {appBody} from "../DOM_component/dom_component"
 import {SideBar} from "./../components/sidebar/sidebar"
 import {DefaultMain} from "./main/defaultMain"
+import {ComponentStruct} from "../core/component_struct";
 
-class StateRoom{
+class StateRoom extends ComponentStruct{
     // -- object elemen ---
     roomList = []
     sideBar
@@ -14,42 +15,31 @@ class StateRoom{
     currentActive
     isFirstOpen
 
-    // -- dom elemen --
-    container
-
-    // -- element value --
-    containerElement
-    asideElement
-    mainElement
-
     constructor(roomList){
+        super();
         this.roomList = roomList;
 
         //set sidebar
         this.sideBar = new SideBar(this.roomList.map(room => room.roomAside))
+        
+        // -- define from contructor --
+        this.defineCreateElement(appBody);
+        this.defineElementStruct({
+            asideElement : "ASIDE",
+            mainElement : "MAIN"
+        })
+
     }
 
-    // --- element ----
-    createElement(){return appBody();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.asideElement = this.containerElement.querySelector('ASIDE');
-        this.mainElement = this.containerElement.querySelector('MAIN');
+    setActiveRoom(room){
+        room.setActive(); 
+        this.currentActive = room
     }
-    unsetPseudoElement(){
-        this.asideElement = this.containerElement.querySelector('ASIDE');
-        this.mainElement = this.containerElement.querySelector('MAIN');
+    setInactiveRoom(room){
+        console.log(room);
+        room.setInactive()
     }
 
-    //menggunakan attach detach
-    attachSidebar(side){this.asideElement.append(side.containerElement)}
-    detachSidebar(){this.asideElement.innerHTML = ""}
-    attachMain(main){this.mainElement.append(main.containerElement)}
-    detachMain(){this.mainElement.innerHTML = ""}
-
-    setActiveRoom(room){room.setActive(); this.currentActive = room}
-    setInactiveRoom(room){console.log(room);room.setInactive()}
     setTheActivation(){
         let found = this.roomList.find((room,i)=> {
             room.isActive ? this.setActiveRoom(room) : this.setInactiveRoom(room)
@@ -61,6 +51,7 @@ class StateRoom{
     prepareElement(){
         this.resetElement();
         this.setPseudoElement();
+        this.defineAttachcement();
         this.roomList.forEach(room => {
             room.prepareElement();
         })
@@ -70,7 +61,6 @@ class StateRoom{
     }
 
     changeCurrentPage(room){
-        // this.currentActive.setInactive();
         if(this.currentActive){
             this.setInactiveRoom(this.currentActive)
         }
@@ -80,19 +70,19 @@ class StateRoom{
     }
 
     showCurrentPage(){
-        this.detachMain();
+        this.detachProp.mainElement();
         if(!this.currentActive){
             return
         }
         if(this.currentActive){
-            this.attachMain(this.currentActive.roomMain); // elemen main yg diattach
+            this.attachProp.mainElement(this.currentActive.roomMain); // elemen main yg diattach
         }
     }
 
     async run(){
         this.prepareElement();
 
-        this.attachSidebar(this.sideBar);
+        this.attachProp.asideElement(this.sideBar);
         this.showCurrentPage();
         this.setEventChangePage()
     }

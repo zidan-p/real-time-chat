@@ -1,6 +1,7 @@
 import {roomListSideContent} from "./../../../DOM_component/dom_component"
+import {ComponentStruct} from "../../../core/component_struct"
 
-class RoomListSide{
+class RoomListSide extends ComponentStruct{
     roomSideList = [] //berisi object roomAside
 
     // -- element dom --
@@ -10,28 +11,20 @@ class RoomListSide{
     active = false
 
     constructor(roomList){
+        super()
         this.roomSideList = roomList
+
+        this.defineCreateElement(roomListSideContent);
+        this.defineElementStruct({});
     }
-    createElement(){return roomListSideContent();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){}//gk ada elemen
-    unsetPseudoElement(){}//gk ada elemen
     prepareElement(){
         this.resetElement();
         this.fillRoom()
     }
 
     // -- state control --
-    setActive(){
-        this.active = true
-         
-        console.log('---------- set active untuk room list')
-    }
-    setInactive(){
-        this.active = false
-         
-    }
+    setActive(){this.active = true}
+    setInactive(){this.active = false}
 
     // -- room manopulation --
     addRoom(roomSide){
@@ -39,7 +32,6 @@ class RoomListSide{
         this.appendRoom(roomSide)
     }
     appendRoom(roomSide){
-        console.log(roomSide)
         this.containerElement.append(roomSide.containerElement)
     }
     fillRoom(){

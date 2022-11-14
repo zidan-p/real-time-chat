@@ -19,12 +19,10 @@ class Initial{
 
     checkIsset(){
         let check = localStorage.getItem('userData');
-        if(check){
-            this.isSet = true;
-            return true;
-        }
-        this.isSet = false;
-        return true
+        if(check) this.isSet = true;
+        else this.isSet = false;
+
+        return this.isSet
     }
 
     showSignin(){
@@ -34,7 +32,8 @@ class Initial{
     }
 
     showLoader(){
-
+        document.querySelector('body').innerHTML = "";
+        document.querySelector('body').append(loaderView());
     }
 
 }

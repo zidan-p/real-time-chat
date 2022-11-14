@@ -1,6 +1,7 @@
 import {settingSideContent} from "./../../../DOM_component/dom_component"
+import {ComponentStruct} from "../../../core/component_struct"
 
-class SettingSide{
+class SettingSide extends ComponentStruct{
     containerElement
     globalOnEnterSubmitInput
     fontSizeInput
@@ -12,23 +13,15 @@ class SettingSide{
 
     //ini mungkin akan diberi default settng
     constructor(){
-
-    }
-    createElement(){return settingSideContent();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.globalOnEnterSubmitInput = this.containerElement.querySelector('#set-global-on-enter-submit')
-        this.fontSizeInput = this.containerElement.querySelector('#setting-font-size')
-        this.saveBtn = this.containerElement.querySelector('button')
-        this.form = this.containerElement.querySelector('form')
-    }
-    unsetPseudoElement(){
-        
-        this.globalOnEnterSubmitInput = null
-        this.fontSizeInput = null
-        this.saveBtn = null
-        this.form = null
+        super()
+        // -- define constructor --
+        this.defineCreateElement(settingSideContent);
+        this.defineElementStruct({
+            globalOnEnterSubmitInput : "#set-global-on-enter-submit",
+            fontSizeInput : "#setting-font-size",
+            saveBtn : "button",
+            form : "form"
+        })
     }
     prepareElement(){
         this.resetElement();
@@ -47,7 +40,7 @@ class SettingSide{
 
     //-- set event --
     setEvent(){
-        this.form.addEventListener("submit",(e)=>{
+        this.elementStruct.form.addEventListener("submit",(e)=>{
             e.preventDefault();
             //TODO: buat emit untuk ini
         })

@@ -4,8 +4,10 @@ import {ChatContent} from "./content/chatContent";
 import {mainBodyRoom} from "./../../DOM_component/dom_component"
 import {addResizer} from "./../../service/resizer";
 import { RoomMenu } from "./content/roomMenu";
+import {ComponentStruct} from "./../../core/component_struct";
+import tippy from 'tippy.js';
 
-class RoomMain{
+class RoomMain extends ComponentStruct{
     // -- object --
     header
     inputMessage
@@ -15,81 +17,61 @@ class RoomMain{
     // -- data --
     idUser // user ini
     isActive // apakah room ini active?
+    room
 
-    // -- dom value --
-    container
-
-    // -- element value --
-    containerElement
-    headerContainerElement
-    inputContainerElement
-    chatContentContainerElement
-    resizerElement
-
-    constructor({roomName, msg}){
+    constructor(room){
+        super()
+        this.room = room;
 
         this.idUser = 12312; //ini cuma dummy
         this.isActive = false;
 
         this.header = new Header({
-            roomName: roomName,
+            roomName: room.name,
         });
 
         this.inputMessage = new InputMessage({
             currentMsg : "dummy", //kosong kan terlebih dahulu
-            userId : 123, //nah, ini mungkin bisa di lihat nanti
+            userId : 12312, //nah, ini mungkin bisa di lihat nanti
         })
 
-        this.chatContent = new ChatContent({msg : msg})
+        this.chatContent = new ChatContent({msg : room.msg})
 
         this.roomMenu = new RoomMenu({
-            
+            memberList : room.participant,
+            roomDescription : room.description,
+            roomName : room.name,
+            messageCount : room.msg.length, // supaya performanya tidak buruk2 amat
+            createdAt : room.createdAt,
+            creator : room.creator,
+
+        })
+
+        this.defineCreateElement(mainBodyRoom);
+        this.defineElementStruct({
+            chatContent: "#msg-container",
+            header: "#header",
+            input: "#input-msg-container",
+            resizer: ".resizer"
         })
     }
-
-    // -- element manipulation --
-    createElement(){return mainBodyRoom()}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.chatContentContainerElement = this.containerElement.querySelector('#msg-container');
-        this.headerContainerElement = this.containerElement.querySelector('#header');
-        this.inputContainerElement = this.containerElement.querySelector('#input-msg-container');
-        this.resizerElement = this.containerElement.querySelector('.resizer');
-    }
-    unsetPseudoElement(){
-        this.chatContentContainerElement = null
-        this.headerContainerElement = null
-        this.inputContainerElement = null
-        this.resizerElement = null
-    }
-
-
-    // -- attach dan detach --
-    // ** attach
-    attachHeader(header){this.headerContainerElement.append(this.header.containerElement)}
-    attachInputMessage(input){this.inputContainerElement.append(this.inputMessage.containerElement)}
-    attachChatContent(content){this.chatContentContainerElement.append(this.chatContent.containerElement)}
-
-    // ** detach
-    detachHeader(){this.headerContainerElement.innerHTML = ""}
-    detachInputMessage(){this.inputContainerElement.innerHTML = ""}
-    detachChatContent(){this.chatContentContainerElement.innerHTML = ""}
 
     prepareElement(){
         this.resetElement();
         this.setPseudoElement();
-        console.log(this.containerElement)
+        this.defineAttachcement();
 
         this.header.prepareElement();
         this.inputMessage.prepareElement();
         this.chatContent.prepareElement();
+        this.roomMenu.prepareElement();
 
-        this.attachHeader();
-        this.attachChatContent();
-        this.attachInputMessage();
+        this.attachProp.header(this.header);
+        this.attachProp.chatContent(this.chatContent);
+        this.attachProp.input(this.inputMessage);
         
         this.setSendMessage();
+        this.setShowInfo()
         this.addResizer();
     }
 
@@ -110,11 +92,30 @@ class RoomMain{
         )
     }
 
+    setShowInfo(){
+        console.log("seharusnya set info sudah di set");
+        this.header.onInfoClick(
+            (element) => {
+                console.log(element);
+                tippy(element,{
+                    content : this.roomMenu.containerElement,
+                    trigger: 'click',
+                    // placement : "bottom-start",
+                    placement: 'auto',
+                    interactive: true,
+                    maxWidth: 500,
+                    offset: [0,20]
+                })
+            }
+        )
+    }
+
     // -- service--
     addResizer(){
+        console.log("test untuk mendapatkan data set",this.elementStruct.resizer);
         addResizer(
-            this.resizerElement,
-            this.resizerElement.dataset.direction
+            this.elementStruct.resizer,
+            this.elementStruct.resizer.dataset.direction
         )
     }
 

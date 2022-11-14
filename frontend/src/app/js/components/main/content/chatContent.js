@@ -1,5 +1,4 @@
 import {msgRow} from '../../../DOM_component/dom_component'
-// import {StateControl} from "../../stateControl";
 
 // container atau tempat untuk menampilkan pesan
 //disini dibuat setiap room

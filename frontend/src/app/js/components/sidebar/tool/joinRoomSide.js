@@ -1,14 +1,10 @@
 import {joinRoomSideContent} from "./../../../DOM_component/dom_component"
+import {ComponentStruct} from "../../../core/component_struct";
 
-class JoinRoomSide{
+class JoinRoomSide extends ComponentStruct{
     // -- dom - element --
     containerElement
-    idRoomInput
-    form
-    sendBtn
-    alertNotFoundContainer
-    alertFoundContainer
-    foundedRoomContainer
+
     
     // -- data value --
     active = false
@@ -16,31 +12,17 @@ class JoinRoomSide{
 
 
     constructor(){
-
-        
-    }
-
-    // -- element manipulation --
-    createElement(){return joinRoomSideContent();}
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.idRoomInput = this.containerElement.querySelector('.id-room-input')
-        this.form = this.containerElement.querySelector('form');
-        this.sendBtn = this.containerElement.querySelector('button')
-        
-        this.alertFoundContainer = this.containerElement.querySelector('#found-alert-room');
-        this.alertNotFoundContainer = this.containerElement.querySelector('#not-found-alert-room')
-        this.foundedRoomContainer = this.alertNotFoundContainer.querySelector('span');
-    }
-    unsetPseudoElement(){
-        this.idRoomInput = null
-        this.form = null
-        this.sendBtn = null
-
-        this.alertFoundContainer = null
-        this.alertNotFoundContainer = null
-        this.foundedRoomContainer = null
+        super()
+        // -- define constructor --
+        this.defineCreateElement(joinRoomSideContent);
+        this.defineElementStruct({
+            idRoomInput : "#id-room-input",
+            form : "form",
+            sendBtn : "button",
+            alertNotFoundContainer : "#found-alert-room",
+            alertFoundContainer : "#not-found-alert-room",
+            foundedRoomContainer : "span"
+        })
     }
 
 
@@ -59,17 +41,17 @@ class JoinRoomSide{
 
     setFound(bool){
         if(!bool){
-            this.alertNotFoundContainer.classList.toggle('hidden')
+            this.elementStruct.alertNotFoundContainer.classList.toggle('hidden')
             return
         }
-        this.alertFoundContainer.toggle('hidden')
-        this.foundedRoomContainer.innerHTML = this.foundedRoom
+        this.elementStruct.alertFoundContainer.toggle('hidden')
+        this.elementStruct.foundedRoomContainer.innerHTML = this.foundedRoom
     }
 
 
     // -- event --
     setEvent(){
-        this.form.addEventListener('submit',(e)=>{
+        this.elementStruct.form.addEventListener('submit',(e)=>{
             //todo: buat emit untuk ini
         })
     }

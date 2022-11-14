@@ -1,20 +1,24 @@
 import css from "./app/css/index.css"
 import {updateTooltipDom} from "./app/js/service/popover";
-import {testRun} from "./app/js/controller/chatProgram"
 import {Initial} from "./app/js/controller/initialProgram"
-
+import { ChatProgram } from "./app/js/controller/chatProgram";
 
 //1. cek apakah sudah login
 const init = new Initial();
+const chatProgram = new ChatProgram();
 
-let checkSignin =async () => {
+//untuk loader
+init.showLoader()
+
+
+let checkSignin = async () => {
     if(init.checkIsset()){ 
         //bila sudah di set user sebelumnya maka jalankan
         //1. fect data class dan msg
         //2. prepare elemen
         
         //test untuk run program sederhana
-        await testRun()
+        await chatProgram.run()
         updateTooltipDom()
         
         return;

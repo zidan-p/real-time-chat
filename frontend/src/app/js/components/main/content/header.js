@@ -1,8 +1,8 @@
 import {header} from "../../../DOM_component/dom_component";
-// import {StateControl} from "../stateControl";
+import {ComponentStruct} from "../../../core/component_struct";
 
 
-class Header{
+class Header extends ComponentStruct{
     roomName
     roomIcon
 
@@ -17,28 +17,22 @@ class Header{
     buttonInfoElement
 
     constructor({roomName = ""}){
+        super()
         this.roomName = roomName;
 
-    }
+        // -- define constructor --
+        this.defineCreateElement(()=>{
+            return header({
+                roomName : this.roomName,
+                roomIcon : this.roomIcon
+            })
+        });
 
-    // -- element manipulation --
-    createElement(){
-        return header({
-            roomName : this.roomName,
-            roomIcon : this.roomIcon
+        this.defineElementStruct({
+            nameContainer : "#header-room-name",
+            buttonInfo : "#info-header",
+            buttonOut : "#out-header"
         })
-    }
-    resetElement(){this.containerElement = this.createElement()}
-    deleteElement(){this.containerElement = null}
-    setPseudoElement(){
-        this.nameContainerElement = this.containerElement.querySelector('#header-room-name');
-        this.buttonInfoElement = this.containerElement.querySelector('#info-header');
-        this.buttonLogoutElement = this.containerElement.querySelector('#log-out-header')
-    }
-    unsetPseudoElement(){
-        this.nameContainerElement = null
-        this.buttonInfoElement = null
-        this.buttonLogoutElement = null
     }
 
     prepareElement(){
@@ -55,7 +49,7 @@ class Header{
 
     // -- event list --
     onInfoClick(callback){
-        
+        callback(this.elementStruct.buttonInfo);
     }
 
     onLogoutClick(callback){
