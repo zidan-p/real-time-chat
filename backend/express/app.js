@@ -21,6 +21,8 @@ try {
     app.use("/message",messageRouter);
     app.use('/room',roomRouter);
     app.use('/user',userRouter);
+
+    
 } catch (error) {
     console.error(error)
 }

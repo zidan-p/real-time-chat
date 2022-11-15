@@ -5,6 +5,7 @@ import {JoinRoomSide} from "./tool/joinRoomSide";
 import {RoomListSide} from "./tool/roomListSide";
 import {SettingSide} from "./tool/settingSide"
 import {ComponentStruct} from "../../core/component_struct"
+import tippy from "tippy.js";
 
 
 
@@ -83,6 +84,26 @@ class SideBar extends ComponentStruct{
 
         this.setBtnEvent()
         this.showCurrentContent()
+        this.attachTooltip()
+    }
+
+    // -- attach tooltip --
+    attachTooltip(){
+        
+
+        let {sideContentContainer, ...btn} = this.elementStruct
+
+        for(let bt in btn){
+            let tooltipTarget = btn[bt].querySelector('.tooltip-target');
+            let tooltip = btn[bt].querySelector('.tooltip');
+            console.log("--- target",tooltipTarget);
+            console.log("---- conten",tooltip);
+            tippy(tooltipTarget,{
+                content: tooltip,
+                delay: [500,0],
+                placement:'right',
+            })
+        }
     }
 
     // -- event --

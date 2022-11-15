@@ -17,7 +17,8 @@ class AccountSide extends ComponentStruct{
             nameContainer : "#name-account-side",
             idContainer : "#id-account-side",
             saveBtn : "button",
-            formElement : "form"
+            formElement : "form",
+            // logout: ".logout"
         })
     }
 

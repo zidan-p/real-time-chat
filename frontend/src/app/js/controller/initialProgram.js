@@ -1,8 +1,8 @@
 // dimana proram pertama kali dijalankan
 // bila data belum ada maka dusuruh untuk signup terlebig dahulu
 import {loaderView} from "./../DOM_component/dom_component";
-import {Signin} from "./../components/signin/signin"
-
+import {SigninLogin} from "../components/signin_login/signin_login"
+ 
 class Initial{
     // -- data value 
     isSet
@@ -14,7 +14,7 @@ class Initial{
 
     
     constructor(){
-        this.signin = new Signin();
+        this.signin = new SigninLogin();
     }
 
     checkIsset(){

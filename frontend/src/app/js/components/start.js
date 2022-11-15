@@ -1,6 +1,3 @@
-// ini adalh program utama tempat ini dijalankan
-// akan berisi beberapa state mengenai tampilanya.
-// state disini adalah state roomnya? mungkin,,
 import {appBody} from "../DOM_component/dom_component"
 import {SideBar} from "./../components/sidebar/sidebar"
 import {DefaultMain} from "./main/defaultMain"

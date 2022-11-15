@@ -64,7 +64,7 @@ function updateTooltipDom(){
 }
 
 
-export {updateTooltipDom};
+// export {updateTooltipDom};
 
 /**
  * :: UPDATE ::

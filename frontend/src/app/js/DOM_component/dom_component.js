@@ -238,7 +238,7 @@ let sideBody = () => {
                             <line x1="3" y1="12" x2="3.01" y2="12"></line>
                             <line x1="3" y1="18" x2="3.01" y2="18"></line>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Room list
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -250,9 +250,8 @@ let sideBody = () => {
                             <polyline points="12 16 16 12 12 8"></polyline>
                             <line x1="8" y1="12" x2="16" y2="12"></line>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" >
                             Join Room
-                            <div class="arrow" data-popper-arrow></div>
                         </div>
                     </div>
                     <!--tambah room-->
@@ -262,7 +261,7 @@ let sideBody = () => {
                             <line x1="12" y1="8" x2="12" y2="16"></line>
                             <line x1="8" y1="12" x2="16" y2="12"></line>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Add Room
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -275,7 +274,7 @@ let sideBody = () => {
                             <circle cx="12" cy="12" r="3"></circle>
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Setting
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -286,7 +285,7 @@ let sideBody = () => {
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                        <div class="tooltip absolute transition delay-150 bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
+                        <div class="tooltip bg-vscode-2 p-2 shadow rounded-sm text-sm text-gray-400" role="tooltip">
                             Account
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -383,8 +382,8 @@ let accountSideContent = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div id="account-room-side" >
-        <h5 class="text-center font-bold bg-vscode-2" >Account</h5>
-        <form class="text-xs font-bold p-5 " action="">
+        <h5 class="text-center font-bold bg-vscode-2" >Account test</h5>
+        <form class="text-xs font-bold p-5" action="">
             <div class="mb-2">
                 <label class="font-extralight" for="">Nama</label>
                 <input id="name-account-side" class="w-full rounded-sm text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
@@ -395,9 +394,14 @@ let accountSideContent = () => {
                 </label>
                 <input id="id-account-side" class="w-full text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="ID anda" value="12341">
             </div>
-            <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
+            <div>
+                <button class="save-btn bg-vscode-2 hover:bg-vscode-1 rounded-sm w-full p-1">Save</button>
+            </div>
         </form>
-    </div>
+        <div class="px-5">
+            <button class="logout w-full bg-red-600 hover:bg-red-500 rounded-sm text-xs font-bold p-1 active:bg-red-700"> Log out </button>
+        </div>
+    </div> 
     `.trim();
     return div.firstChild;
 }
@@ -444,25 +448,47 @@ let signinView = () => {
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div class="h-screen flex justify-center w-full bg-vscode-3">
-        <div class="max-w-xl rounded-md p-3 bg-vscode-4 mx-auto my-auto border border-purple-700">
-            <img class="mx-auto mb-2" src="./img/habibi-cat.jpg" alt="" srcset="">
+        
+        <div class="max-w-xl mx-auto my-auto ">
+            <div class="rounded-md border-2 border-dashed border-white mb-2">
+                <img class="mx-auto" src="./img/habibi-cat.jpg" alt="" srcset="">
+            </div>
+            <div class="border border-purple-700 bg-vscode-4 rounded-md p-3">
+                <div class="flex mb-2 gap-2">
+                    <button id="login-change" class="basis-1/2 text-center bg-purple-500 rounded-sm">Login</button>
+                    <button id="signin-change" class="basis-1/2 text-center  rounded-sm">Signin</button>
+                </div>
 
-            <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar terlebih dahulu</h1>
-            <form class="" action="">
-                <div class="mb-3">
-                    <label class="block" for="">Name :</label>
-                    <input id="name-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                <div class="sign-in">
+                    <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Daftar akun terlebih dahulu</h1>
+                    <form class="" action="">
+                        <div class="mb-3">
+                            <label class="block" for="">Name :</label>
+                            <input id="name-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label class="block" for="">Desc :</label>
+                            <input id="desc-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label class="block" for="">Id anda :</label>
+                            <span id="id-user-signin" >#1242</span>
+                            <span class="text-sm text-gray-600">id sudah di generate di sisi client</span>
+                        </div> 
+                        <button class="bg-vscode-2 w-full active:bg-vscode-1" >Daftar</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="block" for="">Desc :</label>
-                    <input id="desc-user" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                <div class="log-in">
+                    <h1 class="text-center text-2xl border-b py-3 mb-2 px-7 border-vscode-1">Input akun terlebih dahulu</h1>
+                    <form class="" action="">
+                        <div class="mb-3">
+                            <label class="block" for="">id Account :</label>
+                            <input id="id-user-login" class="w-full bg-vscode-2 focus:text-black px-2 focus-within:bg-white focus-within:outline-none" type="text">
+                        </div>
+                        <button class="bg-vscode-2 w-full active:bg-vscode-1" >Login</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="block" for="">Id anda :</label>
-                    <span id="id-user-signin" >#1242</span>
-                </div> 
-                <button class="bg-vscode-2 w-full active:bg-vscode-1" >Daftar</button>
-            </form>
+            </div>
         </div>
     </div>
     `.trim();
