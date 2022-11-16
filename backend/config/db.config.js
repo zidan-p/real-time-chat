@@ -5,7 +5,8 @@ const db_config = {
     dbms : {
         host: 'localhost',
         dialect: 'mysql'
-    }
+    },
+    logging : false, //log setiap query database ke konsole
 }
 
 module.exports = {db_config}

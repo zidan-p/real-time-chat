@@ -98,14 +98,28 @@ module.exports = {
                 where: params,
                 include : [{
                     model : room,
-                    through : "pair_user_room"
+                    through : "pair_user_room",
+                    include: [
+                        {
+                            model : user,
+                            as : "users"
+                        },
+                        {
+                            model : message,
+                            as : "messages"
+                        },
+                        {
+                            model : user,
+                            as : "creator_room"
+                        }
+                    ]
                 }]
             })
             // result = await rest.getRooms()
             res.status(200)
             res.json({
                 success : true,
-                data : result,
+                data : result.rooms,
                 msg : "test yang lumayan"
             })
         } catch (error) {

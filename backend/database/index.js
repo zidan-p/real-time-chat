@@ -7,7 +7,11 @@ const sequelize = new Sequelize(
 	db_config.db_name,
 	db_config.username,
 	db_config.password,
-	db_config.dbms
+	{
+		host : db_config.dbms.host,
+		dialect : db_config.dbms.dialect,
+		logging : db_config.logging
+	}
 );
 
 const modelDefiners = [

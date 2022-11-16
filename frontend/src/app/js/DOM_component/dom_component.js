@@ -146,7 +146,7 @@ let inputMessage = ({inpTxt = ""}) => {
                 <p class="user-id bg-amber-300 group-focus-within:bg-amber-200 rounded-l-full text-black px-2 whitespace-nowrap">ini adalah id</p>
                 <button class="input-send bg-amber-300 group-focus-within:bg-amber-200 rounded-r-full text-black px-2"> > </button>
             </div>
-            <form class="grow">
+            <form class="grow" autocomplete="off">
                 <input id="add" autocomplete="off" type="text" class="px-2 w-full bg-vscode-4 focus-within:bg-vscode-1 focus-within:outline-none">
             </form>
         </div>
@@ -215,7 +215,7 @@ let sideBody = () => {
         <div class="wrapper shadow">
             <h1 class="text-center py-5 my-2 text-2xl text-white font-medium">Daftar Room</h1>
             <div class="px-3 mb-5 group"> <!-- search bar -->
-                <form id="form-find" class="px-2 bg-vscode-2 rounded group-focus-within:bg-white flex flex-nowrap gap-2 transition">
+                <form id="form-find" class="px-2 bg-vscode-2 rounded group-focus-within:bg-white flex flex-nowrap gap-2 transition" autocomplete="off">
                     <svg class="basis-1/12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
@@ -383,7 +383,7 @@ let accountSideContent = () => {
     div.innerHTML = `
     <div id="account-room-side" >
         <h5 class="text-center font-bold bg-vscode-2" >Account test</h5>
-        <form class="text-xs font-bold p-5" action="">
+        <form class="text-xs font-bold p-5" action="" autocomplete="off">
             <div class="mb-2">
                 <label class="font-extralight" for="">Nama</label>
                 <input id="name-account-side" class="w-full rounded-sm text-black py-0.5 px-1 focus-within:outline-none" type="text" placeholder="namamu" value="Zidan Putra rahman">
@@ -411,7 +411,7 @@ let joinRoomSideContent = () => {
     div.innerHTML = `
     <div id="join-room-side" class="">
         <h5 class="text-center font-bold bg-vscode-2" >Join</h5>
-        <form class="text-xs font-bold p-5 " action="">
+        <form class="text-xs font-bold p-5 " action="" autocomplete="off">
             <div class="mb-2">
                 <label class="font-extralight" for="">Room id 
                     <span class="text-[10px] text-gray-400">*only existing room</span> 

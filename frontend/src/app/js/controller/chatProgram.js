@@ -16,6 +16,7 @@ let user = {
 class ChatProgram{
     // -- data value --
     rooms
+    user
 
 
     constructor(){
@@ -23,6 +24,7 @@ class ChatProgram{
     }
     // -- elemen --
     async run(){
+        this.user = JSON.parse(localStorage.getItem('userData'))
         let group = await this.fetchData();
         this.rooms = group;
         let start = new StateRoom(group.map(room => new Room(room)))
@@ -34,7 +36,7 @@ class ChatProgram{
     }
 
     async fetchData(){
-        let results = await fetch('http://127.0.0.1:3004/room/full',{
+        let results = await fetch('http://127.0.0.1:3004/room/user/'+this.user.id,{
             // mode: 'no-cors',
             headers:{
                 "Content-Type": "application/json",

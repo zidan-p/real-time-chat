@@ -18,7 +18,7 @@ class AccountSide extends ComponentStruct{
             idContainer : "#id-account-side",
             saveBtn : "button",
             formElement : "form",
-            // logout: ".logout"
+            logout: ".logout"
         })
     }
 
@@ -58,6 +58,11 @@ class AccountSide extends ComponentStruct{
             this.changeUserData();
 
             //todo: create event untuk emit event websokcet global
+        })
+
+        this.elementStruct.logout.addEventListener('click',()=>{
+            localStorage.removeItem('userData');
+            location.reload();
         })
     }
 

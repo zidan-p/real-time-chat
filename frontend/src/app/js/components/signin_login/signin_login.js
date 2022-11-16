@@ -31,6 +31,7 @@ class SigninLogin extends ComponentStruct{
         this.generatedId = this.makeId(4);
     }
 
+    // -- dom component --
     prepareElement(){
         this.activeField = 1
         this.resetElement();
@@ -39,7 +40,6 @@ class SigninLogin extends ComponentStruct{
 
         this.checkActiveField();
         this.fillId()
-        
     }
 
     changeFieldVisibility(){
@@ -78,41 +78,25 @@ class SigninLogin extends ComponentStruct{
     }
 
 
-
-
-
-    // let user = {
-    //     id : 1234,
-    //     name : "zidan putra rahman",
-    //     lastActive : null
-    // }
-
+    // -- data fetching --
     setEvent(){
-        //sebelum adanay set event, ada baiknya untuk mendapat id dari server
-        //sebelum eventlistener dibuat request untuk mendapat id di admin
-
-        //untuk algoritmanya, ketika user menginputkan id user yang sudah ada
-        //maka akan dibawakan data dari database, bukan dari sini.
-        //namun bila user yg diinputkan tidak ada, maka akan buat baru
-
         this.elementStruct.formSignIn.addEventListener('submit',(e)=>{
             //mungkin bisa dilakukan handle server
             e.preventDefault()
-
             let data = {
                 id : this.generatedId, // ini nantinya akan diproses ke database, sehingga akan dikosongi
                 name : this.elementStruct.nameUserSignIn.value,
-                descUser : this.elementStruct.descUserSignIn.value
+                description : this.elementStruct.descUserSignIn.value
             }
-
-            //save user
-            this.saveUserToLocal(data);
+            this.sendDataCreateUser(data)
         })
 
         this.elementStruct.formLogin.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            //akan dilakukantest pada database
+            //akan dilakukan test pada database
+            let id = this.elementStruct.idLogin.value;
+            this.sendDataCheckId(id)
         })
 
         // ** event untuk masing2 button **
@@ -124,6 +108,59 @@ class SigninLogin extends ComponentStruct{
             this.activeField = 1;
             this.checkActiveField();
         })
+    }
+
+    //ajax loader untuk loading
+    async sendDataCheckId(id){
+        let res = await this.checkUser(id)
+        if(res){
+            let {name,description,id} = res
+            this.saveUserToLocal({name,description,id})
+        }else{
+            let div = document.createElement('DIV');
+            div.innerHTML = `
+            <div class="bg-red-600 bg-opacity-50 font-mono border border-red-600 mt-2 p-2">
+                id tidak ditemukan
+            </div>
+            `
+            this.elementStruct.loginContainer.append(div)
+        }
+        
+    }
+ 
+    //cek apakah ada user di database
+    async checkUser(id){
+        let result = await fetch('http://localhost:3004/user/'+id)
+        result = await result.json();
+
+        if (result.data == null || result.success == false) return false;
+        return result.data
+    }
+
+    async sendDataCreateUser(data){
+        let res = await this.createUser(data)
+        console.log(res)
+        let {name,description,id} = res
+        this.saveUserToLocal({name,description,id})
+    }
+
+    async createUser(data){
+        try {
+            let result = await fetch("http://localhost:3004/user",{
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type' : 'application/json'
+                }
+            })
+            result = await result.json()
+            if(result.success == false)return false
+            return result.data
+        } catch (error) {
+            console.warn(error)
+            throw new Error(error)
+        }
     }
 
     saveUserToLocal(data){
@@ -147,8 +184,22 @@ class SigninLogin extends ComponentStruct{
         return result;
     }
 
-    checkToDB(){}
-
 }
 
 export {SigninLogin}
+
+
+
+
+    // let user = {
+    //     id : 1234,
+    //     name : "zidan putra rahman",
+    //     lastActive : null
+    // }
+
+    /**
+     * 
+     * <div class="bg-red-400 font-mono p-2 opacity-60">
+  akun tidak ditemukan
+</div>
+     */
