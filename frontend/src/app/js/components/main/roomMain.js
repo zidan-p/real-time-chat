@@ -103,7 +103,7 @@ class RoomMain extends ComponentStruct{
                     // placement : "bottom-start",
                     placement: 'auto',
                     interactive: true,
-                    maxWidth: 500,
+                    maxWidth: 700,
                     offset: [0,20]
                 })
             }

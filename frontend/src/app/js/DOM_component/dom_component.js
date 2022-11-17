@@ -3,8 +3,6 @@
 // let habibiCat = require('./src/app/img/habibi-cat.jpg')
 let habibiCat = require('./../../img/habibi-cat.jpg')
 
-
-//untuk baris pesan
 let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
     let div = document.createElement('DIV');
     div.innerHTML = `
@@ -12,11 +10,9 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
         <div class="basis-10 ${fromMe? "border-r-4 border-r-[#FFC355]" : ""}">
             <p class="text-center text-gray-400">${numberRow}</p>
         </div>
-        <div class=" ${fromMe ? 'flex-row-reverse' : ''}  w-full grow flex gap-3 px-4">
+        <div class="min-w-0 ${fromMe ? 'flex-row-reverse' : ''}  w-full grow flex gap-3 px-4">
             <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[#${idSender}]</p>
-            <div class="">
-                <p class="text-justify whitespace-pre-line max-w-full">"${msg}"</p>
-            </div>
+            <p class="text-justify break-words min-w-0 whitespace-pre-line max-w-full">"${msg}"</p>
         </div>
     </div>
     `.trim()
@@ -57,59 +53,52 @@ let header = ({roomName = ""}) => {
 }
 
 //room menu
-let roomMenu = ({roomName, messagCount, memberCount, createdAt, creatorId, roomDescription}) => {
+let roomMenu = ({roomName, messageCount, memberCount, createdAt, creatorId, roomDescription}) => {
     let div = document.createElement('DIV');
     // <div class="bg-vscode-3 shadow rounded max-w-xl p-3 absolute w-full">
     div.innerHTML = `
-    <div class="bg-vscode-3 shadow rounded p-3 w-[500px] ">
-        <div class="title border-b-[1px] border-b-gray-600 mb-2 py-1 pb-2 flex gap-2">
-            <h1 class="room-name text-2xl">${roomName}</h1>
+    <div class="shadow rounded p-3 w-[700px] text-black bg-vscode-4">
+        <div class="title border-b-[1px] border-b-gray-700 mb-2 py-1 pb-2 flex flex-col">
+            <div class="flex justify-between">
+            <h1 class="text-white room-name text-xl">${roomName}</h1>
+            <button id="out-room" class="out text-red-500 room-name text-xl mr-3">Out</button>
+            </div>
+            <p class=" room-description text-gray-400 text-sm">${roomDescription}</p>
         </div>
-        <div class="info">
-            <div class="info-bar mb-4 flex gap-2 py-0.5 rounded">
-                <div class="message-count-container flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+        <div class="info mb-7">
+            <div class="info-bar mb-2 flex gap-2 py-0.5 rounded cursor-default">
+                <div class="message-count-container group hover:bg-vscode-1 flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
+                    <svg  width="16" height="16" fill="currentColor" class="group-hover:fill-gray-400" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     </svg>
-                    <span id="message-count" class="self-center">${messagCount} message</span>
+                    <span id="message-count" class="self-center group-hover:text-gray-400">${messageCount} message</span>
                 </div>
-                <div class="member-count-container flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <div class="member-count-container group hover:bg-vscode-1 flex gap-2 text-[12px] bg-vscode-2 rounded px-2 py-1">
+                    <svg  width="16" height="16" fill="currentColor" class="group-hover:fill-gray-400" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                     </svg>
-                    <span id="member-count" class="self-center">${memberCount} member</span>
+                    <span id="member-count" class="self-center group-hover:text-gray-400">${memberCount} member</span>
                 </div>
             </div>
-            <table class="table-auto text-sm w-3/4 mb-2">
+            <table class="table-auto text-sm mb-2 text-gray-400">
                 <tbody>
                     <tr>
-                        <td class="font-bold">Created at</td>
-                        <td class="created-at text-gray-500">${createdAt}</td>
+                        <td class="min-w-[8rem] font-medium">Created at</td>
+                        <td class="created-at text-[14px] text-gray-500">${createdAt}</td>
                     </tr>
                     <tr>
-                        <td class="font-bold">Creator</td>
-                        <td class="creator-id text-amber-300">[#${creatorId}]</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold">Description</td>
-                        <td class="room-description text-gray-500">"${roomDescription}"</td>
+                        <td class="font-medium">Creator</td>
+                        <td class="creator-id text-[14px] text-amber-300">#${creatorId}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="member-list flex flex-col bg-vscode-4 rounded-sm p-2 max-h-[40vh] overflow-y-auto mb-2">
-            <h1 class="text-center">Members list</h1>
-            
+        <div class="member-list flex flex-col gap-1 bg-vscode-4 rounded-sm p-2 max-h-[40vh] overflow-y-auto mb-2">
+        <h1 class="text-center font-medium text-white mb-3">Members list</h1>
+        <div class="member py-1 flex justify-between flex-wrap bg-vscode-5 rounded-md px-3 leading-tight cursor-default">
+            <p class="text-amber-300">#1234</p>
+            <span class="text-sm text-gray-500">zidan p yang op sekali</span>
         </div>
-        <div class="option flex gap-2">
-            <button class="out w-full hover:bg-red-600 active:bg-red-900 bg-red-700 rounded-sm flex gap-2 justify-center">
-                <svg class="w-4 self-center" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                    <polyline points="16 17 21 12 16 7"></polyline>
-                    <line x1="21" y1="12" x2="9" y2="12"></line>
-                </svg>
-                 Out
-            </button>
         </div>
     </div>
     `.trim();
@@ -120,8 +109,8 @@ let roomMenu = ({roomName, messagCount, memberCount, createdAt, creatorId, roomD
 let memberMenuList = ({userId, userName}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="member py-1">
-        <p class="text-amber-300">[#${userId}]</p>
+    <div class="member py-1 flex justify-between flex-wrap bg-vscode-5 rounded-md px-3 leading-tight cursor-default">
+        <p class="text-amber-300">#${userId}</p>
         <span class="text-sm text-gray-500">${userName}</span>
     </div>
     `.trim();
@@ -195,7 +184,7 @@ let appBody = () => {
             <div id="body-program" class="h-full max-h-max overflow-hidden flex bg-vscode-2">
                 <aside class="basis-1/5 shrink-0">
                 </aside>
-                <main class="w-full grow-0">
+                <main class="basis-4/5 min-w-0 grow-0">
                 </main>
             </div>
         </div>
@@ -310,7 +299,8 @@ let mainBodyRoom = () => {
 
         <!--chat container-->
         <div class="h-full shrink overflow-y-auto">
-            <div id="msg-container" class="flex flex-col gap-2 py-2 px-5 text-sm font-bold">
+            <!-- <div id="msg-container" class="flex flex-col gap-2 py-2 px-5 text-sm font-bold"> -->
+            <div id="msg-container" class="">
             </div>
         </div>
         

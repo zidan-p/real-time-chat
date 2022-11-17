@@ -49,7 +49,7 @@ class RoomMenu extends ComponentStruct{
         this.defineCreateElement(()=>{
             return roomMenu({
                 roomName : this.roomGlance.roomName, 
-                messagCount : this.roomGlance.messageCount, 
+                messageCount : this.roomGlance.messageCount, 
                 memberCount : this.roomGlance.memberList.length, 
                 createdAt : this.roomGlance.createdAt, 
                 creatorId : this.roomGlance.creator.id, 

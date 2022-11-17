@@ -18,7 +18,11 @@ class ChatContent{
     }
 
     // -- element manipulation --
-    resetElement(){this.containerElement = document.createElement('div')}
+    resetElement(){
+        let div = document.createElement('div');
+        div.className = "flex flex-col py-2 px-5 text-sm font-bold"
+        this.containerElement = div
+    }
     deleteElement(){this.containerElement = null}
 
     prepareElement(){
