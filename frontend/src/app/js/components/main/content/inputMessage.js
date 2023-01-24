@@ -5,7 +5,7 @@ import {ComponentStruct} from "./../../../core/component_struct";
 class InputMessage extends ComponentStruct{
     currentMsg
     idDomElement
-    userId
+    user
 
     // -- config --
     sendMethod //['input','textArea']
@@ -13,10 +13,12 @@ class InputMessage extends ComponentStruct{
     //---- dom value -----
     container
 
-    constructor({currentMsg = "", userId = ""}){
+    constructor({currentMsg = "", user }){
         super()
         this.currentMsg = currentMsg;
-        this.userId = userId;
+        this.user = user;
+
+
 
         // -- define constructor --
 
@@ -56,9 +58,9 @@ class InputMessage extends ComponentStruct{
 
     // -- state control --
     fillCurrentElementDom(){
-        // this.idContainerElement.innerHTML = "#" + this.userId;
+        // this.idContainerElement.innerHTML = "#" + this.user;
         this.elementStruct.idContainer.forEach((idc) => {
-            idc.innerHTML = "#" + this.userId
+            idc.innerHTML = "#" + this.user.id
         })
         // this.input.value = this.currentMsg; // mugkin dijadikan optional
 
@@ -117,7 +119,7 @@ class InputMessage extends ComponentStruct{
             e.preventDefault();
             callback({
                 msg: this.elementStruct.input.value,
-                idSender : this.userId,
+                sender : this.user,
                 fromMe : true,
             });
             this.elementStruct.input.value = "";
@@ -126,7 +128,7 @@ class InputMessage extends ComponentStruct{
             e.preventDefault();
             callback({
                 msg: this.elementStruct.input.value,
-                idSender : this.userId,
+                sender : this.user,
                 fromMe : true,
             });
             this.elementStruct.input.value = "";
@@ -139,7 +141,7 @@ class InputMessage extends ComponentStruct{
             e.preventDefault();
             callback({
                 msg: this.elementStruct.textArea.value,
-                idSender : this.userId,
+                sender : this.user,
                 fromMe : true,
             });
             this.elementStruct.textArea.value = ""

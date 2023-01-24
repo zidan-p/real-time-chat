@@ -23,8 +23,21 @@ async function init() {
 	io.listen(PORT_SOCKET)
 	console.log(`io server started on port ${PORT_SOCKET}.`);
 	app.listen(PORT_EXPRESS, () => {
-		console.log(`Express server started on port ${PORT_EXPRESS}. "localhost:${PORT_EXPRESS}"`);
+		console.log(`Express server started on port ${PORT_EXPRESS}.`);
+		console.log('Summary :');
+		console.table({
+			'Express' : {
+				"port" : PORT_EXPRESS,
+				'end point' : 'localhost:'+PORT_EXPRESS
+			},
+			"Sokect io": {
+				"port" : PORT_SOCKET,
+				'end point' : 'localhost:'+PORT_SOCKET 
+			}
+		});
 	});
+
+	
 }
 
 init();

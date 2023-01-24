@@ -42,8 +42,8 @@ class SideBar extends ComponentStruct{
             // ** button value **
             roomListSidebtn : "#room-list-btn",
             joinRoomBtn : "#join-room-btn",
-            settingBtn : "#add-room-btn",
-            createRoomBtn : "#setting-btn",// -- create room
+            createRoomBtn : "#add-room-btn",
+            settingBtn : "#setting-btn",// -- create room
             accountBtn : "#account-btn"
         })
     }

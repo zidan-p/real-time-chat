@@ -2,6 +2,7 @@ import {appBody} from "../DOM_component/dom_component"
 import {SideBar} from "./../components/sidebar/sidebar"
 import {DefaultMain} from "./main/defaultMain"
 import {ComponentStruct} from "../core/component_struct";
+import {initRoom} from "./../controller/socket";
 
 class StateRoom extends ComponentStruct{
     // -- object elemen ---
@@ -49,6 +50,7 @@ class StateRoom extends ComponentStruct{
         this.resetElement();
         this.setPseudoElement();
         this.defineAttachcement();
+        this.initRoomSocket()
         this.roomList.forEach(room => {
             room.prepareElement();
         })
@@ -74,6 +76,11 @@ class StateRoom extends ComponentStruct{
         if(this.currentActive){
             this.attachProp.mainElement(this.currentActive.roomMain); // elemen main yg diattach
         }
+    }
+
+    initRoomSocket(){
+        let roomIdList = this.roomList.map(room => room.id );
+        initRoom(roomIdList);
     }
 
     async run(){

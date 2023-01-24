@@ -7,10 +7,10 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
     let div = document.createElement('DIV');
     div.innerHTML = `
     <div class="w-full flex bg-vscode-1 transition-all duration-300">
-        <div class="basis-10 ${fromMe? "border-r-4 border-r-[#FFC355]" : ""}">
+        <div class="basis-10 box-border ${fromMe? "border-r-2 border-r-[#FFC355]" : ""}">
             <p class="text-center text-gray-400">${numberRow}</p>
         </div>
-        <div class="min-w-0 ${fromMe ? 'flex-row-reverse' : ''}  w-full grow flex gap-3 px-4">
+        <div class="min-w-0 ${fromMe ? 'flex-row-reverse' : ''}  w-full grow flex gap-3 px-4 pl-2">
             <p class="whitespace-nowrap ${fromMe ? 'text-[#FFC355]' : 'text-[#FF5A76]'}  tracking-widest">[#${idSender}]</p>
             <p class="text-justify break-words min-w-0 whitespace-pre-line max-w-full">"${msg}"</p>
         </div>
@@ -26,26 +26,26 @@ let msgRow = ({numberRow = NaN ,msg = "",idSender = NaN,fromMe = false})=>{
 let header = ({roomName = ""}) => {
     let div = document.createElement('DIV');
     div.innerHTML = `
-    <div class="bg-vscode-2 shadow min-h-36 cursor-default">
-        <div class="flex justify-between px-5 p-1">
+    <div class="bg-vscode-2 flex shadow min-h-36 cursor-default">
+        <div class="grow flex justify-between px-5 p-1">
             <h1 id="header-room-name" class="font-semibold text-xl m-2">${roomName}</h1>
-            <div class="self-center flex gap-3 rounded bg-vscode-4 p-1"">
-                <button id="out-header" class="self-center hover:bg-red-600 inline-flex gap-2 bg-red-800 active:bg-red-800 px-2 rounded-sm">
-                    <svg class="self-center w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline>
-                        <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
-                    <span>Out</span>
-                </button>
-                <button id="info-header" class="self-center hover:bg-vscode-2 inline-flex gap-2 bg-vscode-3 active:bg-vscode-4 px-2 rounded-sm">
-                    <svg class="self-center w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                    <span>Info</span>
-                </button>
-            </div>
+        </div>
+        <div class="flex">
+            <button id="out-header" class=" hover:bg-red-600 inline-flex gap-2 bg-red-800 active:bg-red-800 px-5 rounded-sm">
+                <svg class="self-center w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span class="self-center">Out</span>
+            </button>
+            <button id="info-header" class=" hover:bg-vscode-2 inline-flex gap-2 bg-vscode-3 active:bg-vscode-4 px-5 rounded-sm">
+                <svg class="self-center w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span class="self-center">Info</span>
+            </button>
         </div>
     </div>
     `.trim()
@@ -61,7 +61,7 @@ let roomMenu = ({roomName, messageCount, memberCount, createdAt, creatorId, room
         <div class="title border-b-[1px] border-b-gray-700 mb-2 py-1 pb-2 flex flex-col">
             <div class="flex justify-between">
             <h1 class="text-white room-name text-xl">${roomName}</h1>
-            <button id="out-room" class="out text-red-500 room-name text-xl mr-3">Out</button>
+            <button id="out-room" class="out hover:bg-red-700 px-4 rounded hover:text-white text-red-500 room-name text-xl mr-3">Out</button>
             </div>
             <p class=" room-description text-gray-400 text-sm">${roomDescription}</p>
         </div>
@@ -95,10 +95,7 @@ let roomMenu = ({roomName, messageCount, memberCount, createdAt, creatorId, room
         </div>
         <div class="member-list flex flex-col gap-1 bg-vscode-4 rounded-sm p-2 max-h-[40vh] overflow-y-auto mb-2">
         <h1 class="text-center font-medium text-white mb-3">Members list</h1>
-        <div class="member py-1 flex justify-between flex-wrap bg-vscode-5 rounded-md px-3 leading-tight cursor-default">
-            <p class="text-amber-300">#1234</p>
-            <span class="text-sm text-gray-500">zidan p yang op sekali</span>
-        </div>
+            <!-- tempat membernya nantinya-->
         </div>
     </div>
     `.trim();

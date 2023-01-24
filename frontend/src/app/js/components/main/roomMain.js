@@ -6,6 +6,7 @@ import {addResizer} from "./../../service/resizer";
 import { RoomMenu } from "./content/roomMenu";
 import {ComponentStruct} from "./../../core/component_struct";
 import tippy from 'tippy.js';
+import {socket} from "./../../controller/socket";
 
 class RoomMain extends ComponentStruct{
     // -- object --
@@ -15,7 +16,7 @@ class RoomMain extends ComponentStruct{
     roomMenu
 
     // -- data --
-    idUser // user ini
+    user // user ini
     isActive // apakah room ini active?
     room
 
@@ -23,7 +24,7 @@ class RoomMain extends ComponentStruct{
         super()
         this.room = room;
 
-        this.idUser = 12312; //ini cuma dummy
+        this.user = JSON.parse(localStorage.getItem('userData'))
         this.isActive = false;
 
         this.header = new Header({
@@ -32,7 +33,8 @@ class RoomMain extends ComponentStruct{
 
         this.inputMessage = new InputMessage({
             currentMsg : "dummy", //kosong kan terlebih dahulu
-            userId : 12312, //nah, ini mungkin bisa di lihat nanti
+            user : this.user, //nah, ini mungkin bisa di lihat nanti
+
         })
 
         this.chatContent = new ChatContent({msg : room.msg})
@@ -71,6 +73,7 @@ class RoomMain extends ComponentStruct{
         this.attachProp.input(this.inputMessage);
         
         this.setSendMessage();
+        this.setReceiveMessage()
         this.setShowInfo()
         this.addResizer();
     }
@@ -85,18 +88,34 @@ class RoomMain extends ComponentStruct{
             (data)=>{
                 this.chatContent.appendMsg({
                     fromMe: data.fromMe,
-                    idSender: data.idSender,
+                    idSender: data.sender.id,
                     msg: data.msg
                 })
+
+                socket.emit('send-message',{
+                    message: data.msg,
+                    sender: data.sender,
+                    roomId: this.room.id,
+                });
             }
         )
+    }
+
+    setReceiveMessage(){
+        socket.on('emit-room-'+this.room.id, data => {
+            console.log("server telah melakukan emit");
+            this.chatContent.appendMsg({
+                fromMe : false,
+                idSender : data.sender.id,
+                msg: data.message
+            })
+        })
     }
 
     setShowInfo(){
         console.log("seharusnya set info sudah di set");
         this.header.onInfoClick(
             (element) => {
-                console.log(element);
                 tippy(element,{
                     content : this.roomMenu.containerElement,
                     trigger: 'click',
